@@ -1,0 +1,5939 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
+<meta name="theme-color" content="#2E7D32">
+<meta name="description" content="Diaspora Mali Connect — La plateforme internationale des Maliens du monde entier. Membres, associations, événements, cagnottes.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="DMC">
+<link rel="manifest" href="manifest.json">
+<title>Diaspora Mali Connect 🇲🇱</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+:root{
+  --primary:#2E7D32;--primary-d:#1B5E20;--primary-l:#E8F5E9;
+  --gold:#E8A020;--gold-l:#FFF9E6;
+  --success:#16A34A;--success-l:#DCFCE7;
+  --danger:#DC2626;--danger-l:#FEF2F2;
+  --warning:#F59E0B;--warning-l:#FFFBEB;
+  --t1:#111827;--t2:#374151;--t3:#6B7280;--t4:#9CA3AF;
+  --border:#E5E7EB;--border-d:#D1D5DB;
+  --bg:#F5F5F5;--surface:#FFFFFF;
+  --radius-s:6px;--radius-m:10px;--radius-l:14px;--radius-xl:20px;
+  --shadow-s:0 1px 3px rgba(0,0,0,.08);--shadow-m:0 4px 14px rgba(0,0,0,.09);--shadow-l:0 8px 30px rgba(0,0,0,.11);
+}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.5;min-height:100dvh;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--border-d);border-radius:4px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounceIn{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+.page-enter{animation:fadeIn .25s ease-out}
+[data-theme="dark"]{--primary:#4CAF50;--primary-d:#388E3C;--primary-l:#1B2E1B;--gold:#FFB74D;--gold-l:#2D1E00;--t1:#F9FAFB;--t2:#E5E7EB;--t3:#9CA3AF;--t4:#6B7280;--border:#374151;--border-d:#4B5563;--bg:#111827;--surface:#1F2937}
+[data-theme="dark"] body{background:#111827;color:#F9FAFB}
+[data-theme="dark"] .top-nav,[data-theme="dark"] .bottom-nav{background:rgba(31,41,55,.97);border-color:#374151}
+[data-theme="dark"] .card{background:#1F2937;border-color:#374151}
+[data-theme="dark"] input.fi,[data-theme="dark"] select.fi,[data-theme="dark"] textarea.fi{background:#111827;color:#F9FAFB;border-color:#374151}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 20px;border-radius:var(--radius-m);font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--t1);transition:all .2s ease;white-space:nowrap;user-select:none;-webkit-tap-highlight-color:transparent}
+.btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:var(--shadow-s)}
+.btn:active:not(:disabled){transform:scale(.97)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-primary:hover:not(:disabled){background:var(--primary-d);border-color:var(--primary-d);box-shadow:0 4px 16px rgba(46,125,50,.3)}
+.btn-ghost{border-color:transparent;background:transparent}
+.btn-lg{padding:13px 28px;font-size:15px;border-radius:var(--radius-l)}
+.btn-sm{padding:6px 14px;font-size:12px;border-radius:var(--radius-s)}
+.btn-full{width:100%}
+.card{background:var(--surface);border-radius:var(--radius-l);border:1px solid var(--border);transition:all .2s ease}
+.card-hover:hover{transform:translateY(-2px);box-shadow:var(--shadow-m);cursor:pointer}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:12px;font-weight:700;color:var(--t3);margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}
+.fi{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius-m);font-size:14px;font-family:inherit;background:var(--surface);color:var(--t1);transition:border-color .15s,box-shadow .15s}
+.fi:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(46,125,50,.12)}
+.fi::placeholder{color:var(--t4)}
+select.fi{cursor:pointer}
+textarea.fi{resize:vertical;min-height:70px}
+.err-box{background:var(--danger-l);border:1px solid #FECACA;border-radius:var(--radius-m);padding:10px 14px;font-size:13px;color:var(--danger);margin-bottom:12px}
+.top-nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:10px 16px;gap:10px}
+.nav-brand{font-size:16px;font-weight:800;color:var(--primary);display:flex;align-items:center;gap:6px}
+.nav-title{font-size:15px;font-weight:700;color:var(--t1)}
+.nav-icon-btn{background:transparent;border:none;cursor:pointer;font-size:18px;padding:6px;border-radius:8px;transition:background .15s;display:flex;align-items:center;justify-content:center}
+.nav-icon-btn:hover{background:var(--bg)}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex;height:72px;padding-bottom:env(safe-area-inset-bottom)}
+.bn-tab{flex:1;background:transparent;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 0;color:var(--t4);transition:all .2s;-webkit-tap-highlight-color:transparent}
+.bn-tab.active{color:var(--primary)}
+.bn-tab:active{transform:scale(.9)}
+.bn-icon{font-size:22px;transition:transform .2s}
+.bn-tab.active .bn-icon{transform:scale(1.1)}
+.bn-lbl{font-size:10px;font-weight:600}
+.fab{position:fixed;bottom:80px;right:18px;width:56px;height:56px;border-radius:50%;background:var(--primary);color:#fff;border:none;font-size:28px;cursor:pointer;box-shadow:0 4px 20px rgba(46,125,50,.45);z-index:150;display:flex;align-items:center;justify-content:center;transition:transform .25s,box-shadow .25s;-webkit-tap-highlight-color:transparent}
+.fab:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(46,125,50,.55)}
+.fab:active{transform:scale(.93)}
+.fab-menu{position:fixed;bottom:148px;right:18px;z-index:149;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.fab-item{display:flex;align-items:center;gap:10px}
+.fab-item-label{background:var(--t1);color:#fff;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:var(--shadow-m)}
+.fab-item-btn{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;font-size:20px;box-shadow:var(--shadow-m);display:flex;align-items:center;justify-content:center}
+.loading{display:flex;align-items:center;justify-content:center;padding:60px}
+.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite}
+@media(min-width:640px){.top-nav{padding:12px 24px}}
+@media(min-width:1024px){.top-nav{padding:14px 40px}}
+@media print{.top-nav,.bottom-nav,.fab,.fab-menu{display:none!important}}
+</style>
+</head>
+<body>
+
+<div id="root">
+  <div style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#E8F5E9 0%,#fff 60%);font-family:'Plus Jakarta Sans',system-ui,sans-serif">
+    <div style="font-size:72px;margin-bottom:16px;animation:bounceIn .6s ease-out">🇲🇱</div>
+    <h1 style="font-size:24px;font-weight:800;color:#2E7D32;margin:0 0 6px">Diaspora Mali Connect</h1>
+    <p style="color:#9CA3AF;font-size:13px;margin:0 0 8px">La plateforme des Maliens du monde</p>
+    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">🌍 Membres · Associations · Événements · Cagnottes</p>
+    <div style="width:32px;height:32px;border:3px solid #C8E6C9;border-top-color:#2E7D32;border-radius:50%;animation:spin .8s linear infinite"></div>
+    <p id="dmc-status" style="color:#D1D5DB;font-size:11px;margin-top:14px">Chargement...</p>
+  </div>
+</div>
+<noscript><div style="padding:40px;text-align:center"><h2>JavaScript requis</h2></div></noscript>
+
+<script>
+window.onerror = function(msg,src,line){
+  var r=document.getElementById('root');
+  if(r) r.innerHTML='<div style="padding:30px;font-family:system-ui;min-height:100vh;background:#FEF2F2">'
+    +'<div style="font-size:48px;margin-bottom:12px">⚠️</div>'
+    +'<h2 style="color:#DC2626;margin-bottom:12px">Erreur DMC</h2>'
+    +'<p style="font-size:14px;color:#374151;background:#fff;padding:12px;border-radius:8px;margin-bottom:12px">'+(msg||'Erreur')+'</p>'
+    +'<p style="font-size:12px;color:#6B7280">Ligne '+(line||'?')+'</p>'
+    +'<button onclick="location.reload()" style="margin-top:16px;padding:12px 24px;background:#2E7D32;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700">Recharger</button>'
+    +'</div>';
+};
+function dmc_status(m){var e=document.getElementById('dmc-status');if(e)e.textContent=m}
+dmc_status('Chargement React...');
+</script>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  CONFIG FIREBASE — Modifiez firebase-config.json -->
+<!-- ══════════════════════════════════════════════ -->
+<script>
+window.FIREBASE_CONFIG = {
+  apiKey:            "REMPLACEZ_PAR_VOTRE_API_KEY",
+  authDomain:        "VOTRE_PROJET.firebaseapp.com",
+  databaseURL:       "https://VOTRE_PROJET-default-rtdb.firebaseio.com",
+  projectId:         "VOTRE_PROJET",
+  storageBucket:     "VOTRE_PROJET.appspot.com",
+  messagingSenderId: "VOTRE_SENDER_ID",
+  appId:             "VOTRE_APP_ID"
+};
+window.ADMIN_EMAILS = ["admin@diaspora-mali.com"];
+</script>
+
+<!-- React 18 (unpkg + fallback cdnjs) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"
+  onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js'" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"
+  onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js'" crossorigin></script>
+
+<!-- Firebase 10 compat (Google CDN) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+<!-- PDF + QR -->
+<script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js" crossorigin></script>
+<script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js" crossorigin></script>
+
+<script>
+if(!window.React||!window.ReactDOM){
+  document.getElementById('root').innerHTML='<div style="padding:40px;text-align:center;font-family:system-ui"><div style="font-size:48px;margin-bottom:16px">📵</div><h2 style="color:#DC2626;margin-bottom:8px">Connexion requise</h2><p style="color:#6B7280;margin-bottom:20px">Vérifiez votre connexion internet.</p><button onclick="location.reload()" style="padding:12px 24px;background:#2E7D32;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700">Réessayer</button></div>';
+}else{dmc_status('Démarrage...');}
+</script>
+
+<!-- ════════════ DIASPORA MALI CONNECT ════════════ -->
+<script>
+// ═══════════════════════════════════════════════
+//  DIASPORA MALI CONNECT — App principale
+//  Single-file React + Firebase Compat + PWA
+// ═══════════════════════════════════════════════
+
+const React = window.React;
+const {
+  useState,
+  useEffect,
+  useContext,
+  createContext,
+  useRef,
+  useCallback
+} = React;
+const {
+  createRoot
+} = window.ReactDOM;
+
+// ═══ HASH ROUTER ═══
+const _Ctx = createContext(null);
+const _params = {
+  v: {}
+};
+function _parse() {
+  return (window.location.hash || '#/').slice(1).split('?')[0] || '/';
+}
+function _match(pat, path) {
+  const pp = pat.split('/'),
+    sp = path.split('/');
+  if (pp.length !== sp.length) return null;
+  const p = {};
+  for (let i = 0; i < pp.length; i++) {
+    if (pp[i].startsWith(':')) p[pp[i].slice(1)] = decodeURIComponent(sp[i] || '');else if (pp[i] !== sp[i]) return null;
+  }
+  return p;
+}
+function HashRouter({
+  children
+}) {
+  const [path, setPath] = useState(_parse);
+  useEffect(() => {
+    const h = () => setPath(_parse());
+    window.addEventListener('hashchange', h);
+    return () => window.removeEventListener('hashchange', h);
+  }, []);
+  const navigate = to => {
+    window.location.hash = to;
+    window.scrollTo(0, 0);
+  };
+  return React.createElement(_Ctx.Provider, {
+    value: {
+      path,
+      navigate
+    }
+  }, children);
+}
+function Routes({
+  children
+}) {
+  const {
+    path
+  } = useContext(_Ctx);
+  const kids = [].concat(children).flat().filter(Boolean);
+  for (const c of kids) {
+    if (!c?.props) continue;
+    const pat = c.props.path;
+    if (pat === '*') {
+      _params.v = {};
+      return c.props.element;
+    }
+    const m = _match(pat, path);
+    if (m !== null) {
+      _params.v = m;
+      return c.props.element;
+    }
+  }
+  _params.v = {};
+  return null;
+}
+function Route() {
+  return null;
+}
+const useNavigate = () => useContext(_Ctx).navigate;
+const useLocation = () => ({
+  pathname: useContext(_Ctx).path
+});
+const useParams = () => _params.v;
+
+// ═══ DARK MODE ═══
+const DarkCtx = createContext([false, () => {}]);
+function DarkProvider({
+  children
+}) {
+  const [dark, set] = useState(() => {
+    try {
+      return localStorage.getItem('dmc-dark') === '1';
+    } catch {
+      return false;
+    }
+  });
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    try {
+      localStorage.setItem('dmc-dark', dark ? '1' : '0');
+    } catch {}
+  }, [dark]);
+  return React.createElement(DarkCtx.Provider, {
+    value: [dark, set]
+  }, children);
+}
+const useDark = () => useContext(DarkCtx);
+
+// ═══ LANGUE ═══
+const LANGS = {
+  fr: {
+    home: 'Accueil',
+    members: 'Membres',
+    assoc: 'Associations',
+    events: 'Événements',
+    news: 'Actualités',
+    messages: 'Messages',
+    media: 'Médias',
+    profile: 'Profil',
+    admin: 'Admin',
+    settings: 'Paramètres',
+    login: 'Connexion',
+    register: 'Inscription',
+    publish: 'Publier',
+    search: 'Rechercher...',
+    all: 'Tous',
+    back: '← Retour',
+    save: 'Enregistrer',
+    cancel: 'Annuler',
+    loading: 'Chargement...',
+    joinAssoc: 'Rejoindre',
+    createAssoc: 'Créer une association',
+    memberCard: 'Carte de membre',
+    donate: 'Contribuer',
+    share: 'Partager',
+    likes: 'J\'aime',
+    comments: 'Commentaires',
+    follow: 'Suivre',
+    darkMode: 'Mode sombre',
+    language: 'Langue',
+    install: 'Installer l\'app',
+    welcome: 'Bienvenue sur Diaspora Mali Connect',
+    subtitle: 'La plateforme des Maliens du monde entier',
+    country: 'Pays',
+    city: 'Ville',
+    profession: 'Profession',
+    phone: 'Téléphone',
+    name: 'Nom',
+    firstname: 'Prénom',
+    email: 'Email',
+    password: 'Mot de passe',
+    online: 'En ligne',
+    offline: 'Hors ligne',
+    verified: 'Vérifié',
+    createPost: 'Nouvelle publication',
+    typePost: 'Exprimez-vous...',
+    noContent: 'Aucun contenu',
+    seeAll: 'Voir tout',
+    close: 'Fermer',
+    cagnotte: 'Cagnotte',
+    fundraising: 'Collecte de fonds',
+    goal: 'Objectif',
+    raised: 'Collecté',
+    contribute: 'Contribuer',
+    pay: 'Payer',
+    sendMsg: 'Envoyer un message',
+    newConv: 'Nouvelle conversation',
+    photoVideo: 'Photos & Vidéos',
+    uploadMedia: 'Ajouter un média',
+    eventDate: 'Date',
+    eventLocation: 'Lieu',
+    ticketBuy: 'Acheter un billet',
+    stats: 'Statistiques',
+    users: 'Utilisateurs',
+    payments: 'Paiements',
+    totalMembers: 'Membres total',
+    activeToday: 'Actifs aujourd\'hui',
+    notifications: 'Notifications',
+    notifOn: 'Activées',
+    notifOff: 'Désactivées',
+    logout: 'Déconnexion',
+    editProfile: 'Modifier le profil',
+    memberSince: 'Membre depuis',
+    memberNum: 'N° de membre',
+    myAssoc: 'Mes associations',
+    myEvents: 'Mes événements',
+    newAssoc: 'Nouvelle association',
+    presidentName: 'Président(e)',
+    assocCountry: 'Pays de l\'association',
+    founded: 'Fondée en',
+    pending: 'En attente de validation',
+    validated: 'Validée',
+    videoCall: 'Appel vidéo',
+    groupChat: 'Chat de groupe',
+    liveStream: 'Diffusion live',
+    aiAssistant: 'Assistant IA',
+    nearbyMembers: 'Membres proches',
+    worldMap: 'Carte mondiale'
+  },
+  en: {
+    home: 'Home',
+    members: 'Members',
+    assoc: 'Associations',
+    events: 'Events',
+    news: 'News',
+    messages: 'Messages',
+    media: 'Media',
+    profile: 'Profile',
+    admin: 'Admin',
+    settings: 'Settings',
+    login: 'Login',
+    register: 'Register',
+    publish: 'Post',
+    search: 'Search...',
+    all: 'All',
+    back: '← Back',
+    save: 'Save',
+    cancel: 'Cancel',
+    loading: 'Loading...',
+    joinAssoc: 'Join',
+    createAssoc: 'Create association',
+    memberCard: 'Member Card',
+    donate: 'Donate',
+    share: 'Share',
+    likes: 'Likes',
+    comments: 'Comments',
+    follow: 'Follow',
+    darkMode: 'Dark mode',
+    language: 'Language',
+    install: 'Install app',
+    welcome: 'Welcome to Diaspora Mali Connect',
+    subtitle: 'Platform for Malians worldwide',
+    country: 'Country',
+    city: 'City',
+    profession: 'Profession',
+    phone: 'Phone',
+    name: 'Last name',
+    firstname: 'First name',
+    email: 'Email',
+    password: 'Password',
+    online: 'Online',
+    offline: 'Offline',
+    verified: 'Verified',
+    createPost: 'New post',
+    typePost: 'Share something...',
+    noContent: 'No content',
+    seeAll: 'See all',
+    close: 'Close',
+    cagnotte: 'Fundraiser',
+    fundraising: 'Fundraising',
+    goal: 'Goal',
+    raised: 'Raised',
+    contribute: 'Contribute',
+    pay: 'Pay',
+    sendMsg: 'Send message',
+    newConv: 'New conversation',
+    photoVideo: 'Photos & Videos',
+    uploadMedia: 'Add media',
+    eventDate: 'Date',
+    eventLocation: 'Location',
+    ticketBuy: 'Buy ticket',
+    stats: 'Statistics',
+    users: 'Users',
+    payments: 'Payments',
+    totalMembers: 'Total members',
+    activeToday: 'Active today',
+    notifications: 'Notifications',
+    notifOn: 'Enabled',
+    notifOff: 'Disabled',
+    logout: 'Logout',
+    editProfile: 'Edit profile',
+    memberSince: 'Member since',
+    memberNum: 'Member No.',
+    myAssoc: 'My associations',
+    myEvents: 'My events',
+    newAssoc: 'New association',
+    presidentName: 'President',
+    assocCountry: 'Association country',
+    founded: 'Founded in',
+    pending: 'Pending validation',
+    validated: 'Validated',
+    videoCall: 'Video call',
+    groupChat: 'Group chat',
+    liveStream: 'Live stream',
+    aiAssistant: 'AI Assistant',
+    nearbyMembers: 'Nearby members',
+    worldMap: 'World map'
+  },
+  bm: {
+    home: 'Sugu',
+    members: 'Mɔgɔw',
+    assoc: 'Kalanso',
+    events: 'Sɔrɔko',
+    news: 'Kibaro',
+    messages: 'Batakaw',
+    media: 'Sɛbɛn',
+    profile: 'Mɔgɔ',
+    admin: 'Baaraden',
+    settings: 'Labɛncogo',
+    login: 'Don',
+    register: 'Sɛbɛn',
+    publish: 'Fɔ',
+    search: 'Ɲini...',
+    all: 'Bɛɛ',
+    back: '← Kɔsɛgɛn',
+    save: 'Maara',
+    cancel: 'A bɔ',
+    loading: 'Sɔn...',
+    welcome: 'Bisimilla Diaspora Mali Connect',
+    subtitle: 'Malidenw bɛɛ ka sigida'
+  },
+  es: {
+    home: 'Inicio',
+    members: 'Miembros',
+    assoc: 'Asociaciones',
+    events: 'Eventos',
+    news: 'Noticias',
+    messages: 'Mensajes',
+    media: 'Medios',
+    profile: 'Perfil',
+    admin: 'Admin',
+    settings: 'Ajustes',
+    login: 'Iniciar sesión',
+    register: 'Registrarse',
+    publish: 'Publicar',
+    search: 'Buscar...',
+    all: 'Todos',
+    back: '← Volver',
+    save: 'Guardar',
+    cancel: 'Cancelar',
+    loading: 'Cargando...',
+    welcome: 'Bienvenido a Diaspora Mali Connect',
+    subtitle: 'La plataforma de los malienses del mundo',
+    country: 'País',
+    city: 'Ciudad',
+    profession: 'Profesión',
+    phone: 'Teléfono',
+    name: 'Apellido',
+    firstname: 'Nombre',
+    email: 'Correo',
+    password: 'Contraseña'
+  },
+  ar: {
+    home: 'الرئيسية',
+    members: 'الأعضاء',
+    assoc: 'الجمعيات',
+    events: 'الفعاليات',
+    news: 'الأخبار',
+    messages: 'الرسائل',
+    media: 'الوسائط',
+    profile: 'الملف',
+    admin: 'الإدارة',
+    settings: 'الإعدادات',
+    login: 'تسجيل الدخول',
+    register: 'التسجيل',
+    publish: 'نشر',
+    search: 'بحث...',
+    all: 'الكل',
+    back: '→ رجوع',
+    save: 'حفظ',
+    cancel: 'إلغاء',
+    loading: 'تحميل...',
+    welcome: 'مرحباً بكم في Diaspora Mali Connect',
+    subtitle: 'منصة الماليين في العالم'
+  }
+};
+const LangCtx = createContext({
+  lang: 'fr',
+  t: k => k,
+  setLang: () => {}
+});
+function LangProvider({
+  children
+}) {
+  const [lang, setL] = useState(() => {
+    try {
+      return localStorage.getItem('dmc-lang') || 'fr';
+    } catch {
+      return 'fr';
+    }
+  });
+  const setLang = l => {
+    setL(l);
+    try {
+      localStorage.setItem('dmc-lang', l);
+    } catch {}
+  };
+  const t = k => LANGS[lang] && LANGS[lang][k] || LANGS.fr && LANGS.fr[k] || k;
+  return React.createElement(LangCtx.Provider, {
+    value: {
+      lang,
+      setLang,
+      t
+    }
+  }, children);
+}
+const useLang = () => useContext(LangCtx);
+
+// ═══ PWA ═══
+const PwaCtx = createContext({
+  prompt: null,
+  installed: false
+});
+function PwaProvider({
+  children
+}) {
+  const [prompt, setPrompt] = useState(null);
+  const [installed, setInstalled] = useState(() => {
+    try {
+      return window.matchMedia('(display-mode:standalone)').matches;
+    } catch {
+      return false;
+    }
+  });
+  useEffect(() => {
+    const h = e => {
+      e.preventDefault();
+      setPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', h);
+    window.addEventListener('appinstalled', () => {
+      setInstalled(true);
+      setPrompt(null);
+    });
+    return () => window.removeEventListener('beforeinstallprompt', h);
+  }, []);
+  return React.createElement(PwaCtx.Provider, {
+    value: {
+      prompt,
+      installed
+    }
+  }, children);
+}
+const usePwa = () => useContext(PwaCtx);
+
+// ═══ SCROLL INFINI ═══
+function useInfiniteScroll(items, pageSize) {
+  pageSize = pageSize || 10;
+  const [page, setPage] = useState(1);
+  const loaderRef = useRef(null);
+  const displayed = items.slice(0, page * pageSize);
+  const hasMore = items.length > page * pageSize;
+  useEffect(() => setPage(1), [items.length]);
+  useEffect(() => {
+    const el = loaderRef.current;
+    if (!el || !hasMore) return;
+    const obs = new IntersectionObserver(en => {
+      if (en[0].isIntersecting) setPage(p => p + 1);
+    }, {
+      threshold: 0.1
+    });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [hasMore]);
+  return {
+    displayed,
+    hasMore,
+    loaderRef
+  };
+}
+function LoadMore({
+  hasMore,
+  loaderRef
+}) {
+  if (!hasMore) return null;
+  return React.createElement('div', {
+    ref: loaderRef,
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      padding: '20px 0'
+    }
+  }, React.createElement('div', {
+    className: 'spinner'
+  }));
+}
+// ═══ FIREBASE SETUP ═══
+const cfg = window.FIREBASE_CONFIG || {};
+const IS_DEMO = !cfg.apiKey || cfg.apiKey.includes('REMPLACEZ') || !cfg.databaseURL;
+let db = null,
+  auth = null,
+  ST = Date.now();
+if (!IS_DEMO) {
+  try {
+    firebase.initializeApp(cfg);
+    db = firebase.database();
+    auth = firebase.auth();
+    ST = firebase.database.ServerValue.TIMESTAMP;
+    console.log('🔥 Firebase OK');
+  } catch (e) {
+    console.warn('Firebase:', e.message);
+  }
+}
+const ADMIN_EMAILS = window.ADMIN_EMAILS || [];
+
+// ═══ DONNÉES DÉMO ═══
+const DEMO_MEMBERS = [{
+  id: 'm1',
+  name: 'Diallo',
+  firstname: 'Amadou',
+  email: 'amadou@demo.com',
+  country: 'Espagne',
+  city: 'Madrid',
+  profession: 'Ingénieur',
+  phone: '+34 612 345 678',
+  memberNum: 'DMC-2024-001',
+  joinedAt: '2024-01-15',
+  avatar: '👨🏿',
+  online: true,
+  bio: 'Malien de Madrid, passionné de culture et de tech.'
+}, {
+  id: 'm2',
+  name: 'Traoré',
+  firstname: 'Fatoumata',
+  email: 'fato@demo.com',
+  country: 'France',
+  city: 'Paris',
+  profession: 'Médecin',
+  phone: '+33 6 12 34 56 78',
+  memberNum: 'DMC-2024-002',
+  joinedAt: '2024-02-20',
+  avatar: '👩🏿',
+  online: true,
+  bio: 'Médecin à Paris, engagée pour la santé de la diaspora.'
+}, {
+  id: 'm3',
+  name: 'Coulibaly',
+  firstname: 'Ibrahim',
+  email: 'ibrahim@demo.com',
+  country: 'USA',
+  city: 'New York',
+  profession: 'Entrepreneur',
+  phone: '+1 212 555 0100',
+  memberNum: 'DMC-2024-003',
+  joinedAt: '2024-03-10',
+  avatar: '👨🏿‍💼',
+  online: false,
+  bio: 'Entrepreneur basé à New York.'
+}, {
+  id: 'm4',
+  name: 'Keïta',
+  firstname: 'Mariam',
+  email: 'mariam@demo.com',
+  country: 'Canada',
+  city: 'Montréal',
+  profession: 'Enseignante',
+  phone: '+1 514 555 0100',
+  memberNum: 'DMC-2024-004',
+  joinedAt: '2024-04-05',
+  avatar: '👩🏿‍🏫',
+  online: true,
+  bio: 'Enseignante à Montréal.'
+}, {
+  id: 'm5',
+  name: 'Sanogo',
+  firstname: 'Oumar',
+  email: 'oumar@demo.com',
+  country: 'Allemagne',
+  city: 'Berlin',
+  profession: 'Architecte',
+  phone: '+49 30 1234 5678',
+  memberNum: 'DMC-2024-005',
+  joinedAt: '2024-05-01',
+  avatar: '👨🏿‍🎨',
+  online: false,
+  bio: 'Architecte à Berlin.'
+}, {
+  id: 'm6',
+  name: 'Bah',
+  firstname: 'Aissata',
+  email: 'aissata@demo.com',
+  country: 'Belgique',
+  city: 'Bruxelles',
+  profession: 'Avocate',
+  phone: '+32 2 123 45 67',
+  memberNum: 'DMC-2024-006',
+  joinedAt: '2024-06-15',
+  avatar: '👩🏿‍⚖️',
+  online: true,
+  bio: 'Avocate à Bruxelles.'
+}];
+const DEMO_ASSOC = [{
+  id: 'a1',
+  name: 'Association des Maliens en Espagne',
+  acronym: 'AMES',
+  country: 'Espagne',
+  city: 'Madrid',
+  president: 'Amadou Diallo',
+  members: 245,
+  founded: '2010',
+  logo: '🇲🇱',
+  validated: true,
+  description: 'Première association malienne en Espagne, regroupant plus de 245 membres à travers tout le pays.',
+  category: 'Communautaire'
+}, {
+  id: 'a2',
+  name: 'Maliens de France — Île-de-France',
+  acronym: 'MF-IDF',
+  country: 'France',
+  city: 'Paris',
+  president: 'Fatoumata Traoré',
+  members: 890,
+  founded: '2005',
+  logo: '🗼',
+  validated: true,
+  description: 'Grande association francilienne avec de nombreux programmes culturels et sociaux.',
+  category: 'Culturelle'
+}, {
+  id: 'a3',
+  name: 'Mali Community USA',
+  acronym: 'MCU',
+  country: 'USA',
+  city: 'New York',
+  president: 'Ibrahim Coulibaly',
+  members: 312,
+  founded: '2012',
+  logo: '🗽',
+  validated: true,
+  description: 'Fédération des communautés maliennes aux États-Unis.',
+  category: 'Fédération'
+}, {
+  id: 'a4',
+  name: 'Association Maliens du Canada',
+  acronym: 'AMC',
+  country: 'Canada',
+  city: 'Montréal',
+  president: 'Mariam Keïta',
+  members: 178,
+  founded: '2015',
+  logo: '🍁',
+  validated: true,
+  description: 'Association culturelle et d\'entraide des Maliens au Canada.',
+  category: 'Culturelle'
+}, {
+  id: 'a5',
+  name: 'Diaspora Mali Allemagne',
+  acronym: 'DMA',
+  country: 'Allemagne',
+  city: 'Berlin',
+  president: 'Oumar Sanogo',
+  members: 134,
+  founded: '2018',
+  logo: '🦅',
+  validated: false,
+  description: 'Association en cours de validation. Regroupant les Maliens d\'Allemagne.',
+  category: 'Communautaire'
+}, {
+  id: 'a6',
+  name: 'Union Maliens de Belgique',
+  acronym: 'UMB',
+  country: 'Belgique',
+  city: 'Bruxelles',
+  president: 'Aissata Bah',
+  members: 98,
+  founded: '2019',
+  logo: '🇧🇪',
+  validated: true,
+  description: 'Union des communautés maliennes en Belgique.',
+  category: 'Union'
+}];
+const DEMO_NEWS = [{
+  id: 'n1',
+  title: 'Sommet de la Diaspora Malienne 2026',
+  content: 'Le prochain sommet mondial de la diaspora malienne se tiendra à Paris en juillet 2026. Plus de 2000 membres sont attendus de 45 pays différents.',
+  category: 'Événement',
+  author: 'Rédaction DMC',
+  date: '2026-05-20',
+  image: '🗺️',
+  likes: 234,
+  comments: 45,
+  source: 'DMC News'
+}, {
+  id: 'n2',
+  title: 'Nouveau programme de bourses pour les jeunes maliens',
+  content: 'Le gouvernement malien en partenariat avec plusieurs associations de la diaspora lance un programme de bourses d\'études pour 500 jeunes maliens résidant à l\'étranger.',
+  category: 'Éducation',
+  author: 'Aminata Koné',
+  date: '2026-05-18',
+  image: '🎓',
+  likes: 567,
+  comments: 89,
+  source: 'Ministère Éducation'
+}, {
+  id: 'n3',
+  title: 'Lancement de la plateforme Diaspora Mali Connect',
+  content: 'Diaspora Mali Connect est officiellement lancée ! La plateforme permet à tous les Maliens du monde entier de se connecter, s\'entraider et organiser des événements communautaires.',
+  category: 'Tech',
+  author: 'Équipe DMC',
+  date: '2026-05-26',
+  image: '🚀',
+  likes: 1234,
+  comments: 234,
+  source: 'DMC'
+}, {
+  id: 'n4',
+  title: 'Transferts d\'argent : nouvelles solutions pour la diaspora',
+  content: 'Plusieurs nouvelles solutions de transfert d\'argent vers le Mali ont été lancées, réduisant significativement les frais pour les membres de la diaspora.',
+  category: 'Finance',
+  author: 'Omar Traoré',
+  date: '2026-05-15',
+  image: '💰',
+  likes: 345,
+  comments: 67,
+  source: 'Finance Mali'
+}, {
+  id: 'n5',
+  title: 'Festival de la culture malienne à Madrid',
+  content: 'La 5ème édition du Festival de la culture malienne à Madrid aura lieu le 20 juin. Musique, danse, gastronomie et art au programme.',
+  category: 'Culture',
+  author: 'AMES Madrid',
+  date: '2026-05-12',
+  image: '🎭',
+  likes: 445,
+  comments: 78,
+  source: 'AMES'
+}, {
+  id: 'n6',
+  title: 'Appel à candidatures : Leadership de la diaspora',
+  content: 'Le programme Leadership Diaspora Mali recrute 50 jeunes leaders pour un programme de formation intensif de 6 mois.',
+  category: 'Opportunité',
+  author: 'Fondation Mali',
+  date: '2026-05-10',
+  image: '🏆',
+  likes: 289,
+  comments: 55,
+  source: 'Fondation Mali'
+}];
+const DEMO_POSTS = [{
+  id: 'p1',
+  author: {
+    name: 'Amadou Diallo',
+    avatar: '👨🏿',
+    id: 'm1'
+  },
+  content: 'Fiers d\'annoncer que notre association AMES compte maintenant 245 membres ! Merci à tous pour votre confiance et votre engagement. Ensemble nous sommes plus forts ! 🇲🇱❤️',
+  date: '2026-05-26T09:00',
+  likes: 89,
+  comments: [{
+    author: 'Fatoumata',
+    text: 'Félicitations ! Bravo à toute l\'équipe 🙌'
+  }, {
+    author: 'Ibrahim',
+    text: 'Excellent travail ! Le Mali est fier de vous'
+  }],
+  media: null
+}, {
+  id: 'p2',
+  author: {
+    name: 'Fatoumata Traoré',
+    avatar: '👩🏿',
+    id: 'm2'
+  },
+  content: 'Aujourd\'hui j\'ai eu le plaisir d\'accueillir 3 nouveaux membres dans notre association. Bienvenue à Kadidia, Moussa et Seydou dans la grande famille DMC ! 🎉',
+  date: '2026-05-25T14:30',
+  likes: 156,
+  comments: [{
+    author: 'Mariam',
+    text: 'Bienvenue aux nouveaux !'
+  }, {
+    author: 'Oumar',
+    text: 'Toujours en croissance 💪'
+  }],
+  media: '🤝'
+}, {
+  id: 'p3',
+  author: {
+    name: 'Ibrahim Coulibaly',
+    avatar: '👨🏿‍💼',
+    id: 'm3'
+  },
+  content: 'Rappel : notre prochain événement networking aura lieu ce samedi à New York. Venez nombreux ! Places limitées, inscrivez-vous vite via la section Événements 📅',
+  date: '2026-05-24T11:00',
+  likes: 67,
+  comments: [{
+    author: 'Aissata',
+    text: 'Je serai là !'
+  }],
+  media: '📅'
+}, {
+  id: 'p4',
+  author: {
+    name: 'Mariam Keïta',
+    avatar: '👩🏿‍🏫',
+    id: 'm4'
+  },
+  content: 'Notre programme de tutorat pour les enfants de la diaspora malienne à Montréal a aidé 45 élèves cette année scolaire. Des résultats remarquables ! 📚✨',
+  date: '2026-05-23T16:45',
+  likes: 234,
+  comments: [{
+    author: 'Amadou',
+    text: 'Magnifique initiative !'
+  }, {
+    author: 'Fatoumata',
+    text: 'C\'est ça la vraie solidarité'
+  }, {
+    author: 'Ibrahim',
+    text: 'Bravo Mariam !'
+  }],
+  media: '📚'
+}];
+const DEMO_EVENTS = [{
+  id: 'ev1',
+  title: 'Sommet Diaspora Mali 2026',
+  date: '2026-07-15',
+  time: '09:00',
+  location: 'Paris, France',
+  country: 'France',
+  description: 'Grand rassemblement annuel de la diaspora malienne mondiale. Conférences, networking, culture.',
+  category: 'Conférence',
+  capacity: 2000,
+  registered: 1456,
+  price: 0,
+  emoji: '🌍',
+  organizer: 'Fédération DMC'
+}, {
+  id: 'ev2',
+  title: 'Soirée Culturelle AMES Madrid',
+  date: '2026-06-20',
+  time: '19:00',
+  location: 'Madrid, Espagne',
+  country: 'Espagne',
+  description: 'Festival de la culture malienne : musique, danse, gastronomie, art.',
+  category: 'Culture',
+  capacity: 500,
+  registered: 387,
+  price: 15,
+  emoji: '🎭',
+  organizer: 'AMES'
+}, {
+  id: 'ev3',
+  title: 'Forum Entrepreneuriat Diaspora',
+  date: '2026-07-05',
+  time: '10:00',
+  location: 'Lyon, France',
+  country: 'France',
+  description: 'Rencontrez des investisseurs et entrepreneurs. Pitches de startups, mentorat.',
+  category: 'Business',
+  capacity: 300,
+  registered: 198,
+  price: 25,
+  emoji: '💼',
+  organizer: 'Mali Business Network'
+}, {
+  id: 'ev4',
+  title: 'Journée Santé Communautaire',
+  date: '2026-06-28',
+  time: '09:00',
+  location: 'Bruxelles, Belgique',
+  country: 'Belgique',
+  description: 'Consultations médicales gratuites, sensibilisation, bien-être pour toute la communauté.',
+  category: 'Santé',
+  capacity: 400,
+  registered: 312,
+  price: 0,
+  emoji: '🏥',
+  organizer: 'UMB Santé'
+}];
+const DEMO_CAGNOTTES = [{
+  id: 'c1',
+  title: 'Aide rapatriement Boubacar',
+  description: 'Notre frère Boubacar a besoin de nous pour financer son retour au Mali suite à un accident.',
+  goal: 3000,
+  raised: 2150,
+  currency: 'EUR',
+  emoji: '❤️',
+  creator: 'Amadou Diallo',
+  deadline: '2026-06-30',
+  category: 'Urgence'
+}, {
+  id: 'c2',
+  title: 'Construction école rurale Mali',
+  description: 'Financer la construction d\'une salle de classe dans un village du Mali.',
+  goal: 15000,
+  raised: 8900,
+  currency: 'EUR',
+  emoji: '🏫',
+  creator: 'Association AMES',
+  deadline: '2026-12-31',
+  category: 'Éducation'
+}, {
+  id: 'c3',
+  title: 'Équipement sportif jeunes Bamako',
+  description: 'Achat d\'équipements sportifs pour les jeunes de Bamako.',
+  goal: 5000,
+  raised: 3200,
+  currency: 'EUR',
+  emoji: '⚽',
+  creator: 'Ibrahim Coulibaly',
+  deadline: '2026-08-15',
+  category: 'Sport'
+}];
+const DEMO_MEDIA = [{
+  id: 'md1',
+  type: 'photo',
+  emoji: '📸',
+  title: 'Sommet Madrid 2025',
+  author: 'AMES',
+  date: '2025-11-15',
+  likes: 234,
+  category: 'Événement'
+}, {
+  id: 'md2',
+  type: 'photo',
+  emoji: '🎵',
+  title: 'Concert malien Paris',
+  author: 'MF-IDF',
+  date: '2025-12-10',
+  likes: 189,
+  category: 'Culture'
+}, {
+  id: 'md3',
+  type: 'video',
+  emoji: '🎬',
+  title: 'Discours président AMES',
+  author: 'Amadou Diallo',
+  date: '2026-01-20',
+  likes: 456,
+  category: 'Discours'
+}, {
+  id: 'md4',
+  type: 'photo',
+  emoji: '🍽️',
+  title: 'Gastronomie malienne NYC',
+  author: 'MCU',
+  date: '2026-02-14',
+  likes: 312,
+  category: 'Culture'
+}, {
+  id: 'md5',
+  type: 'podcast',
+  emoji: '🎙️',
+  title: 'Podcast Diaspora #45',
+  author: 'DMC Radio',
+  date: '2026-03-01',
+  likes: 178,
+  category: 'Podcast'
+}, {
+  id: 'md6',
+  type: 'photo',
+  emoji: '🎓',
+  title: 'Remise de bourses Montréal',
+  author: 'AMC',
+  date: '2026-04-20',
+  likes: 267,
+  category: 'Éducation'
+}];
+
+// ═══ FIREBASE HELPERS ═══
+const registerUser = async ({
+  email,
+  password,
+  name,
+  firstname,
+  phone,
+  country,
+  city,
+  profession,
+  avatar
+}) => {
+  if (!auth) throw new Error('Mode démo — Firebase requis');
+  const {
+    user
+  } = await auth.createUserWithEmailAndPassword(email, password);
+  await user.updateProfile({
+    displayName: firstname + ' ' + name
+  });
+  const num = 'DMC-' + new Date().getFullYear() + '-' + Math.floor(Math.random() * 9000 + 1000);
+  await db.ref(`users/${user.uid}`).set({
+    name,
+    firstname,
+    email,
+    phone: phone || '',
+    country: country || '',
+    city: city || '',
+    profession: profession || '',
+    avatar: avatar || '👤',
+    memberNum: num,
+    bio: '',
+    joinedAt: ST,
+    online: true,
+    validated: false,
+    role: 'member'
+  });
+  return user;
+};
+const loginUser = (e, p) => auth ? auth.signInWithEmailAndPassword(e, p) : Promise.reject(new Error('Firebase requis'));
+const logoutUser = () => auth ? auth.signOut() : Promise.resolve();
+const onAuthChange = cb => {
+  if (auth) return auth.onAuthStateChanged(cb);
+  cb(null);
+  return () => {};
+};
+const getProfile = async uid => {
+  if (!db) return DEMO_MEMBERS.find(m => m.id === uid) || null;
+  const s = await db.ref(`users/${uid}`).get();
+  return s.exists() ? {
+    uid,
+    ...s.val()
+  } : null;
+};
+const updateProfile = (uid, data) => db ? db.ref(`users/${uid}`).update({
+  ...data,
+  updatedAt: ST
+}) : Promise.resolve();
+const listenProfile = (uid, cb) => {
+  if (!db) {
+    cb(DEMO_MEMBERS.find(m => m.id === uid) || null);
+    return () => {};
+  }
+  ;
+  const r = db.ref(`users/${uid}`);
+  r.on('value', s => cb(s.exists() ? {
+    uid,
+    ...s.val()
+  } : null));
+  return () => r.off('value');
+};
+const listenMembers = cb => {
+  if (!db) {
+    cb(DEMO_MEMBERS);
+    return () => {};
+  }
+  ;
+  const r = db.ref('users');
+  r.on('value', s => {
+    const d = s.val();
+    cb(d ? Object.entries(d).map(([uid, v]) => ({
+      uid,
+      ...v
+    })) : DEMO_MEMBERS);
+  });
+  return () => r.off('value');
+};
+const listenAssoc = cb => {
+  if (!db) {
+    cb(DEMO_ASSOC);
+    return () => {};
+  }
+  ;
+  const r = db.ref('associations');
+  r.on('value', s => {
+    const d = s.val();
+    cb(d ? Object.entries(d).map(([id, v]) => ({
+      id,
+      ...v
+    })) : DEMO_ASSOC);
+  });
+  return () => r.off('value');
+};
+const createAssoc = async data => {
+  if (!db) return 'demo-' + Date.now();
+  const r = db.ref('associations').push();
+  await r.set({
+    ...data,
+    members: 1,
+    validated: false,
+    createdAt: ST
+  });
+  return r.key;
+};
+const listenNews = cb => {
+  if (!db) {
+    cb(DEMO_NEWS);
+    return () => {};
+  }
+  ;
+  const r = db.ref('news');
+  r.on('value', s => {
+    const d = s.val();
+    cb(d ? Object.entries(d).map(([id, v]) => ({
+      id,
+      ...v
+    })).sort((a, b) => b.date?.localeCompare(a.date)) : DEMO_NEWS);
+  });
+  return () => r.off('value');
+};
+const listenPosts = cb => {
+  if (!db) {
+    cb(DEMO_POSTS);
+    return () => {};
+  }
+  ;
+  const r = db.ref('posts');
+  r.on('value', s => {
+    const d = s.val();
+    cb(d ? Object.entries(d).map(([id, v]) => ({
+      id,
+      ...v
+    })).sort((a, b) => new Date(b.date) - new Date(a.date)) : DEMO_POSTS);
+  });
+  return () => r.off('value');
+};
+const createPost = async data => {
+  if (!db) return 'demo-' + Date.now();
+  const r = db.ref('posts').push();
+  await r.set({
+    ...data,
+    likes: 0,
+    comments: [],
+    date: new Date().toISOString(),
+    createdAt: ST
+  });
+  return r.key;
+};
+const likePost = async (id, uid) => {
+  if (!db) return;
+  const r = db.ref(`posts/${id}/likedBy/${uid}`);
+  const s = await r.get();
+  s.exists() ? r.remove() : r.set(true);
+};
+const listenEvents = cb => {
+  if (!db) {
+    cb(DEMO_EVENTS);
+    return () => {};
+  }
+  ;
+  const r = db.ref('events');
+  r.on('value', s => {
+    const d = s.val();
+    cb(d ? Object.entries(d).map(([id, v]) => ({
+      id,
+      ...v
+    })) : DEMO_EVENTS);
+  });
+  return () => r.off('value');
+};
+const createEvent = async data => {
+  if (!db) return 'demo-' + Date.now();
+  const r = db.ref('events').push();
+  await r.set({
+    ...data,
+    registered: 0,
+    createdAt: ST
+  });
+  return r.key;
+};
+const registerEvent = async (eid, uid) => {
+  if (!db) return;
+  await db.ref(`events/${eid}/registrations/${uid}`).set(true);
+  const s = await db.ref(`events/${eid}/registered`).get();
+  await db.ref(`events/${eid}`).update({
+    registered: (s.val() || 0) + 1
+  });
+};
+const listenCagnottes = cb => {
+  if (!db) {
+    cb(DEMO_CAGNOTTES);
+    return () => {};
+  }
+  ;
+  const r = db.ref('cagnottes');
+  r.on('value', s => {
+    const d = s.val();
+    cb(d ? Object.entries(d).map(([id, v]) => ({
+      id,
+      ...v
+    })) : DEMO_CAGNOTTES);
+  });
+  return () => r.off('value');
+};
+const createCagnotte = async data => {
+  if (!db) return 'demo-' + Date.now();
+  const r = db.ref('cagnottes').push();
+  await r.set({
+    ...data,
+    raised: 0,
+    createdAt: ST
+  });
+  return r.key;
+};
+const contributeC = async (cid, amount, uid) => {
+  if (!db) return;
+  const r = db.ref(`cagnottes/${cid}/contributions`).push();
+  await r.set({
+    amount,
+    uid,
+    date: ST
+  });
+  const s = await db.ref(`cagnottes/${cid}/raised`).get();
+  await db.ref(`cagnottes/${cid}`).update({
+    raised: (s.val() || 0) + amount
+  });
+};
+const listenMedia = cb => {
+  if (!db) {
+    cb(DEMO_MEDIA);
+    return () => {};
+  }
+  ;
+  const r = db.ref('media');
+  r.on('value', s => {
+    const d = s.val();
+    cb(d ? Object.entries(d).map(([id, v]) => ({
+      id,
+      ...v
+    })) : DEMO_MEDIA);
+  });
+  return () => r.off('value');
+};
+const convId = (u1, u2) => [u1, u2].sort().join('__');
+const sendMessage = async (fromUid, fromName, toUid, text) => {
+  if (!db) return;
+  const cid = convId(fromUid, toUid),
+    now = Date.now();
+  await db.ref(`conversations/${cid}/messages`).push().set({
+    fromUid,
+    fromName,
+    text,
+    createdAt: now
+  });
+  await db.ref(`conversations/${cid}/meta`).update({
+    [`p/${fromUid}`]: fromName,
+    [`p/${toUid}`]: '',
+    last: text.slice(0, 60),
+    sender: fromUid,
+    updatedAt: now
+  });
+};
+const listenMessages = (cid, cb) => {
+  if (!db) {
+    cb([]);
+    return () => {};
+  }
+  ;
+  const r = db.ref(`conversations/${cid}/messages`);
+  r.on('value', s => {
+    const d = s.val();
+    cb(d ? Object.entries(d).map(([id, v]) => ({
+      id,
+      ...v
+    })).sort((a, b) => a.createdAt - b.createdAt) : []);
+  });
+  return () => r.off('value');
+};
+const listenConvs = (uid, cb) => {
+  if (!db) {
+    cb([]);
+    return () => {};
+  }
+  ;
+  const r = db.ref('conversations');
+  r.on('value', s => {
+    const d = s.val();
+    if (!d) {
+      cb([]);
+      return;
+    }
+    cb(Object.entries(d).map(([id, v]) => ({
+      id,
+      ...v.meta
+    })).filter(c => c.p && c.p[uid] !== undefined).sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0)));
+  });
+  return () => r.off('value');
+};
+// ═══ AUTH CONTEXT ═══
+const AuthCtx = createContext({
+  user: null,
+  profile: null,
+  loading: true
+});
+const useAuth = () => useContext(AuthCtx);
+function AuthProvider({
+  children
+}) {
+  const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => onAuthChange(u => {
+    setUser(u);
+    if (!u) {
+      setProfile(null);
+      setLoading(false);
+    }
+  }), []);
+  useEffect(() => {
+    if (!user) return;
+    return listenProfile(user.uid, p => {
+      setProfile(p);
+      setLoading(false);
+    });
+  }, [user]);
+  return /*#__PURE__*/React.createElement(AuthCtx.Provider, {
+    value: {
+      user,
+      profile,
+      loading
+    }
+  }, children);
+}
+
+// ═══ COMPOSANTS COMMUNS ═══
+function Avatar({
+  src,
+  size,
+  online
+}) {
+  size = size || 40;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'relative',
+      display: 'inline-block'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: size,
+      height: size,
+      borderRadius: '50%',
+      background: 'var(--primary-l)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: size * 0.5,
+      flexShrink: 0,
+      border: '2px solid var(--border)'
+    }
+  }, src || '👤'), online !== undefined && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      bottom: 1,
+      right: 1,
+      width: 10,
+      height: 10,
+      borderRadius: '50%',
+      background: online ? '#22C55E' : 'var(--t4)',
+      border: '2px solid var(--surface)'
+    }
+  }));
+}
+function Card({
+  children,
+  style,
+  onClick,
+  hover
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: `card${hover ? ' card-hover' : ''}`,
+    style: style,
+    onClick: onClick
+  }, children);
+}
+function Badge({
+  color,
+  children,
+  icon
+}) {
+  const colors = {
+    green: {
+      bg: 'var(--primary-l)',
+      color: 'var(--primary)'
+    },
+    gold: {
+      bg: 'var(--gold-l)',
+      color: 'var(--gold)'
+    },
+    red: {
+      bg: 'var(--danger-l)',
+      color: 'var(--danger)'
+    },
+    gray: {
+      bg: 'var(--bg)',
+      color: 'var(--t3)'
+    },
+    blue: {
+      bg: '#EFF6FF',
+      color: '#1D4ED8'
+    }
+  };
+  const c = colors[color || 'gray'] || colors.gray;
+  return /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 4,
+      padding: '3px 10px',
+      borderRadius: 20,
+      fontSize: 11,
+      fontWeight: 700,
+      background: c.bg,
+      color: c.color
+    }
+  }, icon && /*#__PURE__*/React.createElement("span", null, icon), children);
+}
+function ProgressBar({
+  value,
+  max,
+  color
+}) {
+  const pct = max > 0 ? Math.min(value / max * 100, 100) : 0;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: 6,
+      background: 'var(--border)',
+      borderRadius: 3,
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      width: pct + '%',
+      background: color || 'var(--primary)',
+      borderRadius: 3,
+      transition: 'width .6s ease'
+    }
+  }));
+}
+function ShareButtons({
+  title,
+  url
+}) {
+  const t = encodeURIComponent(title || 'Diaspora Mali Connect');
+  const u = encodeURIComponent(url || window.location.href);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8
+    }
+  }, [{
+    name: 'WhatsApp',
+    color: '#25D366',
+    icon: '💬',
+    url: `https://wa.me/?text=${t}%20${u}`
+  }, {
+    name: 'Facebook',
+    color: '#1877F2',
+    icon: '👥',
+    url: `https://www.facebook.com/sharer/sharer.php?u=${u}`
+  }, {
+    name: 'X',
+    color: '#000',
+    icon: '✖',
+    url: `https://twitter.com/intent/tweet?text=${t}&url=${u}`
+  }, {
+    name: 'Telegram',
+    color: '#2AABEE',
+    icon: '✈',
+    url: `https://t.me/share/url?url=${u}&text=${t}`
+  }].map(s => /*#__PURE__*/React.createElement("a", {
+    key: s.name,
+    href: s.url,
+    target: "_blank",
+    rel: "noreferrer",
+    style: {
+      width: 36,
+      height: 36,
+      borderRadius: '50%',
+      background: s.color,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: '#fff',
+      fontSize: 16,
+      textDecoration: 'none',
+      flexShrink: 0
+    }
+  }, s.icon)));
+}
+
+// ═══ BOTTOM NAV ═══
+function BottomNav() {
+  const nav = useNavigate(),
+    loc = useLocation();
+  const {
+    user
+  } = useAuth();
+  const {
+    t
+  } = useLang();
+  const hidden = ['/auth', '/member-card', '/create-post', '/create-event', '/create-assoc'];
+  if (hidden.some(p => loc.pathname.startsWith(p))) return null;
+  const tabs = [{
+    p: '/',
+    icon: '🏠',
+    lb: t('home')
+  }, {
+    p: '/members',
+    icon: '👥',
+    lb: t('members')
+  }, {
+    p: '/news',
+    icon: '📰',
+    lb: t('news')
+  }, {
+    p: '/events',
+    icon: '🗓',
+    lb: t('events')
+  }, {
+    p: user ? '/profile' : '/auth',
+    icon: user ? '👤' : '🔑',
+    lb: user ? t('profile') : t('login')
+  }];
+  const isA = p => p === '/' ? loc.pathname === '/' : loc.pathname.startsWith(p);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "bottom-nav"
+  }, tabs.map(tab => /*#__PURE__*/React.createElement("button", {
+    key: tab.p,
+    className: `bn-tab${isA(tab.p) ? ' active' : ''}`,
+    onClick: () => nav(tab.p)
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "bn-icon"
+  }, tab.icon), /*#__PURE__*/React.createElement("span", {
+    className: "bn-lbl"
+  }, tab.lb))));
+}
+
+// ═══ TOP NAV ═══
+function TopNav({
+  title,
+  back,
+  actions
+}) {
+  const nav = useNavigate();
+  const [dark, setDark] = useDark();
+  return /*#__PURE__*/React.createElement("nav", {
+    className: "top-nav"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10
+    }
+  }, back && /*#__PURE__*/React.createElement("button", {
+    className: "nav-icon-btn",
+    onClick: () => nav(back)
+  }, "\u2190"), !back && /*#__PURE__*/React.createElement("div", {
+    className: "nav-brand"
+  }, "\uD83C\uDDF2\uD83C\uDDF1 DMC"), title && /*#__PURE__*/React.createElement("span", {
+    className: "nav-title"
+  }, title)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8
+    }
+  }, actions, /*#__PURE__*/React.createElement("button", {
+    className: "nav-icon-btn",
+    onClick: () => setDark(!dark),
+    title: "Dark mode"
+  }, dark ? '☀️' : '🌙'), /*#__PURE__*/React.createElement("button", {
+    className: "nav-icon-btn",
+    onClick: () => nav('/messages'),
+    title: "Messages"
+  }, "\uD83D\uDCAC"), /*#__PURE__*/React.createElement("button", {
+    className: "nav-icon-btn",
+    onClick: () => nav('/settings'),
+    title: "Param\xE8tres"
+  }, "\u2699\uFE0F")));
+}
+
+// ═══ FAB ═══
+function FAB() {
+  const nav = useNavigate(),
+    loc = useLocation();
+  const {
+    user
+  } = useAuth();
+  const [open, setOpen] = useState(false);
+  const hidden = ['/auth', '/create-post', '/create-event', '/admin', '/member-card'];
+  if (!user || hidden.some(p => loc.pathname.startsWith(p))) return null;
+  const actions = [{
+    icon: '✍️',
+    label: 'Publier',
+    path: '/create-post'
+  }, {
+    icon: '🗓',
+    label: 'Événement',
+    path: '/create-event'
+  }, {
+    icon: '💝',
+    label: 'Cagnotte',
+    path: '/create-cagnotte'
+  }, {
+    icon: '🏛',
+    label: 'Association',
+    path: '/create-assoc'
+  }];
+  return /*#__PURE__*/React.createElement(React.Fragment, null, open && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      inset: 0,
+      zIndex: 148
+    },
+    onClick: () => setOpen(false)
+  }), open && /*#__PURE__*/React.createElement("div", {
+    className: "fab-menu"
+  }, actions.map(a => /*#__PURE__*/React.createElement("div", {
+    key: a.path,
+    className: "fab-item",
+    style: {
+      animation: 'slideUp .15s ease-out'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "fab-item-label"
+  }, a.label), /*#__PURE__*/React.createElement("button", {
+    className: "fab-item-btn",
+    style: {
+      background: 'var(--primary)',
+      color: '#fff'
+    },
+    onClick: () => {
+      nav(a.path);
+      setOpen(false);
+    }
+  }, a.icon)))), /*#__PURE__*/React.createElement("button", {
+    className: "fab",
+    onClick: () => setOpen(!open)
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 26,
+      transition: 'transform .3s',
+      display: 'inline-block',
+      transform: open ? 'rotate(45deg)' : 'none',
+      fontWeight: 300
+    }
+  }, "+")));
+}
+
+// ═══ INSTALL BANNER ═══
+function InstallBanner() {
+  const {
+    prompt,
+    installed
+  } = usePwa();
+  const {
+    t
+  } = useLang();
+  const [show, setShow] = useState(false);
+  const [dim, setDim] = useState(() => {
+    try {
+      return localStorage.getItem('dmc-ni') === '1';
+    } catch {
+      return false;
+    }
+  });
+  const [modal, setModal] = useState(false);
+  const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const sa = window.matchMedia('(display-mode:standalone)').matches || window.navigator.standalone;
+  useEffect(() => {
+    if (!sa && !dim) setTimeout(() => setShow(true), 3000);
+  }, []);
+  if (installed || sa || dim || !show) return null;
+  const doInstall = async () => {
+    if (prompt) {
+      await prompt.prompt();
+      setShow(false);
+    } else setModal(true);
+  };
+  const dismiss = () => {
+    setDim(true);
+    setShow(false);
+    try {
+      localStorage.setItem('dmc-ni', '1');
+    } catch {}
+  };
+  const STEPS = [{
+    icon: '🍎',
+    label: 'iPhone/iPad',
+    info: 'Safari > Partager > Ajouter'
+  }, {
+    icon: '🤖',
+    label: 'Android',
+    info: 'Chrome > Menu > Installer'
+  }, {
+    icon: '💻',
+    label: 'PC/Mac',
+    info: 'Icone + dans la barre adresse'
+  }];
+  return React.createElement(React.Fragment, null, React.createElement('div', {
+    style: {
+      position: 'fixed',
+      bottom: 80,
+      left: 12,
+      right: 12,
+      zIndex: 500,
+      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
+      borderRadius: 16,
+      padding: '12px 14px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10,
+      boxShadow: '0 8px 32px rgba(46,125,50,.4)',
+      animation: 'slideUp .3s ease-out'
+    }
+  }, React.createElement('span', {
+    style: {
+      fontSize: 28,
+      flexShrink: 0
+    }
+  }, '📱'), React.createElement('div', {
+    style: {
+      flex: 1
+    }
+  }, React.createElement('div', {
+    style: {
+      fontWeight: 800,
+      color: '#fff',
+      fontSize: 13
+    }
+  }, t('install')), React.createElement('div', {
+    style: {
+      fontSize: 10,
+      color: 'rgba(255,255,255,.8)',
+      marginTop: 1
+    }
+  }, ios ? 'Safari: Partager > Ajouter' : 'Acces rapide depuis votre ecran')), React.createElement('button', {
+    onClick: doInstall,
+    style: {
+      background: '#fff',
+      color: 'var(--primary)',
+      border: 'none',
+      borderRadius: 8,
+      padding: '7px 12px',
+      fontWeight: 800,
+      cursor: 'pointer',
+      fontSize: 12
+    }
+  }, ios ? 'Comment' : 'Installer'), React.createElement('button', {
+    onClick: dismiss,
+    style: {
+      background: 'rgba(255,255,255,.2)',
+      border: 'none',
+      color: '#fff',
+      borderRadius: '50%',
+      width: 26,
+      height: 26,
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 14
+    }
+  }, 'x')), modal && React.createElement('div', {
+    style: {
+      position: 'fixed',
+      inset: 0,
+      zIndex: 1000,
+      background: 'rgba(0,0,0,.6)',
+      display: 'flex',
+      alignItems: 'flex-end'
+    },
+    onClick: () => setModal(false)
+  }, React.createElement('div', {
+    style: {
+      background: 'var(--surface)',
+      width: '100%',
+      borderRadius: '20px 20px 0 0',
+      padding: '24px 20px 36px'
+    },
+    onClick: e => e.stopPropagation()
+  }, React.createElement('h3', {
+    style: {
+      textAlign: 'center',
+      marginBottom: 16
+    }
+  }, '📱 Installer DMC'), STEPS.map(s => React.createElement('div', {
+    key: s.icon,
+    style: {
+      background: 'var(--bg)',
+      borderRadius: 10,
+      padding: '10px 14px',
+      marginBottom: 8
+    }
+  }, React.createElement('span', {
+    style: {
+      fontWeight: 700,
+      fontSize: 12
+    }
+  }, s.icon + ' ' + s.label), React.createElement('div', {
+    style: {
+      fontSize: 11,
+      color: 'var(--t3)',
+      marginTop: 2
+    }
+  }, s.info))), React.createElement('button', {
+    className: 'btn btn-primary btn-full',
+    style: {
+      marginTop: 12
+    },
+    onClick: () => setModal(false)
+  }, 'OK'))));
+}
+// ═══ AUTH PAGE ═══
+function AuthPage() {
+  const nav = useNavigate();
+  const {
+    user
+  } = useAuth();
+  const {
+    t
+  } = useLang();
+  const [tab, setTab] = useState(0);
+  const [form, setForm] = useState({
+    firstname: '',
+    name: '',
+    email: '',
+    password: '',
+    phone: '',
+    country: '',
+    city: '',
+    profession: '',
+    avatar: '👤'
+  });
+  const [err, setErr] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const AVATARS = ['👤', '👨🏿', '👩🏿', '👨🏿‍💼', '👩🏿‍💼', '👨🏿‍⚕️', '👩🏿‍⚕️', '👨🏿‍🎓', '👩🏿‍🎓', '👨🏿‍🎨', '👩🏿‍🏫', '👨🏿‍🔬', '👩🏿‍🔬'];
+  const COUNTRIES = ['Mali', 'Espagne', 'France', 'USA', 'Canada', 'Belgique', 'Allemagne', 'Italie', 'Pays-Bas', 'Suisse', 'Maroc', 'Sénégal', 'Côte d\'Ivoire', 'Ghana', 'Autre'];
+  const set = k => v => setForm(f => ({
+    ...f,
+    [k]: v
+  }));
+  useEffect(() => {
+    if (user) nav('/');
+  }, [user]);
+  const doLogin = async () => {
+    if (!form.email || !form.password) {
+      setErr('Email et mot de passe requis');
+      return;
+    }
+    setLoading(true);
+    setErr('');
+    try {
+      await loginUser(form.email, form.password);
+      nav('/');
+    } catch (e) {
+      setErr(e.message.includes('auth') ? 'Email ou mot de passe incorrect' : e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const doRegister = async () => {
+    if (!form.firstname || !form.name || !form.email || !form.phone || !form.country || !form.password) {
+      setErr('Tous les champs obligatoires');
+      return;
+    }
+    if (form.password.length < 6) {
+      setErr('Mot de passe: 6 caractères minimum');
+      return;
+    }
+    setLoading(true);
+    setErr('');
+    try {
+      await registerUser(form);
+      setSuccess(true);
+    } catch (e) {
+      setErr(e.message.includes('email-already-in-use') ? 'Email déjà utilisé' : e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  if (success) return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'var(--bg)',
+      padding: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      animation: 'fadeIn .4s'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 80,
+      marginBottom: 16
+    }
+  }, "\uD83C\uDF89"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      color: 'var(--primary)',
+      marginBottom: 8
+    }
+  }, "Bienvenue dans la famille !"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--t3)',
+      marginBottom: 24
+    }
+  }, "Votre compte a \xE9t\xE9 cr\xE9\xE9 avec succ\xE8s, ", form.firstname, " !"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-lg",
+    onClick: () => nav('/')
+  }, "D\xE9couvrir DMC \u2192")));
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'linear-gradient(160deg,var(--primary-l) 0%,var(--bg) 50%)',
+      padding: '20px 20px 40px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 440,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      padding: '32px 0 24px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 60,
+      marginBottom: 12
+    }
+  }, "\uD83C\uDDF2\uD83C\uDDF1"), /*#__PURE__*/React.createElement("h1", {
+    style: {
+      fontSize: 24,
+      fontWeight: 800,
+      color: 'var(--primary)',
+      marginBottom: 4
+    }
+  }, "Diaspora Mali Connect"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--t4)',
+      fontSize: 12
+    }
+  }, "La plateforme des Maliens du monde entier")), /*#__PURE__*/React.createElement(Card, {
+    style: {
+      boxShadow: '0 8px 40px rgba(46,125,50,.12)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, [t('login'), t('register')].map((lb, i) => /*#__PURE__*/React.createElement("button", {
+    key: i,
+    onClick: () => {
+      setTab(i);
+      setErr('');
+    },
+    style: {
+      padding: '14px 0',
+      fontWeight: 700,
+      fontSize: 14,
+      cursor: 'pointer',
+      background: 'transparent',
+      border: 'none',
+      borderBottom: `2.5px solid ${tab === i ? 'var(--primary)' : 'transparent'}`,
+      color: tab === i ? 'var(--primary)' : 'var(--t4)',
+      transition: 'all .15s'
+    }
+  }, lb))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 24
+    }
+  }, err && /*#__PURE__*/React.createElement("div", {
+    className: "err-box",
+    style: {
+      marginBottom: 14
+    }
+  }, "\u26A0 ", err), IS_DEMO && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--gold-l)',
+      border: '1px solid var(--gold)',
+      borderRadius: 'var(--radius-m)',
+      padding: '8px 12px',
+      fontSize: 12,
+      color: '#92400E',
+      marginBottom: 14
+    }
+  }, "\u26A0\uFE0F Mode d\xE9mo \u2014 Firebase requis pour cr\xE9er un compte"), tab === 0 ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      animation: 'fadeIn .2s'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Email"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "email",
+    placeholder: "votre@email.com",
+    value: form.email,
+    onChange: e => set('email')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Mot de passe"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "password",
+    placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+    value: form.password,
+    onChange: e => set('password')(e.target.value),
+    onKeyDown: e => e.key === 'Enter' && doLogin()
+  })), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full btn-lg",
+    onClick: doLogin,
+    disabled: loading
+  }, loading ? 'Connexion...' : 'Se connecter →')) : /*#__PURE__*/React.createElement("div", {
+    style: {
+      animation: 'fadeIn .2s'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("label", {
+    style: {
+      display: 'block',
+      fontSize: 12,
+      fontWeight: 700,
+      color: 'var(--t3)',
+      marginBottom: 6,
+      textTransform: 'uppercase',
+      letterSpacing: .4
+    }
+  }, "Avatar"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 8
+    }
+  }, AVATARS.map(a => /*#__PURE__*/React.createElement("button", {
+    key: a,
+    onClick: () => set('avatar')(a),
+    style: {
+      width: 40,
+      height: 40,
+      fontSize: 22,
+      border: `2px solid ${form.avatar === a ? 'var(--primary)' : 'var(--border)'}`,
+      borderRadius: 8,
+      cursor: 'pointer',
+      background: form.avatar === a ? 'var(--primary-l)' : 'var(--surface)'
+    }
+  }, a)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Pr\xE9nom *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Amadou",
+    value: form.firstname,
+    onChange: e => set('firstname')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Nom *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Diallo",
+    value: form.name,
+    onChange: e => set('name')(e.target.value)
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Email *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "email",
+    placeholder: "votre@email.com",
+    value: form.email,
+    onChange: e => set('email')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "T\xE9l\xE9phone *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "tel",
+    placeholder: "+34 6XX XXX XXX",
+    value: form.phone,
+    onChange: e => set('phone')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Pays *"), /*#__PURE__*/React.createElement("select", {
+    className: "fi",
+    value: form.country,
+    onChange: e => set('country')(e.target.value)
+  }, /*#__PURE__*/React.createElement("option", {
+    value: ""
+  }, "Choisir"), COUNTRIES.map(c => /*#__PURE__*/React.createElement("option", {
+    key: c
+  }, c)))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Ville"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Madrid",
+    value: form.city,
+    onChange: e => set('city')(e.target.value)
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Profession"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Ing\xE9nieur, M\xE9decin...",
+    value: form.profession,
+    onChange: e => set('profession')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Mot de passe * (min. 6)"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "password",
+    placeholder: "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+    value: form.password,
+    onChange: e => set('password')(e.target.value)
+  })), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full btn-lg",
+    onClick: doRegister,
+    disabled: loading
+  }, loading ? 'Création...' : 'Créer mon compte 🎉')))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-ghost btn-full",
+    style: {
+      marginTop: 12
+    },
+    onClick: () => nav('/')
+  }, "\u2190 Continuer sans inscription")));
+}
+
+// ═══ HOME PAGE ═══
+function HomePage() {
+  const nav = useNavigate();
+  const {
+    user,
+    profile
+  } = useAuth();
+  const {
+    t
+  } = useLang();
+  const [posts, setPosts] = useState([]);
+  const [news, setNews] = useState([]);
+  const [stats, setStats] = useState({
+    members: 0,
+    assoc: 0,
+    events: 0,
+    countries: 0
+  });
+  const {
+    displayed,
+    hasMore,
+    loaderRef
+  } = useInfiniteScroll(posts, 8);
+  useEffect(() => {
+    const u1 = listenPosts(setPosts);
+    const u2 = listenNews(n => setNews(n.slice(0, 3)));
+    if (db) {
+      db.ref('users').once('value').then(s => setStats(prev => ({
+        ...prev,
+        members: s.numChildren() || DEMO_MEMBERS.length
+      })));
+    } else {
+      setStats({
+        members: DEMO_MEMBERS.length,
+        assoc: DEMO_ASSOC.length,
+        events: DEMO_EVENTS.length,
+        countries: 35
+      });
+    }
+    return () => {
+      u1();
+      u2();
+    };
+  }, []);
+  const PostCard = ({
+    post
+  }) => {
+    const [liked, setLiked] = useState(false);
+    const [lCount, setLCount] = useState(post.likes || 0);
+    const doLike = () => {
+      setLiked(!liked);
+      setLCount(liked ? lCount - 1 : lCount + 1);
+      if (user) likePost(post.id, user.uid);
+    };
+    return /*#__PURE__*/React.createElement(Card, {
+      style: {
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: '14px 16px'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement(Avatar, {
+      src: post.author?.avatar,
+      size: 42,
+      online: false
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 700,
+        fontSize: 14
+      }
+    }, post.author?.firstname || post.author?.name || 'Membre'), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: 'var(--t4)'
+      }
+    }, new Date(post.date || post.createdAt).toLocaleDateString('fr-FR', {
+      day: 'numeric',
+      month: 'short',
+      hour: '2-digit',
+      minute: '2-digit'
+    })))), post.media && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 40,
+        marginBottom: 10,
+        textAlign: 'center',
+        padding: '16px',
+        background: 'var(--bg)',
+        borderRadius: 'var(--radius-m)'
+      }
+    }, post.media), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: 14,
+        lineHeight: 1.6,
+        color: 'var(--t2)',
+        marginBottom: 12
+      }
+    }, post.content), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: 16,
+        paddingTop: 10,
+        borderTop: '1px solid var(--border)'
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: doLike,
+      style: {
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 6,
+        fontSize: 13,
+        color: liked ? 'var(--danger)' : 'var(--t3)',
+        fontWeight: 600
+      }
+    }, liked ? '❤️' : '🤍', " ", lCount), /*#__PURE__*/React.createElement("button", {
+      style: {
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 6,
+        fontSize: 13,
+        color: 'var(--t3)',
+        fontWeight: 600
+      }
+    }, "\uD83D\uDCAC ", (post.comments || []).length), /*#__PURE__*/React.createElement("button", {
+      style: {
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 6,
+        fontSize: 13,
+        color: 'var(--t3)',
+        fontWeight: 600
+      },
+      onClick: () => navigator.share ? navigator.share({
+        title: 'DMC',
+        text: post.content
+      }) : alert('Copié !')
+    }, "\uD83D\uDCE4")), (post.comments || []).slice(0, 2).map((c, i) => /*#__PURE__*/React.createElement("div", {
+      key: i,
+      style: {
+        marginTop: 8,
+        padding: '8px 10px',
+        background: 'var(--bg)',
+        borderRadius: 'var(--radius-m)',
+        fontSize: 12
+      }
+    }, /*#__PURE__*/React.createElement("strong", null, c.author), " ", c.text))));
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, null), !user && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
+      padding: '28px 20px',
+      color: '#fff'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 600,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 40,
+      marginBottom: 8
+    }
+  }, "\uD83C\uDDF2\uD83C\uDDF1"), /*#__PURE__*/React.createElement("h1", {
+    style: {
+      fontSize: 22,
+      fontWeight: 800,
+      marginBottom: 6
+    }
+  }, t('welcome')), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13,
+      opacity: .85,
+      marginBottom: 16
+    }
+  }, t('subtitle')), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    style: {
+      background: '#fff',
+      color: 'var(--primary)',
+      fontWeight: 700,
+      fontSize: 13
+    },
+    onClick: () => nav('/auth')
+  }, "Rejoindre \u2192"), /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    style: {
+      background: 'rgba(255,255,255,.2)',
+      color: '#fff',
+      border: 'none',
+      fontSize: 13
+    },
+    onClick: () => nav('/members')
+  }, "Explorer")))), user && profile && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--surface)',
+      borderBottom: '1px solid var(--border)',
+      padding: '14px 20px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement(Avatar, {
+    src: profile.avatar,
+    size: 44,
+    online: true
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 15
+    }
+  }, "Bonjour, ", profile.firstname || '', "  \uD83D\uDC4B"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, profile.memberNum)), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm",
+    style: {
+      background: 'var(--primary)',
+      color: '#fff',
+      border: 'none'
+    },
+    onClick: () => nav('/member-card')
+  }, "\uD83E\uDEAA Carte")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4,1fr)',
+      gap: 8,
+      padding: '14px 16px',
+      background: 'var(--surface)',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, [{
+    v: stats.members || DEMO_MEMBERS.length,
+    l: 'Membres',
+    i: '👥'
+  }, {
+    v: stats.assoc || DEMO_ASSOC.length,
+    l: 'Assoc.',
+    i: '🏛'
+  }, {
+    v: stats.events || DEMO_EVENTS.length,
+    l: 'Events',
+    i: '🗓'
+  }, {
+    v: '35+',
+    l: 'Pays',
+    i: '🌍'
+  }].map(s => /*#__PURE__*/React.createElement("div", {
+    key: s.l,
+    style: {
+      textAlign: 'center',
+      padding: '10px 4px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      marginBottom: 2
+    }
+  }, s.i), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 800,
+      color: 'var(--primary)'
+    }
+  }, s.v), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: 'var(--t4)',
+      fontWeight: 600
+    }
+  }, s.l)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 720,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px 16px 8px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 15,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 6
+    }
+  }, "\uD83D\uDCF0 Actualit\xE9s"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-ghost btn-sm",
+    onClick: () => nav('/news')
+  }, t('seeAll'), " \u2192")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10,
+      padding: '0 16px 16px',
+      overflowX: 'auto',
+      scrollbarWidth: 'none'
+    }
+  }, news.map(n => /*#__PURE__*/React.createElement("div", {
+    key: n.id,
+    style: {
+      minWidth: 220,
+      background: 'var(--surface)',
+      borderRadius: 'var(--radius-l)',
+      border: '1px solid var(--border)',
+      padding: 14,
+      flexShrink: 0,
+      cursor: 'pointer',
+      transition: 'all .2s'
+    },
+    onClick: () => nav('/news')
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 32,
+      marginBottom: 8,
+      textAlign: 'center',
+      padding: '12px',
+      background: 'var(--primary-l)',
+      borderRadius: 'var(--radius-m)'
+    }
+  }, n.image), /*#__PURE__*/React.createElement(Badge, {
+    color: "green"
+  }, n.category), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 13,
+      marginTop: 6,
+      marginBottom: 4,
+      lineHeight: 1.3
+    }
+  }, n.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, n.date, " \xB7 \u2764 ", n.likes)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 15,
+      marginBottom: 12,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDCE3 Publications"), user && /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm btn-primary",
+    onClick: () => nav('/create-post')
+  }, "+ Publier")), displayed.map(p => /*#__PURE__*/React.createElement(PostCard, {
+    key: p.id,
+    post: p
+  })), /*#__PURE__*/React.createElement(LoadMore, {
+    hasMore: hasMore,
+    loaderRef: loaderRef
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '8px 16px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 15,
+      marginBottom: 12,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDDD3 Prochains \xE9v\xE9nements"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-ghost btn-sm",
+    onClick: () => nav('/events')
+  }, t('seeAll'), " \u2192")), DEMO_EVENTS.slice(0, 2).map(ev => /*#__PURE__*/React.createElement(Card, {
+    key: ev.id,
+    style: {
+      marginBottom: 10
+    },
+    hover: true,
+    onClick: () => nav('/events')
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 14px',
+      display: 'flex',
+      gap: 12,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 36,
+      width: 60,
+      height: 60,
+      background: 'var(--primary-l)',
+      borderRadius: 'var(--radius-m)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0
+    }
+  }, ev.emoji), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 14,
+      marginBottom: 2
+    }
+  }, ev.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'var(--t4)'
+    }
+  }, "\uD83D\uDCC5 ", ev.date, " \xB7 \uD83D\uDCCD ", ev.location), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 6
+    }
+  }, /*#__PURE__*/React.createElement(ProgressBar, {
+    value: ev.registered,
+    max: ev.capacity
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)',
+      marginTop: 3
+    }
+  }, ev.registered, "/", ev.capacity, " inscrits"))), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 13,
+      fontWeight: 700,
+      color: ev.price === 0 ? 'var(--primary)' : 'var(--gold)'
+    }
+  }, ev.price === 0 ? 'Gratuit' : ev.price + '€'))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 16px 80px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 15,
+      marginBottom: 12,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDC9D Cagnottes actives"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-ghost btn-sm",
+    onClick: () => nav('/cagnottes')
+  }, t('seeAll'), " \u2192")), DEMO_CAGNOTTES.slice(0, 2).map(c => /*#__PURE__*/React.createElement(Card, {
+    key: c.id,
+    style: {
+      marginBottom: 10
+    },
+    hover: true,
+    onClick: () => nav('/cagnottes')
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 14px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10,
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 28
+    }
+  }, c.emoji), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 13
+    }
+  }, c.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, "par ", c.creator)), /*#__PURE__*/React.createElement(Badge, {
+    color: "green"
+  }, Math.round(c.raised / c.goal * 100), "%")), /*#__PURE__*/React.createElement(ProgressBar, {
+    value: c.raised,
+    max: c.goal,
+    color: "var(--gold)"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginTop: 6,
+      fontSize: 12
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--gold)',
+      fontWeight: 700
+    }
+  }, c.raised.toLocaleString(), " ", c.currency), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--t4)'
+    }
+  }, "/ ", c.goal.toLocaleString(), " ", c.currency))))))));
+}
+// ═══ MEMBERS PAGE ═══
+function MembersPage() {
+  const nav = useNavigate();
+  const {
+    t
+  } = useLang();
+  const [members, setMembers] = useState([]);
+  const [q, setQ] = useState('');
+  const [country, setCountry] = useState('');
+  useEffect(() => listenMembers(setMembers), []);
+  const COUNTRIES = ['', 'Mali', 'Espagne', 'France', 'USA', 'Canada', 'Belgique', 'Allemagne'];
+  const filtered = members.filter(m => {
+    const match = !q || (m.firstname + ' ' + m.name).toLowerCase().includes(q.toLowerCase()) || m.city?.toLowerCase().includes(q.toLowerCase()) || m.profession?.toLowerCase().includes(q.toLowerCase());
+    const cc = !country || m.country === country;
+    return match && cc;
+  });
+  const {
+    displayed,
+    hasMore,
+    loaderRef
+  } = useInfiniteScroll(filtered, 12);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: t('members')
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 16px',
+      background: 'var(--surface)',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "search",
+    placeholder: t('search'),
+    value: q,
+    onChange: e => setQ(e.target.value),
+    style: {
+      marginBottom: 8
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      overflowX: 'auto',
+      scrollbarWidth: 'none'
+    }
+  }, COUNTRIES.map(c => /*#__PURE__*/React.createElement("button", {
+    key: c || 'all',
+    onClick: () => setCountry(c),
+    style: {
+      padding: '5px 12px',
+      borderRadius: 20,
+      border: `1.5px solid ${country === c ? 'var(--primary)' : 'var(--border)'}`,
+      background: country === c ? 'var(--primary)' : 'var(--surface)',
+      color: country === c ? '#fff' : 'var(--t3)',
+      cursor: 'pointer',
+      fontSize: 12,
+      fontWeight: 600,
+      whiteSpace: 'nowrap'
+    }
+  }, c || t('all'))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 16px',
+      fontSize: 12,
+      color: 'var(--t4)',
+      fontWeight: 600
+    }
+  }, filtered.length, " membre(s)"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fill,minmax(160px,1fr))',
+      gap: 10,
+      padding: '0 16px'
+    }
+  }, displayed.map(m => /*#__PURE__*/React.createElement(Card, {
+    key: m.id || m.uid,
+    hover: true,
+    style: {
+      textAlign: 'center',
+      padding: '16px 12px',
+      cursor: 'pointer'
+    },
+    onClick: () => nav('/profile/' + (m.uid || m.id))
+  }, /*#__PURE__*/React.createElement(Avatar, {
+    src: m.avatar,
+    size: 52,
+    online: m.online
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 13,
+      marginTop: 8
+    }
+  }, m.firstname, " ", m.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)',
+      marginBottom: 6
+    }
+  }, m.profession || 'Membre'), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 4,
+      justifyContent: 'center',
+      flexWrap: 'wrap'
+    }
+  }, m.country && /*#__PURE__*/React.createElement(Badge, {
+    color: "green"
+  }, m.country)), m.online && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 6,
+      fontSize: 10,
+      color: '#22C55E',
+      fontWeight: 700
+    }
+  }, "\u25CF En ligne")))), /*#__PURE__*/React.createElement(LoadMore, {
+    hasMore: hasMore,
+    loaderRef: loaderRef
+  }));
+}
+
+// ═══ ASSOCIATIONS PAGE ═══
+function AssocPage() {
+  const nav = useNavigate();
+  const {
+    t
+  } = useLang();
+  const [assocs, setAssocs] = useState([]);
+  const [q, setQ] = useState('');
+  useEffect(() => listenAssoc(setAssocs), []);
+  const filtered = assocs.filter(a => !q || a.name.toLowerCase().includes(q.toLowerCase()) || a.country.toLowerCase().includes(q.toLowerCase()));
+  const {
+    displayed,
+    hasMore,
+    loaderRef
+  } = useInfiniteScroll(filtered, 8);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: t('assoc')
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 16px',
+      background: 'var(--surface)',
+      borderBottom: '1px solid var(--border)',
+      display: 'flex',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    style: {
+      flex: 1
+    },
+    type: "search",
+    placeholder: t('search'),
+    value: q,
+    onChange: e => setQ(e.target.value)
+  }), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    onClick: () => nav('/create-assoc')
+  }, "+ ", t('newAssoc'))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 16px'
+    }
+  }, displayed.map(a => /*#__PURE__*/React.createElement(Card, {
+    key: a.id,
+    hover: true,
+    style: {
+      marginBottom: 12,
+      cursor: 'pointer'
+    },
+    onClick: () => nav('/assoc/' + a.id)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 12,
+      alignItems: 'flex-start'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 40,
+      width: 60,
+      height: 60,
+      background: 'var(--primary-l)',
+      borderRadius: 12,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0
+    }
+  }, a.logo), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 6,
+      marginBottom: 4
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 15
+    }
+  }, a.name), a.validated && /*#__PURE__*/React.createElement(Badge, {
+    color: "green"
+  }, "\u2713"), !a.validated && /*#__PURE__*/React.createElement(Badge, {
+    color: "gold"
+  }, "\u23F3")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'var(--t4)',
+      marginBottom: 6
+    }
+  }, "\uD83C\uDF0D ", a.country, " \xB7 \uD83D\uDC64 ", a.president, " \xB7 ", a.members, " membres"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'var(--t2)',
+      lineHeight: 1.5
+    }
+  }, a.description?.slice(0, 100), "..."))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      marginTop: 10
+    }
+  }, /*#__PURE__*/React.createElement(Badge, {
+    color: "blue"
+  }, a.category), /*#__PURE__*/React.createElement(Badge, {
+    color: "gray"
+  }, "Fond\xE9e ", a.founded))))), /*#__PURE__*/React.createElement(LoadMore, {
+    hasMore: hasMore,
+    loaderRef: loaderRef
+  })));
+}
+
+// ═══ EVENTS PAGE ═══
+function EventsPage() {
+  const nav = useNavigate();
+  const {
+    t
+  } = useLang();
+  const {
+    user
+  } = useAuth();
+  const [events, setEvents] = useState([]);
+  const [cat, setCat] = useState('');
+  useEffect(() => listenEvents(setEvents), []);
+  const cats = ['', 'Conférence', 'Culture', 'Business', 'Sport', 'Santé', 'Social'];
+  const filtered = events.filter(e => !cat || e.category === cat);
+  const {
+    displayed,
+    hasMore,
+    loaderRef
+  } = useInfiniteScroll(filtered, 8);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: t('events')
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      padding: '12px 16px',
+      overflowX: 'auto',
+      scrollbarWidth: 'none',
+      background: 'var(--surface)',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, cats.map(c => /*#__PURE__*/React.createElement("button", {
+    key: c || 'all',
+    onClick: () => setCat(c),
+    style: {
+      padding: '6px 14px',
+      borderRadius: 20,
+      border: `1.5px solid ${cat === c ? 'var(--primary)' : 'var(--border)'}`,
+      background: cat === c ? 'var(--primary)' : 'var(--surface)',
+      color: cat === c ? '#fff' : 'var(--t3)',
+      cursor: 'pointer',
+      fontSize: 12,
+      fontWeight: 600,
+      whiteSpace: 'nowrap'
+    }
+  }, c || t('all'))), user && /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    style: {
+      marginLeft: 'auto',
+      flexShrink: 0
+    },
+    onClick: () => nav('/create-event')
+  }, "+ Cr\xE9er")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 16px'
+    }
+  }, displayed.map(ev => /*#__PURE__*/React.createElement(Card, {
+    key: ev.id,
+    hover: true,
+    style: {
+      marginBottom: 12
+    },
+    onClick: () => nav('/event/' + ev.id)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 12,
+      alignItems: 'flex-start'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 40,
+      width: 64,
+      height: 64,
+      background: 'var(--primary-l)',
+      borderRadius: 12,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0
+    }
+  }, ev.emoji), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'flex-start',
+      marginBottom: 4
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 15,
+      flex: 1,
+      marginRight: 8
+    }
+  }, ev.title), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 15,
+      fontWeight: 800,
+      color: ev.price === 0 ? 'var(--primary)' : 'var(--gold)',
+      flexShrink: 0
+    }
+  }, ev.price === 0 ? 'Gratuit' : ev.price + '€')), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'var(--t4)',
+      marginBottom: 6
+    }
+  }, "\uD83D\uDCC5 ", ev.date, " \xB7 \uD83D\uDD50 ", ev.time, /*#__PURE__*/React.createElement("br", null), "\uD83D\uDCCD ", ev.location), /*#__PURE__*/React.createElement(Badge, {
+    color: "blue"
+  }, ev.category))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 10
+    }
+  }, /*#__PURE__*/React.createElement(ProgressBar, {
+    value: ev.registered,
+    max: ev.capacity
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginTop: 4,
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, /*#__PURE__*/React.createElement("span", null, ev.registered, " inscrits"), /*#__PURE__*/React.createElement("span", null, ev.capacity, " places max"))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    style: {
+      marginTop: 10,
+      fontSize: 13
+    },
+    onClick: e => {
+      e.stopPropagation();
+      user ? registerEvent(ev.id, user.uid) : nav('/auth');
+    }
+  }, ev.price === 0 ? '✓ S\'inscrire gratuitement' : '🎫 Acheter un billet')))), /*#__PURE__*/React.createElement(LoadMore, {
+    hasMore: hasMore,
+    loaderRef: loaderRef
+  })));
+}
+
+// ═══ NEWS PAGE ═══
+function NewsPage() {
+  const nav = useNavigate();
+  const {
+    t
+  } = useLang();
+  const [news, setNews] = useState([]);
+  const [cat, setCat] = useState('');
+  const [q, setQ] = useState('');
+  useEffect(() => listenNews(setNews), []);
+  const cats = ['', 'Événement', 'Éducation', 'Finance', 'Culture', 'Tech', 'Politique', 'Santé', 'Opportunité'];
+  const filtered = news.filter(n => (!cat || n.category === cat) && (!q || n.title.toLowerCase().includes(q.toLowerCase())));
+  const {
+    displayed,
+    hasMore,
+    loaderRef
+  } = useInfiniteScroll(filtered, 10);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: t('news')
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '10px 16px',
+      background: 'var(--surface)',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "search",
+    placeholder: t('search'),
+    value: q,
+    onChange: e => setQ(e.target.value),
+    style: {
+      marginBottom: 8
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      overflowX: 'auto',
+      scrollbarWidth: 'none'
+    }
+  }, cats.map(c => /*#__PURE__*/React.createElement("button", {
+    key: c || 'all',
+    onClick: () => setCat(c),
+    style: {
+      padding: '5px 12px',
+      borderRadius: 20,
+      border: `1.5px solid ${cat === c ? 'var(--primary)' : 'var(--border)'}`,
+      background: cat === c ? 'var(--primary)' : 'var(--surface)',
+      color: cat === c ? '#fff' : 'var(--t3)',
+      cursor: 'pointer',
+      fontSize: 12,
+      fontWeight: 600,
+      whiteSpace: 'nowrap'
+    }
+  }, c || t('all'))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 16px'
+    }
+  }, displayed.map(n => /*#__PURE__*/React.createElement(Card, {
+    key: n.id,
+    hover: true,
+    style: {
+      marginBottom: 12,
+      cursor: 'pointer'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 12,
+      alignItems: 'flex-start'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 36,
+      width: 60,
+      height: 60,
+      background: 'var(--primary-l)',
+      borderRadius: 10,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0
+    }
+  }, n.image), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      marginBottom: 6
+    }
+  }, /*#__PURE__*/React.createElement(Badge, {
+    color: "green"
+  }, n.category)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 14,
+      marginBottom: 4,
+      lineHeight: 1.3
+    }
+  }, n.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'var(--t3)',
+      lineHeight: 1.5
+    }
+  }, n.content.slice(0, 100), "..."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      marginTop: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, n.date, " \xB7 ", n.author), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, "\u2764 ", n.likes, " \xB7 \uD83D\uDCAC ", n.comments)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 10
+    }
+  }, /*#__PURE__*/React.createElement(ShareButtons, {
+    title: n.title
+  }))))), /*#__PURE__*/React.createElement(LoadMore, {
+    hasMore: hasMore,
+    loaderRef: loaderRef
+  })));
+}
+// ═══ MESSAGES PAGE ═══
+function MessagesPage() {
+  const nav = useNavigate(),
+    loc = useLocation();
+  const {
+    user,
+    profile
+  } = useAuth();
+  const {
+    t
+  } = useLang();
+  const {
+    uid
+  } = useParams();
+  const [convs, setConvs] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [text, setText] = useState('');
+  const [partner, setPartner] = useState(null);
+  const endRef = useRef(null);
+  const cid = user && uid ? convId(user.uid, uid) : null;
+  useEffect(() => {
+    if (user) return listenConvs(user.uid, setConvs);
+  }, [user]);
+  useEffect(() => {
+    if (!cid) return;
+    return listenMessages(cid, m => {
+      setMessages(m);
+      setTimeout(() => endRef.current?.scrollIntoView({
+        behavior: 'smooth'
+      }), 100);
+    });
+  }, [cid]);
+  useEffect(() => {
+    if (uid) {
+      const m = DEMO_MEMBERS.find(m => m.id === uid);
+      if (m) setPartner(m);
+    }
+  }, [uid]);
+  const send = async () => {
+    if (!text.trim() || !user) return;
+    await sendMessage(user.uid, profile?.firstname || 'Moi', uid, text);
+    setText('');
+  };
+  if (uid && (user || IS_DEMO)) return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      display: 'flex',
+      flexDirection: 'column'
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    back: "/messages",
+    title: partner ? `${partner.firstname} ${partner.name}` : 'Conversation'
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      padding: '12px 16px',
+      overflowY: 'auto'
+    }
+  }, messages.length === 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      padding: '40px 20px',
+      color: 'var(--t4)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 48,
+      marginBottom: 12
+    }
+  }, "\uD83D\uDCAC"), /*#__PURE__*/React.createElement("p", null, "D\xE9marrez la conversation !")), messages.map(m => /*#__PURE__*/React.createElement("div", {
+    key: m.id,
+    style: {
+      display: 'flex',
+      justifyContent: m.fromUid === user?.uid ? 'flex-end' : 'flex-start',
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: '75%',
+      padding: '10px 14px',
+      borderRadius: 18,
+      background: m.fromUid === user?.uid ? 'var(--primary)' : 'var(--surface)',
+      color: m.fromUid === user?.uid ? '#fff' : 'var(--t1)',
+      fontSize: 14,
+      boxShadow: '0 1px 3px rgba(0,0,0,.06)',
+      border: m.fromUid === user?.uid ? 'none' : '1px solid var(--border)'
+    }
+  }, m.text, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      opacity: .7,
+      marginTop: 4,
+      textAlign: 'right'
+    }
+  }, new Date(m.createdAt).toLocaleTimeString('fr-FR', {
+    hour: '2-digit',
+    minute: '2-digit'
+  }))))), /*#__PURE__*/React.createElement("div", {
+    ref: endRef
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '10px 16px',
+      background: 'var(--surface)',
+      borderTop: '1px solid var(--border)',
+      display: 'flex',
+      gap: 8,
+      paddingBottom: 'calc(10px + env(safe-area-inset-bottom))'
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    style: {
+      flex: 1
+    },
+    placeholder: t('sendMsg'),
+    value: text,
+    onChange: e => setText(e.target.value),
+    onKeyDown: e => e.key === 'Enter' && send()
+  }), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: send,
+    disabled: !text.trim()
+  }, "\uD83D\uDCE4")));
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: t('messages')
+  }), convs.length === 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      padding: '60px 20px',
+      color: 'var(--t4)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 60,
+      marginBottom: 12
+    }
+  }, "\uD83D\uDCAC"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 14
+    }
+  }, "Aucune conversation. Contactez un membre !"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    style: {
+      marginTop: 16
+    },
+    onClick: () => nav('/members')
+  }, "Trouver des membres \u2192")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 16px'
+    }
+  }, convs.map(c => {
+    const otherUid = c.p && Object.keys(c.p).find(k => k !== user?.uid);
+    const otherName = c.p && c.p[otherUid || ''] || 'Membre';
+    return /*#__PURE__*/React.createElement(Card, {
+      key: c.id,
+      hover: true,
+      style: {
+        marginBottom: 10,
+        cursor: 'pointer'
+      },
+      onClick: () => nav('/messages/' + (otherUid || ''))
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: '12px 14px',
+        display: 'flex',
+        gap: 10,
+        alignItems: 'center'
+      }
+    }, /*#__PURE__*/React.createElement(Avatar, {
+      src: "\uD83D\uDC64",
+      size: 46
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 700,
+        fontSize: 14
+      }
+    }, otherName), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: 'var(--t4)',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap'
+      }
+    }, c.last || '...'))));
+  })));
+}
+
+// ═══ MEDIA PAGE ═══
+function MediaPage() {
+  const {
+    t
+  } = useLang();
+  const [media, setMedia] = useState([]);
+  const [type, setType] = useState('');
+  useEffect(() => listenMedia(setMedia), []);
+  const filtered = media.filter(m => !type || m.type === type);
+  const {
+    displayed,
+    hasMore,
+    loaderRef
+  } = useInfiniteScroll(filtered, 12);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: t('media')
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      padding: '12px 16px',
+      background: 'var(--surface)',
+      borderBottom: '1px solid var(--border)',
+      overflowX: 'auto',
+      scrollbarWidth: 'none'
+    }
+  }, ['', 'photo', 'video', 'podcast'].map(tp => /*#__PURE__*/React.createElement("button", {
+    key: tp || 'all',
+    onClick: () => setType(tp),
+    style: {
+      padding: '5px 14px',
+      borderRadius: 20,
+      border: `1.5px solid ${type === tp ? 'var(--primary)' : 'var(--border)'}`,
+      background: type === tp ? 'var(--primary)' : 'var(--surface)',
+      color: type === tp ? '#fff' : 'var(--t3)',
+      cursor: 'pointer',
+      fontSize: 12,
+      fontWeight: 600,
+      whiteSpace: 'nowrap'
+    }
+  }, tp === '' ? t('all') : tp === 'photo' ? '📸 Photos' : tp === 'video' ? '🎬 Vidéos' : '🎙 Podcasts'))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fill,minmax(150px,1fr))',
+      gap: 10,
+      padding: '12px 16px'
+    }
+  }, displayed.map(m => /*#__PURE__*/React.createElement("div", {
+    key: m.id,
+    style: {
+      background: 'var(--surface)',
+      borderRadius: 'var(--radius-l)',
+      border: '1px solid var(--border)',
+      overflow: 'hidden',
+      cursor: 'pointer',
+      transition: 'all .2s'
+    },
+    onClick: () => {}
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: 120,
+      background: 'var(--primary-l)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 50,
+      position: 'relative'
+    }
+  }, m.emoji, m.type === 'video' && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      inset: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'rgba(0,0,0,.3)',
+      color: '#fff',
+      fontSize: 32
+    }
+  }, "\u25B6"), m.type === 'podcast' && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      bottom: 6,
+      right: 6,
+      background: 'var(--primary)',
+      color: '#fff',
+      borderRadius: 4,
+      padding: '2px 6px',
+      fontSize: 9,
+      fontWeight: 700
+    }
+  }, "POD")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '8px 10px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      fontSize: 12,
+      lineHeight: 1.3,
+      marginBottom: 3
+    }
+  }, m.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: 'var(--t4)'
+    }
+  }, m.author, " \xB7 \u2764 ", m.likes))))), /*#__PURE__*/React.createElement(LoadMore, {
+    hasMore: hasMore,
+    loaderRef: loaderRef
+  }));
+}
+
+// ═══ CAGNOTTES PAGE ═══
+function CagnottesPage() {
+  const nav = useNavigate();
+  const {
+    t
+  } = useLang();
+  const {
+    user
+  } = useAuth();
+  const [cags, setCags] = useState([]);
+  useEffect(() => listenCagnottes(setCags), []);
+  const {
+    displayed,
+    hasMore,
+    loaderRef
+  } = useInfiniteScroll(cags, 8);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: t('fundraising')
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 16px',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 14,
+      fontWeight: 700,
+      color: 'var(--t3)'
+    }
+  }, cags.length, " collecte(s)"), user && /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    onClick: () => nav('/create-cagnotte')
+  }, "+ Cr\xE9er")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 16px'
+    }
+  }, displayed.map(c => /*#__PURE__*/React.createElement(Card, {
+    key: c.id,
+    hover: true,
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10,
+      alignItems: 'flex-start',
+      marginBottom: 10
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 36
+    }
+  }, c.emoji), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 15,
+      marginBottom: 4
+    }
+  }, c.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'var(--t3)',
+      lineHeight: 1.5
+    }
+  }, c.description?.slice(0, 120), "..."))), /*#__PURE__*/React.createElement(ProgressBar, {
+    value: c.raised,
+    max: c.goal,
+    color: "var(--gold)"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginTop: 6,
+      marginBottom: 10,
+      fontSize: 12
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--gold)',
+      fontWeight: 800
+    }
+  }, c.raised?.toLocaleString(), " ", c.currency), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--t4)'
+    }
+  }, "Objectif : ", c.goal?.toLocaleString(), " ", c.currency)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    style: {
+      flex: 1,
+      fontSize: 13
+    },
+    onClick: () => {
+      user ? contributeC(c.id, 10, user.uid) : nav('/auth');
+    }
+  }, "\uD83D\uDC9D Contribuer"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm",
+    onClick: () => navigator.share ? navigator.share({
+      title: c.title
+    }) : alert('Lien copié!')
+  }, "\uD83D\uDCE4")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)',
+      marginTop: 8
+    }
+  }, "par ", c.creator, " \xB7 Jusqu\\'au ", c.deadline)))), /*#__PURE__*/React.createElement(LoadMore, {
+    hasMore: hasMore,
+    loaderRef: loaderRef
+  })));
+}
+
+// ═══ PROFILE PAGE ═══
+function ProfilePage() {
+  const nav = useNavigate();
+  const {
+    user,
+    profile
+  } = useAuth();
+  const {
+    t
+  } = useLang();
+  const {
+    uid
+  } = useParams();
+  const [viewProfile, setVP] = useState(null);
+  const [tab, setTab] = useState(0);
+  const [editing, setEditing] = useState(false);
+  const [form, setForm] = useState({});
+  const isOwn = !uid || uid === user?.uid;
+  useEffect(() => {
+    if (isOwn && profile) {
+      setVP(profile);
+      setForm(profile);
+    } else if (uid) {
+      getProfile(uid).then(p => {
+        setVP(p);
+        setForm(p || {});
+      });
+    }
+  }, [profile, uid]);
+  if (!user && isOwn) return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'var(--bg)',
+      padding: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 60,
+      marginBottom: 16
+    }
+  }, "\uD83D\uDD11"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      marginBottom: 8
+    }
+  }, t('login')), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-lg",
+    onClick: () => nav('/auth')
+  }, "Se connecter")));
+  const p = viewProfile || profile;
+  if (!p) return /*#__PURE__*/React.createElement("div", {
+    className: "loading"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "spinner"
+  }));
+  const saveProfile = async () => {
+    await updateProfile(user.uid, form);
+    setEditing(false);
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    back: isOwn ? undefined : '/',
+    title: isOwn ? t('profile') : `${p.firstname} ${p.name}`
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'linear-gradient(160deg,var(--primary),var(--primary-d))',
+      padding: '24px 20px 60px',
+      position: 'relative'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 14,
+      alignItems: 'flex-start'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 72,
+      height: 72,
+      borderRadius: '50%',
+      background: 'rgba(255,255,255,.2)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 42,
+      border: '3px solid rgba(255,255,255,.4)'
+    }
+  }, p.avatar || '👤'), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: '#fff',
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 20
+    }
+  }, p.firstname, " ", p.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      opacity: .85,
+      fontSize: 13,
+      marginTop: 2
+    }
+  }, p.profession || 'Membre'), /*#__PURE__*/React.createElement("div", {
+    style: {
+      opacity: .75,
+      fontSize: 12,
+      marginTop: 2
+    }
+  }, "\uD83D\uDCCD ", p.city, ", ", p.country), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 6,
+      display: 'flex',
+      gap: 6,
+      flexWrap: 'wrap'
+    }
+  }, p.validated && /*#__PURE__*/React.createElement(Badge, {
+    color: "green"
+  }, "\u2713 V\xE9rifi\xE9"), /*#__PURE__*/React.createElement(Badge, {
+    color: "gold"
+  }, p.memberNum || 'DMC-XXXX-XXX'))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      margin: '-20px 16px 0',
+      display: 'flex',
+      gap: 8
+    }
+  }, isOwn ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    style: {
+      flex: 1
+    },
+    onClick: () => nav('/member-card')
+  }, "\uD83E\uDEAA Ma carte"), /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    style: {
+      flex: 1
+    },
+    onClick: () => setEditing(true)
+  }, "\u270F\uFE0F Modifier"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm",
+    onClick: () => {
+      logoutUser();
+      nav('/');
+    }
+  }, "\uD83D\uDEAA")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    style: {
+      flex: 1
+    },
+    onClick: () => nav('/messages/' + uid)
+  }, "\uD83D\uDCAC Message"), /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    style: {
+      flex: 1
+    }
+  }, "\uD83D\uDC65 Suivre"))), editing && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      inset: 0,
+      zIndex: 1000,
+      background: 'rgba(0,0,0,.5)',
+      display: 'flex',
+      alignItems: 'flex-end'
+    },
+    onClick: () => setEditing(false)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--surface)',
+      width: '100%',
+      borderRadius: '20px 20px 0 0',
+      padding: '24px 20px',
+      maxHeight: '80vh',
+      overflowY: 'auto'
+    },
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      marginBottom: 16,
+      textAlign: 'center'
+    }
+  }, t('editProfile')), [{
+    k: 'firstname',
+    l: t('firstname')
+  }, {
+    k: 'name',
+    l: t('name')
+  }, {
+    k: 'phone',
+    l: t('phone')
+  }, {
+    k: 'city',
+    l: t('city')
+  }, {
+    k: 'profession',
+    l: t('profession')
+  }, {
+    k: 'bio',
+    l: 'Bio'
+  }].map(({
+    k,
+    l
+  }) => /*#__PURE__*/React.createElement("div", {
+    className: "fg",
+    key: k
+  }, /*#__PURE__*/React.createElement("label", null, l), k === 'bio' ? /*#__PURE__*/React.createElement("textarea", {
+    className: "fi",
+    value: form[k] || '',
+    onChange: e => setForm(f => ({
+      ...f,
+      [k]: e.target.value
+    })),
+    rows: 3
+  }) : /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    value: form[k] || '',
+    onChange: e => setForm(f => ({
+      ...f,
+      [k]: e.target.value
+    }))
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    onClick: saveProfile
+  }, t('save')), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-full",
+    onClick: () => setEditing(false)
+  }, t('cancel'))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 4,
+      padding: '16px 16px 0',
+      marginTop: 24
+    }
+  }, ['Infos', 'Publications', 'Associations', 'Événements'].map((lb, i) => /*#__PURE__*/React.createElement("button", {
+    key: i,
+    onClick: () => setTab(i),
+    style: {
+      flex: 1,
+      padding: '8px 4px',
+      fontSize: 12,
+      fontWeight: 700,
+      border: 'none',
+      borderBottom: `2px solid ${tab === i ? 'var(--primary)' : 'transparent'}`,
+      background: 'transparent',
+      color: tab === i ? 'var(--primary)' : 'var(--t4)',
+      cursor: 'pointer'
+    }
+  }, lb))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, tab === 0 && /*#__PURE__*/React.createElement("div", null, [{
+    l: 'Email',
+    v: p.email,
+    i: '📧'
+  }, {
+    l: 'Téléphone',
+    v: p.phone,
+    i: '📱'
+  }, {
+    l: 'Ville',
+    v: p.city,
+    i: '📍'
+  }, {
+    l: 'Pays',
+    v: p.country,
+    i: '🌍'
+  }, {
+    l: 'Profession',
+    v: p.profession,
+    i: '💼'
+  }, {
+    l: 'Membre depuis',
+    v: p.joinedAt,
+    i: '📅'
+  }].filter(r => r.v).map(row => /*#__PURE__*/React.createElement("div", {
+    key: row.l,
+    style: {
+      display: 'flex',
+      gap: 10,
+      padding: '10px 0',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 18,
+      width: 28
+    }
+  }, row.i), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)',
+      fontWeight: 600,
+      marginBottom: 2
+    }
+  }, row.l), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 14,
+      fontWeight: 600
+    }
+  }, row.v)))), p.bio && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 12,
+      padding: 12,
+      background: 'var(--bg)',
+      borderRadius: 'var(--radius-m)',
+      fontSize: 14,
+      lineHeight: 1.6,
+      color: 'var(--t2)'
+    }
+  }, p.bio)), tab === 1 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      padding: '30px',
+      color: 'var(--t4)'
+    }
+  }, "\uD83D\uDCE3 Aucune publication"), tab === 2 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      padding: '30px',
+      color: 'var(--t4)'
+    }
+  }, "\uD83C\uDFDB Aucune association"), tab === 3 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      padding: '30px',
+      color: 'var(--t4)'
+    }
+  }, "\uD83D\uDDD3 Aucun \xE9v\xE9nement")));
+}
+
+// ═══ CARTE DE MEMBRE ═══
+function MemberCardPage() {
+  const nav = useNavigate();
+  const {
+    user,
+    profile
+  } = useAuth();
+  const {
+    t
+  } = useLang();
+  if (!user || !profile) return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 40,
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: () => nav('/auth')
+  }, "Connexion requise"));
+  const p = profile;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'linear-gradient(160deg,var(--primary-d) 0%,var(--primary) 60%)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 20
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    style: {
+      position: 'absolute',
+      top: 20,
+      left: 20,
+      background: 'rgba(255,255,255,.2)',
+      border: 'none',
+      color: '#fff',
+      borderRadius: 8,
+      padding: '8px 14px',
+      cursor: 'pointer',
+      fontWeight: 600
+    },
+    onClick: () => nav(-1)
+  }, "\u2190 ", t('back')), /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: '100%',
+      maxWidth: 380,
+      background: 'linear-gradient(135deg,#fff 0%,#f8faff 100%)',
+      borderRadius: 20,
+      padding: '24px 20px',
+      boxShadow: '0 20px 60px rgba(0,0,0,.3)',
+      border: '1px solid rgba(255,255,255,.3)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'flex-start',
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 800,
+      textTransform: 'uppercase',
+      letterSpacing: 2,
+      color: 'var(--primary)',
+      marginBottom: 4
+    }
+  }, "DIASPORA MALI CONNECT"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      color: 'var(--t4)',
+      letterSpacing: 1
+    }
+  }, "CARTE DE MEMBRE OFFICIELLE")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 28
+    }
+  }, "\uD83C\uDDF2\uD83C\uDDF1")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 14,
+      alignItems: 'center',
+      marginBottom: 18
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 70,
+      height: 70,
+      borderRadius: '50%',
+      background: 'var(--primary-l)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 42,
+      border: '3px solid var(--primary)'
+    }
+  }, p.avatar || '👤'), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 900,
+      fontSize: 19,
+      color: 'var(--primary)',
+      letterSpacing: 0.5
+    }
+  }, p.firstname, " ", p.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'var(--t3)',
+      marginTop: 2
+    }
+  }, p.profession || 'Membre'), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)',
+      marginTop: 2
+    }
+  }, "\uD83D\uDCCD ", p.city, ", ", p.country))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--primary)',
+      borderRadius: 10,
+      padding: '10px 14px',
+      marginBottom: 14,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      color: 'rgba(255,255,255,.7)',
+      fontWeight: 600,
+      textTransform: 'uppercase',
+      letterSpacing: 1
+    }
+  }, t('memberNum')), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: '#fff',
+      fontWeight: 900,
+      fontSize: 18,
+      letterSpacing: 2
+    }
+  }, p.memberNum || 'DMC-XXXX-XXX')), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'right'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      color: 'rgba(255,255,255,.7)',
+      fontWeight: 600,
+      textTransform: 'uppercase',
+      letterSpacing: 1
+    }
+  }, "STATUT"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: '#fff',
+      fontWeight: 700,
+      fontSize: 12
+    }
+  }, "\u2713 ACTIF"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      paddingTop: 12,
+      borderTop: '1px dashed var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      color: 'var(--t4)',
+      fontWeight: 600,
+      textTransform: 'uppercase',
+      marginBottom: 2
+    }
+  }, t('memberSince')), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 700
+    }
+  }, p.joinedAt || new Date().toISOString().split('T')[0])), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      fontSize: 30
+    },
+    title: `QR: ${p.memberNum}`
+  }, "\uD83D\uDCF1"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'right'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      color: 'var(--t4)',
+      fontWeight: 600,
+      textTransform: 'uppercase',
+      marginBottom: 2
+    }
+  }, "EMAIL"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 600,
+      color: 'var(--t2)'
+    }
+  }, p.email?.split('@')[0] + '@...')))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 16,
+      display: 'flex',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    style: {
+      background: 'rgba(255,255,255,.2)',
+      color: '#fff',
+      border: 'none'
+    },
+    onClick: () => window.print()
+  }, "\uD83D\uDCE5 T\xE9l\xE9charger"), /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    style: {
+      background: 'rgba(255,255,255,.2)',
+      color: '#fff',
+      border: 'none'
+    },
+    onClick: () => navigator.share ? navigator.share({
+      title: 'Carte DMC'
+    }) : alert('Lien copié!')
+  }, "\uD83D\uDCE4 Partager")));
+}
+
+// ═══ SETTINGS PAGE ═══
+function SettingsPage() {
+  const nav = useNavigate();
+  const [dark, setDark] = useDark();
+  const {
+    lang,
+    setLang,
+    t
+  } = useLang();
+  const {
+    prompt,
+    installed
+  } = usePwa();
+  const LANGS = [{
+    id: 'fr',
+    flag: '🇫🇷',
+    n: 'Français'
+  }, {
+    id: 'en',
+    flag: '🇬🇧',
+    n: 'English'
+  }, {
+    id: 'bm',
+    flag: '🇲🇱',
+    n: 'Bambara'
+  }, {
+    id: 'es',
+    flag: '🇪🇸',
+    n: 'Español'
+  }, {
+    id: 'ar',
+    flag: '🇸🇦',
+    n: 'العربية'
+  }];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    back: "/",
+    title: t('settings')
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 16px',
+      maxWidth: 500,
+      margin: '0 auto'
+    }
+  }, !installed && /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12,
+      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
+      border: 'none'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px',
+      display: 'flex',
+      gap: 12,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 36
+    }
+  }, "\uD83D\uDCF1"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      color: '#fff'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 14
+    }
+  }, t('install')), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      opacity: .8
+    }
+  }, "Acc\xE8s rapide depuis votre \xE9cran")), prompt && /*#__PURE__*/React.createElement("button", {
+    onClick: () => prompt.prompt(),
+    style: {
+      background: '#fff',
+      color: 'var(--primary)',
+      border: 'none',
+      borderRadius: 8,
+      padding: '7px 12px',
+      fontWeight: 700,
+      cursor: 'pointer',
+      fontSize: 12
+    }
+  }, "Installer"))), /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: 'var(--t4)',
+      textTransform: 'uppercase',
+      letterSpacing: .5,
+      marginBottom: 14
+    }
+  }, "Apparence"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 20
+    }
+  }, dark ? '🌙' : '☀️'), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 600,
+      fontSize: 14
+    }
+  }, t('darkMode'))), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setDark(!dark),
+    style: {
+      width: 46,
+      height: 24,
+      borderRadius: 12,
+      background: dark ? 'var(--primary)' : 'var(--border)',
+      border: 'none',
+      cursor: 'pointer',
+      position: 'relative',
+      transition: 'background .2s'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 18,
+      height: 18,
+      borderRadius: '50%',
+      background: '#fff',
+      position: 'absolute',
+      top: 3,
+      left: dark ? 25 : 3,
+      transition: 'left .2s',
+      boxShadow: '0 1px 3px rgba(0,0,0,.2)'
+    }
+  }))))), /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: 'var(--t4)',
+      textTransform: 'uppercase',
+      letterSpacing: .5,
+      marginBottom: 14
+    }
+  }, t('language')), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      flexWrap: 'wrap'
+    }
+  }, LANGS.map(l => /*#__PURE__*/React.createElement("button", {
+    key: l.id,
+    onClick: () => setLang(l.id),
+    style: {
+      padding: '8px 10px',
+      borderRadius: 8,
+      border: `1.5px solid ${lang === l.id ? 'var(--primary)' : 'var(--border)'}`,
+      background: lang === l.id ? 'var(--primary-l)' : 'var(--surface)',
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 6,
+      fontSize: 12,
+      fontWeight: 700,
+      color: lang === l.id ? 'var(--primary)' : 'var(--t3)'
+    }
+  }, l.flag, " ", l.n))))), /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: 'var(--t4)',
+      textTransform: 'uppercase',
+      letterSpacing: .5,
+      marginBottom: 12
+    }
+  }, "\xC0 propos"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: 'var(--t2)',
+      lineHeight: 1.8
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "\uD83C\uDDF2\uD83C\uDDF1 Diaspora Mali Connect"), /*#__PURE__*/React.createElement("br", null), "La plateforme des Maliens du monde entier.", /*#__PURE__*/React.createElement("br", null), "Membres \xB7 Associations \xB7 \xC9v\xE9nements \xB7 Cagnottes", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, "Made with \u2764\uFE0F for the Malian Diaspora"))))));
+}
+
+// ═══ CREATE POST ═══
+function CreatePostPage() {
+  const nav = useNavigate();
+  const {
+    user,
+    profile
+  } = useAuth();
+  const {
+    t
+  } = useLang();
+  const [content, setContent] = useState('');
+  const [media, setMedia] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const EMOJIS = ['📸', '🎉', '🤝', '🏆', '❤️', '🇲🇱', '🌍', '💼', '📚', '🎵', '⚽', '🎭', '🙏', '💡'];
+  if (!user) return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 40,
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: () => nav('/auth')
+  }, "Connexion requise"));
+  const save = async () => {
+    if (!content.trim()) {
+      return;
+    }
+    setSaving(true);
+    await createPost({
+      content,
+      media,
+      author: {
+        id: user.uid,
+        name: profile?.name || '',
+        firstname: profile?.firstname || '',
+        avatar: profile?.avatar || '👤'
+      }
+    });
+    nav('/');
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)'
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    back: "/",
+    title: t('createPost')
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px 20px',
+      maxWidth: 600,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10,
+      marginBottom: 14
+    }
+  }, /*#__PURE__*/React.createElement(Avatar, {
+    src: profile?.avatar,
+    size: 44
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 14
+    }
+  }, profile?.firstname, " ", profile?.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, "Publication publique"))), /*#__PURE__*/React.createElement("textarea", {
+    className: "fi",
+    style: {
+      minHeight: 120,
+      marginBottom: 14,
+      fontSize: 15,
+      resize: 'none'
+    },
+    placeholder: t('typePost'),
+    value: content,
+    onChange: e => setContent(e.target.value),
+    autoFocus: true
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 14
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 700,
+      color: 'var(--t3)',
+      marginBottom: 8
+    }
+  }, "Ajouter une ic\xF4ne"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 8
+    }
+  }, EMOJIS.map(e => /*#__PURE__*/React.createElement("button", {
+    key: e,
+    onClick: () => setMedia(media === e ? null : e),
+    style: {
+      width: 40,
+      height: 40,
+      fontSize: 22,
+      border: `2px solid ${media === e ? 'var(--primary)' : 'var(--border)'}`,
+      borderRadius: 8,
+      cursor: 'pointer',
+      background: media === e ? 'var(--primary-l)' : 'var(--surface)'
+    }
+  }, e)))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full btn-lg",
+    onClick: save,
+    disabled: !content.trim() || saving
+  }, saving ? 'Publication...' : '📣 Publier')));
+}
+
+// ═══ ADMIN PAGE ═══
+function AdminPage() {
+  const nav = useNavigate();
+  const {
+    user
+  } = useAuth();
+  const {
+    t
+  } = useLang();
+  const [tab, setTab] = useState(0);
+  const [members, setMembers] = useState([]);
+  const [assocs, setAssocs] = useState([]);
+  useEffect(() => {
+    listenMembers(setMembers);
+    listenAssoc(setAssocs);
+  }, []);
+  const isAdmin = user && (ADMIN_EMAILS.includes(user.email) || IS_DEMO);
+  if (!isAdmin) return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'var(--bg)',
+      flexDirection: 'column',
+      gap: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 60
+    }
+  }, "\uD83D\uDD10"), /*#__PURE__*/React.createElement("h2", null, "Acc\xE8s Admin Requis"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: () => nav('/auth')
+  }, "Connexion Admin"));
+  const tabs = ['📊 Stats', '👥 Membres', '🏛 Assoc.', '⚙️ Config'];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: '#0F172A',
+      color: '#fff',
+      padding: '14px 20px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      color: 'var(--primary)',
+      fontSize: 16
+    }
+  }, "\uD83D\uDEE1 DMC Admin"), /*#__PURE__*/React.createElement("button", {
+    className: "btn-ghost btn-sm",
+    style: {
+      color: '#fff',
+      background: 'transparent',
+      border: '1px solid rgba(255,255,255,.2)',
+      borderRadius: 6,
+      padding: '5px 10px',
+      cursor: 'pointer',
+      fontSize: 12
+    },
+    onClick: () => nav('/')
+  }, "\u2190 Site")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      background: '#1E293B',
+      overflowX: 'auto',
+      scrollbarWidth: 'none'
+    }
+  }, tabs.map((lb, i) => /*#__PURE__*/React.createElement("button", {
+    key: i,
+    onClick: () => setTab(i),
+    style: {
+      padding: '10px 16px',
+      fontSize: 12,
+      fontWeight: 600,
+      color: tab === i ? 'var(--primary)' : '#9CA3AF',
+      cursor: 'pointer',
+      border: 'none',
+      background: 'transparent',
+      borderBottom: `2px solid ${tab === i ? 'var(--primary)' : 'transparent'}`,
+      whiteSpace: 'nowrap',
+      flexShrink: 0
+    }
+  }, lb))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px 20px'
+    }
+  }, tab === 0 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2,1fr)',
+      gap: 12,
+      marginBottom: 16
+    }
+  }, [{
+    l: 'Membres',
+    v: members.length,
+    i: '👥',
+    c: 'var(--primary)'
+  }, {
+    l: 'Associations',
+    v: assocs.length,
+    i: '🏛',
+    c: 'var(--gold)'
+  }, {
+    l: 'Validées',
+    v: assocs.filter(a => a.validated).length,
+    i: '✅',
+    c: '#22C55E'
+  }, {
+    l: 'En attente',
+    v: assocs.filter(a => !a.validated).length,
+    i: '⏳',
+    c: '#F59E0B'
+  }].map(s => /*#__PURE__*/React.createElement(Card, {
+    key: s.l
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px',
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 28,
+      marginBottom: 6
+    }
+  }, s.i), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 28,
+      fontWeight: 900,
+      color: s.c
+    }
+  }, s.v), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)',
+      fontWeight: 600
+    }
+  }, s.l))))), IS_DEMO && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: '#FEF3C7',
+      border: '1px solid #F59E0B',
+      borderRadius: 10,
+      padding: '12px 14px',
+      fontSize: 12,
+      color: '#92400E'
+    }
+  }, "\u26A0\uFE0F Mode d\xE9mo actif \u2014 Configurez Firebase pour les vraies donn\xE9es")), tab === 1 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 10
+    }
+  }, members.length, " membres inscrits"), members.slice(0, 20).map(m => /*#__PURE__*/React.createElement("div", {
+    key: m.id || m.uid,
+    style: {
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center',
+      padding: '10px 0',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement(Avatar, {
+    src: m.avatar,
+    size: 36
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      fontSize: 13
+    }
+  }, m.firstname, " ", m.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, m.country, " \xB7 ", m.profession)), /*#__PURE__*/React.createElement(Badge, {
+    color: "green"
+  }, m.memberNum)))), tab === 2 && /*#__PURE__*/React.createElement("div", null, assocs.map(a => /*#__PURE__*/React.createElement(Card, {
+    key: a.id,
+    style: {
+      marginBottom: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 14px',
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 28
+    }
+  }, a.logo), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 13
+    }
+  }, a.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, a.country, " \xB7 ", a.members, " membres")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6
+    }
+  }, a.validated ? /*#__PURE__*/React.createElement(Badge, {
+    color: "green"
+  }, "\u2713") : /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm btn-primary",
+    onClick: () => db && db.ref(`associations/${a.id}`).update({
+      validated: true
+    })
+  }, "Valider")))))), tab === 3 && /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 12
+    }
+  }, "Configuration"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: 'var(--t2)',
+      lineHeight: 1.8
+    }
+  }, "Firebase: ", IS_DEMO ? '❌ Mode démo' : '✅ Connecté', /*#__PURE__*/React.createElement("br", null), "Admin: ", ADMIN_EMAILS.join(', ') || 'Aucun', /*#__PURE__*/React.createElement("br", null), "Version: DMC v1.0")))));
+}
+// ═══ PAGES SUPPLÉMENTAIRES ═══
+function AssocDetailPage() {
+  const {
+    id
+  } = useParams();
+  const nav = useNavigate();
+  const {
+    user
+  } = useAuth();
+  const a = DEMO_ASSOC.find(a => a.id === id) || DEMO_ASSOC[0];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    back: "/associations"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
+      padding: '24px 20px',
+      textAlign: 'center',
+      color: '#fff'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 60,
+      marginBottom: 10
+    }
+  }, a.logo), /*#__PURE__*/React.createElement("h1", {
+    style: {
+      fontSize: 20,
+      fontWeight: 800,
+      marginBottom: 4
+    }
+  }, a.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      opacity: .85
+    }
+  }, a.acronym, " \xB7 ", a.country), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 8,
+      display: 'flex',
+      gap: 8,
+      justifyContent: 'center',
+      flexWrap: 'wrap'
+    }
+  }, a.validated && /*#__PURE__*/React.createElement(Badge, {
+    color: "green"
+  }, "\u2713 Valid\xE9e"), /*#__PURE__*/React.createElement(Badge, {
+    color: "gold"
+  }, a.category))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px 20px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3,1fr)',
+      gap: 10,
+      marginBottom: 16
+    }
+  }, [{
+    v: a.members,
+    l: 'Membres',
+    i: '👥'
+  }, {
+    v: a.founded,
+    l: 'Fondée',
+    i: '📅'
+  }, {
+    v: a.country,
+    l: 'Pays',
+    i: '🌍'
+  }].map(s => /*#__PURE__*/React.createElement("div", {
+    key: s.l,
+    style: {
+      textAlign: 'center',
+      padding: '12px',
+      background: 'var(--surface)',
+      borderRadius: 10,
+      border: '1px solid var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 20,
+      marginBottom: 4
+    }
+  }, s.i), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 14,
+      color: 'var(--primary)'
+    }
+  }, s.v), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: 'var(--t4)',
+      fontWeight: 600
+    }
+  }, s.l)))), /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 8
+    }
+  }, "\xC0 propos"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13,
+      lineHeight: 1.7,
+      color: 'var(--t2)'
+    }
+  }, a.description))), /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 8
+    }
+  }, "Direction"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement(Avatar, {
+    src: "\uD83D\uDC64",
+    size: 44
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      fontSize: 14
+    }
+  }, a.president), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'var(--t4)'
+    }
+  }, "Pr\xE9sident(e)"))))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full btn-lg",
+    onClick: () => user ? alert('Demande envoyée !') : nav('/auth')
+  }, user ? '✓ Rejoindre l\'association' : 'Se connecter pour rejoindre')));
+}
+function EventDetailPage() {
+  const {
+    id
+  } = useParams();
+  const nav = useNavigate();
+  const {
+    user
+  } = useAuth();
+  const ev = DEMO_EVENTS.find(e => e.id === id) || DEMO_EVENTS[0];
+  const pct = Math.round(ev.registered / ev.capacity * 100);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 100
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    back: "/events"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
+      padding: '24px 20px',
+      textAlign: 'center',
+      color: '#fff'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 60,
+      marginBottom: 10
+    }
+  }, ev.emoji), /*#__PURE__*/React.createElement("h1", {
+    style: {
+      fontSize: 20,
+      fontWeight: 800,
+      marginBottom: 6
+    }
+  }, ev.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      opacity: .85
+    }
+  }, ev.category, " \xB7 ", ev.organizer)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px 20px'
+    }
+  }, /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, [{
+    i: '📅',
+    l: 'Date',
+    v: ev.date + ' à ' + ev.time
+  }, {
+    i: '📍',
+    l: 'Lieu',
+    v: ev.location
+  }, {
+    i: '🌍',
+    l: 'Pays',
+    v: ev.country
+  }, {
+    i: '👤',
+    l: 'Organisateur',
+    v: ev.organizer
+  }].map(r => /*#__PURE__*/React.createElement("div", {
+    key: r.l,
+    style: {
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center',
+      padding: '8px 0',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 18,
+      width: 26
+    }
+  }, r.i), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)',
+      fontWeight: 600
+    }
+  }, r.l), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      fontSize: 14
+    }
+  }, r.v)))))), /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 8
+    }
+  }, "Description"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13,
+      lineHeight: 1.7,
+      color: 'var(--t2)'
+    }
+  }, ev.description))), /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 700
+    }
+  }, "Disponibilit\xE9"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 700,
+      color: pct >= 90 ? 'var(--danger)' : 'var(--primary)'
+    }
+  }, 100 - pct, "% dispo")), /*#__PURE__*/React.createElement(ProgressBar, {
+    value: ev.registered,
+    max: ev.capacity,
+    color: pct >= 90 ? 'var(--danger)' : 'var(--primary)'
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'var(--t4)',
+      marginTop: 4
+    }
+  }, ev.registered, " / ", ev.capacity, " inscrits"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      background: 'rgba(255,255,255,.97)',
+      backdropFilter: 'blur(12px)',
+      borderTop: '1px solid var(--border)',
+      padding: '12px 20px',
+      paddingBottom: 'calc(12px + env(safe-area-inset-bottom))'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      maxWidth: 600,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 22,
+      fontWeight: 900,
+      color: ev.price === 0 ? 'var(--primary)' : 'var(--gold)'
+    }
+  }, ev.price === 0 ? 'Gratuit' : ev.price + '€'), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, "par personne")), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-lg",
+    onClick: () => user ? registerEvent(ev.id, user.uid).then(() => alert('Inscription confirmée !')) : nav('/auth')
+  }, ev.price === 0 ? '✓ S\'inscrire' : '🎫 Acheter')))));
+}
+function CreateAssocPage() {
+  const nav = useNavigate();
+  const {
+    user,
+    profile
+  } = useAuth();
+  const {
+    t
+  } = useLang();
+  const [form, setForm] = useState({
+    name: '',
+    acronym: '',
+    country: '',
+    city: '',
+    president: '',
+    description: '',
+    category: 'Communautaire',
+    founded: new Date().getFullYear().toString(),
+    logo: '🏛'
+  });
+  const [saving, setSaving] = useState(false);
+  const LOGOS = ['🏛', '🇲🇱', '🌍', '🤝', '⭐', '🎯', '🌱', '💫', '🦅', '🕊', '🌟', '🏆'];
+  const CATS = ['Communautaire', 'Culturelle', 'Sportive', 'Humanitaire', 'Professionnelle', 'Religieuse', 'Union', 'Fédération'];
+  const set = k => v => setForm(f => ({
+    ...f,
+    [k]: v
+  }));
+  const save = async () => {
+    if (!form.name || !form.country || !form.president) {
+      alert('Nom, pays et président requis');
+      return;
+    }
+    setSaving(true);
+    await createAssoc({
+      ...form,
+      creatorUid: user?.uid,
+      members: 1
+    });
+    nav('/associations');
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 40
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    back: "/associations",
+    title: t('newAssoc')
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px 20px',
+      maxWidth: 600,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 700,
+      color: 'var(--t4)',
+      textTransform: 'uppercase',
+      marginBottom: 10
+    }
+  }, "Logo de l\\'association"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 8
+    }
+  }, LOGOS.map(l => /*#__PURE__*/React.createElement("button", {
+    key: l,
+    onClick: () => set('logo')(l),
+    style: {
+      width: 44,
+      height: 44,
+      fontSize: 26,
+      border: `2px solid ${form.logo === l ? 'var(--primary)' : 'var(--border)'}`,
+      borderRadius: 8,
+      cursor: 'pointer',
+      background: form.logo === l ? 'var(--primary-l)' : 'var(--surface)'
+    }
+  }, l))))), /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Nom complet *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Association des Maliens en...",
+    value: form.name,
+    onChange: e => set('name')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Sigle / Acronyme"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "AMES",
+    value: form.acronym,
+    onChange: e => set('acronym')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Fond\xE9e en"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "number",
+    placeholder: "2020",
+    value: form.founded,
+    onChange: e => set('founded')(e.target.value)
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Pays *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Espagne, France...",
+    value: form.country,
+    onChange: e => set('country')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Ville principale"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Madrid, Paris...",
+    value: form.city,
+    onChange: e => set('city')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Pr\xE9sident(e) *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Nom du pr\xE9sident",
+    value: form.president,
+    onChange: e => set('president')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Cat\xE9gorie"), /*#__PURE__*/React.createElement("select", {
+    className: "fi",
+    value: form.category,
+    onChange: e => set('category')(e.target.value)
+  }, CATS.map(c => /*#__PURE__*/React.createElement("option", {
+    key: c
+  }, c)))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Description"), /*#__PURE__*/React.createElement("textarea", {
+    className: "fi",
+    rows: 3,
+    placeholder: "D\xE9crivez votre association...",
+    value: form.description,
+    onChange: e => set('description')(e.target.value)
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--gold-l)',
+      border: '1px solid var(--gold)',
+      borderRadius: 10,
+      padding: '10px 14px',
+      fontSize: 12,
+      color: '#92400E',
+      marginBottom: 16
+    }
+  }, "\u23F3 Votre association sera valid\xE9e par un administrateur avant d\\'appara\xEEtre publiquement."), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full btn-lg",
+    onClick: save,
+    disabled: saving
+  }, saving ? 'Envoi...' : '🏛 Soumettre l\'association')));
+}
+function CreateEventPage() {
+  const nav = useNavigate();
+  const {
+    user,
+    profile
+  } = useAuth();
+  const {
+    t
+  } = useLang();
+  const [form, setForm] = useState({
+    title: '',
+    date: '',
+    time: '',
+    location: '',
+    country: '',
+    description: '',
+    category: 'Conférence',
+    price: 0,
+    capacity: 100,
+    emoji: '🗓'
+  });
+  const [saving, setSaving] = useState(false);
+  const EMOJIS = ['🗓', '🎭', '🌍', '🏆', '💼', '🎵', '⚽', '🏥', '🎓', '🎉', '🤝', '🕌'];
+  const CATS = ['Conférence', 'Culture', 'Sport', 'Business', 'Santé', 'Éducation', 'Social', 'Religion'];
+  const set = k => v => setForm(f => ({
+    ...f,
+    [k]: v
+  }));
+  const save = async () => {
+    if (!form.title || !form.date || !form.location) {
+      alert('Titre, date et lieu requis');
+      return;
+    }
+    setSaving(true);
+    await createEvent({
+      ...form,
+      price: parseInt(form.price) || 0,
+      capacity: parseInt(form.capacity) || 100,
+      organizer: profile?.firstname + ' ' + profile?.name,
+      creatorUid: user?.uid
+    });
+    nav('/events');
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 40
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    back: "/events",
+    title: t('createEvent') || 'Créer un événement'
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px 20px',
+      maxWidth: 600,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 8,
+      marginBottom: 12
+    }
+  }, EMOJIS.map(e => /*#__PURE__*/React.createElement("button", {
+    key: e,
+    onClick: () => set('emoji')(e),
+    style: {
+      width: 40,
+      height: 40,
+      fontSize: 22,
+      border: `2px solid ${form.emoji === e ? 'var(--primary)' : 'var(--border)'}`,
+      borderRadius: 8,
+      cursor: 'pointer',
+      background: form.emoji === e ? 'var(--primary-l)' : 'var(--surface)'
+    }
+  }, e))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Titre *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Titre de votre \xE9v\xE9nement",
+    value: form.title,
+    onChange: e => set('title')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Date *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "date",
+    value: form.date,
+    onChange: e => set('date')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Heure"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "time",
+    value: form.time,
+    onChange: e => set('time')(e.target.value)
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Lieu *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Salle, adresse...",
+    value: form.location,
+    onChange: e => set('location')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Pays"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "France",
+    value: form.country,
+    onChange: e => set('country')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Cat\xE9gorie"), /*#__PURE__*/React.createElement("select", {
+    className: "fi",
+    value: form.category,
+    onChange: e => set('category')(e.target.value)
+  }, CATS.map(c => /*#__PURE__*/React.createElement("option", {
+    key: c
+  }, c))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Prix (\u20AC, 0=gratuit)"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "number",
+    value: form.price,
+    onChange: e => set('price')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Capacit\xE9"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "number",
+    value: form.capacity,
+    onChange: e => set('capacity')(e.target.value)
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Description"), /*#__PURE__*/React.createElement("textarea", {
+    className: "fi",
+    rows: 3,
+    placeholder: "D\xE9crivez votre \xE9v\xE9nement...",
+    value: form.description,
+    onChange: e => set('description')(e.target.value)
+  })))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full btn-lg",
+    onClick: save,
+    disabled: saving
+  }, saving ? 'Publication...' : '🗓 Publier l\'événement')));
+}
+function CreateCagnottePage() {
+  const nav = useNavigate();
+  const {
+    user,
+    profile
+  } = useAuth();
+  const [form, setForm] = useState({
+    title: '',
+    description: '',
+    goal: '',
+    currency: 'EUR',
+    emoji: '💝',
+    category: 'Urgence',
+    deadline: ''
+  });
+  const [saving, setSaving] = useState(false);
+  const EMOJIS = ['💝', '🏥', '🎓', '🏫', '⚽', '🌍', '🏠', '🍽', '❤️', '🤝', '🌱', '🕊'];
+  const CATS = ['Urgence', 'Santé', 'Éducation', 'Humanitaire', 'Culture', 'Sport', 'Religion', 'Social'];
+  const CURRENCIES = ['EUR', 'USD', 'GBP', 'XOF', 'XAF', 'CAD'];
+  const set = k => v => setForm(f => ({
+    ...f,
+    [k]: v
+  }));
+  const save = async () => {
+    if (!form.title || !form.goal || !form.deadline) {
+      alert('Titre, objectif et date requis');
+      return;
+    }
+    setSaving(true);
+    await createCagnotte({
+      ...form,
+      goal: parseInt(form.goal) || 0,
+      creator: profile?.firstname + ' ' + profile?.name,
+      creatorUid: user?.uid
+    });
+    nav('/cagnottes');
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 40
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    back: "/cagnottes",
+    title: "Cr\xE9er une cagnotte"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px 20px',
+      maxWidth: 600,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 8,
+      marginBottom: 12
+    }
+  }, EMOJIS.map(e => /*#__PURE__*/React.createElement("button", {
+    key: e,
+    onClick: () => set('emoji')(e),
+    style: {
+      width: 40,
+      height: 40,
+      fontSize: 22,
+      border: `2px solid ${form.emoji === e ? 'var(--primary)' : 'var(--border)'}`,
+      borderRadius: 8,
+      cursor: 'pointer',
+      background: form.emoji === e ? 'var(--primary-l)' : 'var(--surface)'
+    }
+  }, e))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Titre *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Aide m\xE9dicale pour...",
+    value: form.title,
+    onChange: e => set('title')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Description"), /*#__PURE__*/React.createElement("textarea", {
+    className: "fi",
+    rows: 3,
+    placeholder: "Expliquez votre collecte...",
+    value: form.description,
+    onChange: e => set('description')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Objectif *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "number",
+    placeholder: "5000",
+    value: form.goal,
+    onChange: e => set('goal')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Devise"), /*#__PURE__*/React.createElement("select", {
+    className: "fi",
+    value: form.currency,
+    onChange: e => set('currency')(e.target.value)
+  }, CURRENCIES.map(c => /*#__PURE__*/React.createElement("option", {
+    key: c
+  }, c))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Cat\xE9gorie"), /*#__PURE__*/React.createElement("select", {
+    className: "fi",
+    value: form.category,
+    onChange: e => set('category')(e.target.value)
+  }, CATS.map(c => /*#__PURE__*/React.createElement("option", {
+    key: c
+  }, c)))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Date limite *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "date",
+    value: form.deadline,
+    onChange: e => set('deadline')(e.target.value)
+  }))))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full btn-lg",
+    onClick: save,
+    disabled: saving
+  }, saving ? 'Création...' : '💝 Lancer la cagnotte')));
+}
+
+// ═══ APP + RENDER ═══
+function AppContent() {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      paddingBottom: 76
+    }
+  }, /*#__PURE__*/React.createElement(Routes, null, /*#__PURE__*/React.createElement(Route, {
+    path: "/",
+    element: /*#__PURE__*/React.createElement(HomePage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/members",
+    element: /*#__PURE__*/React.createElement(MembersPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/profile/:uid",
+    element: /*#__PURE__*/React.createElement(ProfilePage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/profile",
+    element: /*#__PURE__*/React.createElement(ProfilePage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/member-card",
+    element: /*#__PURE__*/React.createElement(MemberCardPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/associations",
+    element: /*#__PURE__*/React.createElement(AssocPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/assoc/:id",
+    element: /*#__PURE__*/React.createElement(AssocDetailPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/create-assoc",
+    element: /*#__PURE__*/React.createElement(CreateAssocPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/events",
+    element: /*#__PURE__*/React.createElement(EventsPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/event/:id",
+    element: /*#__PURE__*/React.createElement(EventDetailPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/create-event",
+    element: /*#__PURE__*/React.createElement(CreateEventPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/news",
+    element: /*#__PURE__*/React.createElement(NewsPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/messages",
+    element: /*#__PURE__*/React.createElement(MessagesPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/messages/:uid",
+    element: /*#__PURE__*/React.createElement(MessagesPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/media",
+    element: /*#__PURE__*/React.createElement(MediaPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/cagnottes",
+    element: /*#__PURE__*/React.createElement(CagnottesPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/create-cagnotte",
+    element: /*#__PURE__*/React.createElement(CreateCagnottePage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/create-post",
+    element: /*#__PURE__*/React.createElement(CreatePostPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/auth",
+    element: /*#__PURE__*/React.createElement(AuthPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/settings",
+    element: /*#__PURE__*/React.createElement(SettingsPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/admin",
+    element: /*#__PURE__*/React.createElement(AdminPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "*",
+    element: /*#__PURE__*/React.createElement(HomePage, null)
+  })), /*#__PURE__*/React.createElement(BottomNav, null), /*#__PURE__*/React.createElement(FAB, null), /*#__PURE__*/React.createElement(InstallBanner, null));
+}
+function App() {
+  return /*#__PURE__*/React.createElement(HashRouter, null, /*#__PURE__*/React.createElement(DarkProvider, null, /*#__PURE__*/React.createElement(LangProvider, null, /*#__PURE__*/React.createElement(PwaProvider, null, /*#__PURE__*/React.createElement(AuthProvider, null, IS_DEMO && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 9999,
+      background: '#92400E',
+      color: '#FEF3C7',
+      textAlign: 'center',
+      fontSize: 11,
+      padding: '5px 12px',
+      fontWeight: 700
+    }
+  }, "\u2699\uFE0F Mode d\xE9mo \u2014 Configurez Firebase dans firebase-config.json"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      paddingTop: IS_DEMO ? 26 : 0
+    }
+  }, /*#__PURE__*/React.createElement(AppContent, null)))))));
+}
+const root = createRoot(document.getElementById('root'));
+root.render(/*#__PURE__*/React.createElement(App, null));
+console.log('🇲🇱 Diaspora Mali Connect — Chargé');
+</script>
+
+<script>
+if('serviceWorker' in navigator && location.protocol==='https:'){
+  navigator.serviceWorker.register('sw.js').catch(function(e){console.warn('SW:',e)});
+}
+</script>
+</body>
+</html>
