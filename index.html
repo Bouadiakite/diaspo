@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
 <meta name="theme-color" content="#2E7D32">
-<meta name="description" content="Diaspora Mali Connect — La plateforme internationale des Maliens du monde entier. Membres, associations, événements, cagnottes.">
+<meta name="description" content="Diaspora Mali Connect — La plateforme des Maliens du monde entier">
+<meta property="og:title" content="Diaspora Mali Connect 🇲🇱">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -13,8 +14,10 @@
 <title>Diaspora Mali Connect 🇲🇱</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 :root{
@@ -86,16 +89,63 @@ textarea.fi{resize:vertical;min-height:70px}
 @media(min-width:640px){.top-nav{padding:12px 24px}}
 @media(min-width:1024px){.top-nav{padding:14px 40px}}
 @media print{.top-nav,.bottom-nav,.fab,.fab-menu{display:none!important}}
+
+/* ═══ SIDEBAR DESKTOP ═══ */
+.sidebar-desktop{display:none}
+@media(min-width:1024px){
+  .sidebar-desktop{display:flex;width:220px;position:fixed;top:0;left:0;bottom:0;z-index:100;flex-direction:column}
+  .main-offset{margin-left:220px}
+  .bottom-nav{display:none}
+  .fab{bottom:24px;right:24px}
+}
+@media(max-width:1023px){
+  .sidebar-desktop{display:none!important}
+}
+/* ═══ PUBLICATION CARD ═══ */
+.post-card{background:var(--surface);border-radius:var(--radius-l);border:1px solid var(--border);margin-bottom:14px;overflow:hidden;transition:box-shadow .2s}
+.post-card:hover{box-shadow:var(--shadow-m)}
+/* ═══ VIDEO ═══ */
+.video-room{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-l);padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:all .2s}
+.video-room:hover{border-color:var(--primary);transform:translateY(-1px)}
+/* ═══ AD BANNER ═══ */
+.ad-slide{animation:fadeIn .5s ease-out}
+/* ═══ MEMBER CARD PRINT ═══ */
+@media print{
+  .bottom-nav,.fab,.fab-menu,.top-nav,.sidebar-desktop,.ad-banner{display:none!important}
+  #root{padding:0!important}
+}
+
+/* ═══ LANGUE + INSTALL DANS NAV ═══ */
+.lang-label-top{display:inline}
+.install-label-top{display:inline}
+@media(max-width:480px){
+  .lang-label-top{display:none}
+  .install-label-top{display:none}
+}
+/* ═══ SIDEBAR DESKTOP ═══ */
+.sidebar-desktop{display:none}
+@media(min-width:1024px){
+  .sidebar-desktop{display:flex;width:220px;position:fixed;top:0;left:0;bottom:0;z-index:100;flex-direction:column;overflow-y:auto;background:var(--surface);border-right:1px solid var(--border)}
+  .bottom-nav{display:none}
+  .fab{bottom:24px;right:24px}
+  .top-nav{padding:10px 20px 10px 240px}
+}
+@media(max-width:1023px){
+  .sidebar-desktop{display:none!important}
+}
+@media print{
+  .bottom-nav,.fab,.fab-menu,.top-nav,.sidebar-desktop{display:none!important}
+}
 </style>
 </head>
 <body>
 
 <div id="root">
   <div style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#E8F5E9 0%,#fff 60%);font-family:'Plus Jakarta Sans',system-ui,sans-serif">
-    <div style="font-size:72px;margin-bottom:16px;animation:bounceIn .6s ease-out">🇲🇱</div>
-    <h1 style="font-size:24px;font-weight:800;color:#2E7D32;margin:0 0 6px">Diaspora Mali Connect</h1>
-    <p style="color:#9CA3AF;font-size:13px;margin:0 0 8px">La plateforme des Maliens du monde</p>
-    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">🌍 Membres · Associations · Événements · Cagnottes</p>
+    <div style="font-size:72px;margin-bottom:16px">🇲🇱</div>
+    <h1 style="font-size:22px;font-weight:900;color:#2E7D32;margin:0 0 4px">DIASPORA MALI CONNECT</h1>
+    <p style="color:#9CA3AF;font-size:12px;margin:0 0 6px;font-style:italic">Unis partout, forts ensemble</p>
+    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">🌍 FR · EN · ES · BM · AR</p>
     <div style="width:32px;height:32px;border:3px solid #C8E6C9;border-top-color:#2E7D32;border-radius:50%;animation:spin .8s linear infinite"></div>
     <p id="dmc-status" style="color:#D1D5DB;font-size:11px;margin-top:14px">Chargement...</p>
   </div>
@@ -103,23 +153,15 @@ textarea.fi{resize:vertical;min-height:70px}
 <noscript><div style="padding:40px;text-align:center"><h2>JavaScript requis</h2></div></noscript>
 
 <script>
-window.onerror = function(msg,src,line){
+window.onerror=function(msg,src,line){
   var r=document.getElementById('root');
-  if(r) r.innerHTML='<div style="padding:30px;font-family:system-ui;min-height:100vh;background:#FEF2F2">'
-    +'<div style="font-size:48px;margin-bottom:12px">⚠️</div>'
-    +'<h2 style="color:#DC2626;margin-bottom:12px">Erreur DMC</h2>'
-    +'<p style="font-size:14px;color:#374151;background:#fff;padding:12px;border-radius:8px;margin-bottom:12px">'+(msg||'Erreur')+'</p>'
-    +'<p style="font-size:12px;color:#6B7280">Ligne '+(line||'?')+'</p>'
-    +'<button onclick="location.reload()" style="margin-top:16px;padding:12px 24px;background:#2E7D32;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700">Recharger</button>'
-    +'</div>';
+  if(r)r.innerHTML='<div style="padding:30px;font-family:system-ui;min-height:100vh;background:#FEF2F2"><div style="font-size:48px;margin-bottom:12px">⚠️</div><h2 style="color:#DC2626;margin-bottom:12px">Erreur DMC</h2><p style="font-size:14px;color:#374151;background:#fff;padding:12px;border-radius:8px">'+(msg||'Erreur')+'</p><button onclick="location.reload()" style="margin-top:16px;padding:12px 24px;background:#2E7D32;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700">Recharger</button></div>';
 };
 function dmc_status(m){var e=document.getElementById('dmc-status');if(e)e.textContent=m}
-dmc_status('Chargement React...');
+dmc_status('Chargement...');
 </script>
 
-<!-- ══════════════════════════════════════════════ -->
-<!--  CONFIG FIREBASE — Modifiez firebase-config.json -->
-<!-- ══════════════════════════════════════════════ -->
+<!-- CONFIG FIREBASE — Admin: tata123 -->
 <script>
 window.FIREBASE_CONFIG = {
   apiKey:            "REMPLACEZ_PAR_VOTRE_API_KEY",
@@ -133,28 +175,9 @@ window.FIREBASE_CONFIG = {
 window.ADMIN_EMAILS = ["admin@diaspora-mali.com"];
 </script>
 
-<!-- React 18 (unpkg + fallback cdnjs) -->
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"
-  onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js'" crossorigin></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"
-  onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js'" crossorigin></script>
 
-<!-- Firebase 10 compat (Google CDN) -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
-
-<!-- PDF + QR -->
-<script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js" crossorigin></script>
-<script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js" crossorigin></script>
-
-<script>
-if(!window.React||!window.ReactDOM){
-  document.getElementById('root').innerHTML='<div style="padding:40px;text-align:center;font-family:system-ui"><div style="font-size:48px;margin-bottom:16px">📵</div><h2 style="color:#DC2626;margin-bottom:8px">Connexion requise</h2><p style="color:#6B7280;margin-bottom:20px">Vérifiez votre connexion internet.</p><button onclick="location.reload()" style="padding:12px 24px;background:#2E7D32;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700">Réessayer</button></div>';
-}else{dmc_status('Démarrage...');}
-</script>
-
-<!-- ════════════ DIASPORA MALI CONNECT ════════════ -->
+<!-- ════════════════════ DIASPORA MALI CONNECT v2 ════════════════════ -->
+<!-- 🌍 FR · English · Español · Bambara · العربية  |  Admin: tata123 -->
 <script>
 // ═══════════════════════════════════════════════
 //  DIASPORA MALI CONNECT — App principale
@@ -491,6 +514,17 @@ const LANGS = {
     save: 'Guardar',
     cancel: 'Cancelar',
     loading: 'Cargando...',
+    joinAssoc: 'Unirse',
+    createAssoc: 'Crear asociación',
+    memberCard: 'Tarjeta de miembro',
+    donate: 'Donar',
+    share: 'Compartir',
+    likes: 'Me gusta',
+    comments: 'Comentarios',
+    follow: 'Seguir',
+    darkMode: 'Modo oscuro',
+    language: 'Idioma',
+    install: 'Instalar',
     welcome: 'Bienvenido a Diaspora Mali Connect',
     subtitle: 'La plataforma de los malienses del mundo',
     country: 'País',
@@ -500,7 +534,49 @@ const LANGS = {
     name: 'Apellido',
     firstname: 'Nombre',
     email: 'Correo',
-    password: 'Contraseña'
+    password: 'Contraseña',
+    online: 'En línea',
+    offline: 'Desconectado',
+    verified: 'Verificado',
+    createPost: 'Nueva publicación',
+    typePost: 'Comparte algo...',
+    noContent: 'Sin contenido',
+    seeAll: 'Ver todo',
+    close: 'Cerrar',
+    cagnotte: 'Colecta',
+    fundraising: 'Recaudación',
+    goal: 'Objetivo',
+    raised: 'Recaudado',
+    contribute: 'Contribuir',
+    pay: 'Pagar',
+    sendMsg: 'Enviar mensaje',
+    newConv: 'Nueva conversación',
+    photoVideo: 'Fotos y Videos',
+    uploadMedia: 'Añadir media',
+    eventDate: 'Fecha',
+    eventLocation: 'Lugar',
+    ticketBuy: 'Comprar entrada',
+    stats: 'Estadísticas',
+    users: 'Usuarios',
+    payments: 'Pagos',
+    totalMembers: 'Total miembros',
+    activeToday: 'Activos hoy',
+    notifications: 'Notificaciones',
+    logout: 'Cerrar sesión',
+    editProfile: 'Editar perfil',
+    memberSince: 'Miembro desde',
+    memberNum: 'N° de miembro',
+    myAssoc: 'Mis asociaciones',
+    myEvents: 'Mis eventos',
+    newAssoc: 'Nueva asociación',
+    presidentName: 'Presidente/a',
+    assocCountry: 'País asociación',
+    founded: 'Fundada en',
+    pending: 'Pendiente',
+    validated: 'Validada',
+    videoCall: 'Videollamada',
+    groupChat: 'Chat grupal',
+    liveStream: 'En vivo'
   },
   ar: {
     home: 'الرئيسية',
@@ -1665,6 +1741,216 @@ function BottomNav() {
 }
 
 // ═══ TOP NAV ═══
+function LangSwitcher() {
+  const {
+    lang,
+    setLang
+  } = useLang();
+  const [open, setOpen] = useState(false);
+  const FLAGS = {
+    fr: '🇫🇷',
+    en: '🇬🇧',
+    es: '🇪🇸',
+    bm: '🇲🇱',
+    ar: '🇸🇦'
+  };
+  const NAMES = {
+    fr: 'Français',
+    en: 'English',
+    es: 'Español',
+    bm: 'Bambara',
+    ar: 'العربية'
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'relative'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "nav-icon-btn lang-btn-top",
+    onClick: () => setOpen(!open),
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 4,
+      padding: '5px 10px',
+      borderRadius: 8,
+      border: '1px solid var(--border)',
+      background: 'var(--surface)',
+      cursor: 'pointer',
+      fontSize: 12,
+      fontWeight: 600,
+      color: 'var(--t2)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 16
+    }
+  }, FLAGS[lang] || '🌐'), /*#__PURE__*/React.createElement("span", {
+    className: "lang-label-top"
+  }, NAMES[lang]?.slice(0, 2) || lang.toUpperCase()), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 10,
+      color: 'var(--t4)'
+    }
+  }, "\u25BE")), open && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      inset: 0,
+      zIndex: 299
+    },
+    onClick: () => setOpen(false)
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      right: 0,
+      top: 'calc(100% + 4px)',
+      background: 'var(--surface)',
+      borderRadius: 10,
+      border: '1px solid var(--border)',
+      boxShadow: '0 8px 24px rgba(0,0,0,.12)',
+      zIndex: 300,
+      minWidth: 140,
+      overflow: 'hidden'
+    }
+  }, Object.entries(NAMES).map(([id, name]) => /*#__PURE__*/React.createElement("button", {
+    key: id,
+    onClick: () => {
+      setLang(id);
+      setOpen(false);
+    },
+    style: {
+      width: '100%',
+      padding: '9px 14px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      border: 'none',
+      background: lang === id ? 'var(--primary-l)' : 'transparent',
+      cursor: 'pointer',
+      fontSize: 13,
+      fontWeight: lang === id ? 700 : 400,
+      color: lang === id ? 'var(--primary)' : 'var(--t2)',
+      textAlign: 'left'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 18
+    }
+  }, FLAGS[id]), " ", name)))));
+}
+function InstallTopBtn() {
+  const {
+    prompt,
+    installed
+  } = usePwa();
+  const {
+    t
+  } = useLang();
+  const [show, setShow] = useState(false);
+  const [modal, setModal] = useState(false);
+  const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const sa = window.matchMedia('(display-mode:standalone)').matches || window.navigator.standalone;
+  useEffect(() => {
+    if (!sa) setTimeout(() => setShow(true), 500);
+  }, []);
+  if (installed || sa || !show) return null;
+  const doInstall = async () => {
+    if (prompt) {
+      await prompt.prompt();
+    } else setModal(true);
+  };
+  const STEPS = [{
+    icon: '🍎',
+    label: 'iPhone/iPad',
+    info: 'Safari > Partager > Ajouter'
+  }, {
+    icon: '🤖',
+    label: 'Android',
+    info: 'Chrome > Menu ⋮ > Installer'
+  }, {
+    icon: '💻',
+    label: 'PC/Mac',
+    info: 'Icone + dans la barre adresse'
+  }];
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+    onClick: doInstall,
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 5,
+      padding: '6px 12px',
+      borderRadius: 8,
+      background: 'var(--primary)',
+      color: '#fff',
+      border: 'none',
+      cursor: 'pointer',
+      fontSize: 12,
+      fontWeight: 700,
+      whiteSpace: 'nowrap',
+      boxShadow: '0 2px 8px rgba(46,125,50,.3)',
+      transition: 'all .2s'
+    },
+    title: t('install')
+  }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDCF2"), /*#__PURE__*/React.createElement("span", {
+    className: "install-label-top"
+  }, t('install'))), modal && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      inset: 0,
+      zIndex: 1000,
+      background: 'rgba(0,0,0,.6)',
+      display: 'flex',
+      alignItems: 'flex-end'
+    },
+    onClick: () => setModal(false)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--surface)',
+      width: '100%',
+      borderRadius: '20px 20px 0 0',
+      padding: '24px 20px 36px'
+    },
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 36,
+      height: 4,
+      background: 'var(--border)',
+      borderRadius: 2,
+      margin: '0 auto 20px'
+    }
+  }), /*#__PURE__*/React.createElement("h3", {
+    style: {
+      textAlign: 'center',
+      marginBottom: 16
+    }
+  }, "\uD83D\uDCF1 Installer DMC"), STEPS.map(s => /*#__PURE__*/React.createElement("div", {
+    key: s.icon,
+    style: {
+      background: 'var(--bg)',
+      borderRadius: 10,
+      padding: '10px 14px',
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 700,
+      fontSize: 12
+    }
+  }, s.icon, " ", s.label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t3)',
+      marginTop: 2
+    }
+  }, s.info))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    style: {
+      marginTop: 12
+    },
+    onClick: () => setModal(false)
+  }, "OK"))));
+}
 function TopNav({
   title,
   back,
@@ -1672,6 +1958,12 @@ function TopNav({
 }) {
   const nav = useNavigate();
   const [dark, setDark] = useDark();
+  const {
+    t
+  } = useLang();
+  const {
+    user
+  } = useAuth();
   return /*#__PURE__*/React.createElement("nav", {
     className: "top-nav"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1691,9 +1983,9 @@ function TopNav({
     style: {
       display: 'flex',
       alignItems: 'center',
-      gap: 8
+      gap: 6
     }
-  }, actions, /*#__PURE__*/React.createElement("button", {
+  }, actions, /*#__PURE__*/React.createElement(InstallTopBtn, null), /*#__PURE__*/React.createElement(LangSwitcher, null), /*#__PURE__*/React.createElement("button", {
     className: "nav-icon-btn",
     onClick: () => setDark(!dark),
     title: "Dark mode"
@@ -1704,7 +1996,7 @@ function TopNav({
   }, "\uD83D\uDCAC"), /*#__PURE__*/React.createElement("button", {
     className: "nav-icon-btn",
     onClick: () => nav('/settings'),
-    title: "Param\xE8tres"
+    title: "\u2699\uFE0F"
   }, "\u2699\uFE0F")));
 }
 
@@ -4749,41 +5041,1481 @@ function CreatePostPage() {
 }
 
 // ═══ ADMIN PAGE ═══
-function AdminPage() {
+
+// ════════════════════════════════════════════════════════
+//  NOUVELLES FONCTIONNALITÉS v2 — Admin, Vidéo, Pub, 48h
+// ════════════════════════════════════════════════════════
+
+// ── ADMIN PASSWORD (tata123 par défaut) ──
+const AdminCtx = createContext({
+  isAdmin: false,
+  checkAdmin: () => {},
+  logout: () => {}
+});
+const useAdmin = () => useContext(AdminCtx);
+function AdminProvider({
+  children
+}) {
+  const [isAdmin, setIsAdmin] = useState(() => {
+    try {
+      return sessionStorage.getItem('dmc-admin') === '1';
+    } catch {
+      return false;
+    }
+  });
+  const checkAdmin = async pwd => {
+    // Mot de passe stocké dans Firebase ou valeur par défaut 'tata123'
+    let stored = 'tata123';
+    if (db) {
+      try {
+        const s = await db.ref('config/adminPassword').get();
+        if (s.exists()) stored = s.val();
+      } catch {}
+    }
+    if (pwd === stored) {
+      setIsAdmin(true);
+      try {
+        sessionStorage.setItem('dmc-admin', '1');
+      } catch {}
+      ;
+      return true;
+    }
+    return false;
+  };
+  const logout = () => {
+    setIsAdmin(false);
+    try {
+      sessionStorage.removeItem('dmc-admin');
+    } catch {}
+  };
+  return /*#__PURE__*/React.createElement(AdminCtx.Provider, {
+    value: {
+      isAdmin,
+      checkAdmin,
+      logout
+    }
+  }, children);
+}
+
+// ── AUTO-DELETE 48H ──
+const AUTO_DELETE_MS = 48 * 3600 * 1000;
+const addExpiryDate = isoDate => {
+  if (!isoDate) return null;
+  return new Date(isoDate).getTime() + AUTO_DELETE_MS;
+};
+const autoDelete48h = async (refPath, items) => {
+  if (!db) return;
+  const now = Date.now();
+  items.filter(i => i.expiresAt && i.expiresAt < now).forEach(i => db.ref(`${refPath}/${i.id}`).remove().catch(() => {}));
+};
+
+// ── DONNÉES DÉMO PUBS ──
+const DEMO_ADS = [{
+  id: 'ad1',
+  title: 'Événement Culturel Mali 2026',
+  content: 'Grande fête culturelle malienne — Venez nombreux !',
+  emoji: '🎭',
+  link: '#/events',
+  active: true,
+  createdAt: Date.now(),
+  expiresAt: Date.now() + AUTO_DELETE_MS * 7,
+  color: '#2E7D32'
+}, {
+  id: 'ad2',
+  title: 'Transfert d\'argent rapide',
+  content: 'Envoyez de l\'argent au Mali en 5 minutes avec les meilleures tarifs',
+  emoji: '💸',
+  link: '#/cagnottes',
+  active: true,
+  createdAt: Date.now(),
+  expiresAt: Date.now() + AUTO_DELETE_MS * 3,
+  color: '#E8A020'
+}];
+
+// Firebase ads helpers
+const listenAds = cb => {
+  if (!db) {
+    cb(DEMO_ADS.filter(a => a.active && (!a.expiresAt || a.expiresAt > Date.now())));
+    return () => {};
+  }
+  const r = db.ref('ads');
+  r.on('value', s => {
+    const d = s.val();
+    if (!d) {
+      cb([]);
+      return;
+    }
+    const all = Object.entries(d).map(([id, v]) => ({
+      id,
+      ...v
+    }));
+    autoDelete48h('ads', all);
+    cb(all.filter(a => a.active && (!a.expiresAt || a.expiresAt > Date.now())));
+  });
+  return () => r.off('value');
+};
+const createAd = async data => {
+  if (!db) return 'demo-ad-' + Date.now();
+  const r = db.ref('ads').push();
+  await r.set({
+    ...data,
+    active: true,
+    createdAt: Date.now(),
+    expiresAt: Date.now() + AUTO_DELETE_MS * (data.days || 7)
+  });
+  return r.key;
+};
+const deleteAd = id => db ? db.ref(`ads/${id}`).remove() : Promise.resolve();
+
+// Firebase membership helpers
+const DEMO_MEMBERS_SHIP = [{
+  id: 'ms1',
+  name: 'Amadou Diallo',
+  country: 'Espagne',
+  city: 'Madrid',
+  phone: '+34 612 345 678',
+  email: 'amadou@demo.com',
+  type: 'Annuelle',
+  amount: 50,
+  currency: 'EUR',
+  status: 'active',
+  paidAt: '2024-01-15',
+  expiresAt: _fut('2025-01-15', 0),
+  memberNum: 'DMC-2024-001'
+}, {
+  id: 'ms2',
+  name: 'Fatoumata Traoré',
+  country: 'France',
+  city: 'Paris',
+  phone: '+33 6 12 34 56 78',
+  email: 'fato@demo.com',
+  type: 'Annuelle',
+  amount: 50,
+  currency: 'EUR',
+  status: 'active',
+  paidAt: '2024-02-20',
+  expiresAt: _fut('2025-02-20', 0),
+  memberNum: 'DMC-2024-002'
+}];
+const listenMemberships = cb => {
+  if (!db) {
+    cb(DEMO_MEMBERS_SHIP);
+    return () => {};
+  }
+  const r = db.ref('memberships');
+  r.on('value', s => {
+    const d = s.val();
+    cb(d ? Object.entries(d).map(([id, v]) => ({
+      id,
+      ...v
+    })) : DEMO_MEMBERS_SHIP);
+  });
+  return () => r.off('value');
+};
+const createMembership = async data => {
+  if (!db) return 'demo-ms-' + Date.now();
+  const r = db.ref('memberships').push();
+  const num = 'DMC-' + new Date().getFullYear() + '-' + Math.floor(Math.random() * 9000 + 1000);
+  await r.set({
+    ...data,
+    memberNum: num,
+    status: 'pending',
+    createdAt: Date.now()
+  });
+  // Mettre à jour le profil utilisateur
+  if (data.uid) await db.ref(`users/${data.uid}`).update({
+    memberNum: num,
+    membershipActive: true
+  });
+  return r.key;
+};
+
+// ── ASSOCIATIONS AVEC BUREAU ──
+const DEMO_ASSOC_V2 = [{
+  id: 'a1',
+  name: 'Association des Maliens en Espagne',
+  acronym: 'AMES',
+  country: 'Espagne',
+  city: 'Madrid',
+  president: 'Amadou Diallo',
+  vicePresident: 'Ibrahim Koné',
+  secretary: 'Mariam Bah',
+  treasurer: 'Oumar Traoré',
+  bureau: [{
+    role: 'Président',
+    name: 'Amadou Diallo',
+    phone: '+34 612 345 678'
+  }, {
+    role: 'Vice-Président',
+    name: 'Ibrahim Koné',
+    phone: '+34 655 234 567'
+  }, {
+    role: 'Secrétaire',
+    name: 'Mariam Bah',
+    phone: '+34 678 901 234'
+  }, {
+    role: 'Trésorier',
+    name: 'Oumar Traoré',
+    phone: '+34 699 012 345'
+  }],
+  members: 245,
+  founded: '2010',
+  logo: '🇲🇱',
+  validated: true,
+  description: 'Première et plus grande association malienne en Espagne.',
+  category: 'Communautaire',
+  cotisation: 30,
+  currency: 'EUR'
+}, {
+  id: 'a2',
+  name: 'Maliens de France — Île-de-France',
+  acronym: 'MF-IDF',
+  country: 'France',
+  city: 'Paris',
+  president: 'Fatoumata Traoré',
+  vicePresident: 'Moussa Coulibaly',
+  secretary: 'Aissata Diarra',
+  treasurer: 'Seydou Keïta',
+  bureau: [{
+    role: 'Présidente',
+    name: 'Fatoumata Traoré',
+    phone: '+33 6 12 34 56 78'
+  }, {
+    role: 'Vice-Président',
+    name: 'Moussa Coulibaly',
+    phone: '+33 6 23 45 67 89'
+  }],
+  members: 890,
+  founded: '2005',
+  logo: '🗼',
+  validated: true,
+  description: 'Grande association francilienne avec nombreux programmes.',
+  category: 'Culturelle',
+  cotisation: 25,
+  currency: 'EUR'
+}];
+
+// ── VIDEO CONFERENCE ──
+function VideoConferencePage() {
   const nav = useNavigate();
   const {
-    user
+    user,
+    profile
   } = useAuth();
   const {
     t
   } = useLang();
-  const [tab, setTab] = useState(0);
-  const [members, setMembers] = useState([]);
-  const [assocs, setAssocs] = useState([]);
+  const [rooms, setRooms] = useState([]);
+  const [newRoom, setNewRoom] = useState('');
+  const [activeRoom, setActiveRoom] = useState(null);
+  const jitsiRef = useRef(null);
+
+  // Charger salles de conférence depuis Firebase
   useEffect(() => {
-    listenMembers(setMembers);
-    listenAssoc(setAssocs);
+    if (!db) {
+      setRooms([{
+        id: 'r1',
+        name: 'Réunion Générale DMC',
+        creator: 'Admin',
+        date: new Date().toISOString(),
+        active: true
+      }, {
+        id: 'r2',
+        name: 'Comité Cultural',
+        creator: 'AMES',
+        date: new Date().toISOString(),
+        active: true
+      }]);
+      return;
+    }
+    const r = db.ref('videoRooms');
+    r.on('value', s => {
+      const d = s.val();
+      setRooms(d ? Object.entries(d).map(([id, v]) => ({
+        id,
+        ...v
+      })).filter(r => r.active) : []);
+    });
+    return () => r.off('value');
   }, []);
-  const isAdmin = user && (ADMIN_EMAILS.includes(user.email) || IS_DEMO);
-  if (!isAdmin) return /*#__PURE__*/React.createElement("div", {
+  const createRoom = async () => {
+    if (!newRoom.trim()) return;
+    const roomId = 'DMC-' + newRoom.replace(/\s+/g, '-') + '-' + Date.now().toString(36);
+    if (db) await db.ref('videoRooms').push({
+      name: newRoom,
+      roomId,
+      creator: profile?.firstname || 'Membre',
+      date: new Date().toISOString(),
+      active: true,
+      expiresAt: Date.now() + AUTO_DELETE_MS
+    });
+    setActiveRoom(roomId);
+    setNewRoom('');
+  };
+  const joinRoom = roomId => setActiveRoom(roomId);
+  const launchJitsi = roomId => {
+    // Ouvrir Jitsi Meet dans un nouvel onglet
+    const url = `https://meet.jit.si/${roomId}?userInfo.displayName=${encodeURIComponent(profile?.firstname || 'Membre')}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+  if (activeRoom) return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: '#000',
+      display: 'flex',
+      flexDirection: 'column'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: '12px 16px',
+      background: '#1a1a2e'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: '#fff',
+      fontWeight: 700,
+      fontSize: 15
+    }
+  }, "\uD83C\uDFA5 ", activeRoom), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setActiveRoom(null),
+    style: {
+      background: '#DC2626',
+      border: 'none',
+      color: '#fff',
+      borderRadius: 8,
+      padding: '8px 16px',
+      cursor: 'pointer',
+      fontWeight: 600
+    }
+  }, "\u2715 Quitter")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      gap: 20,
+      padding: 24
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      color: '#fff'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 64,
+      marginBottom: 16
+    }
+  }, "\uD83C\uDFA5"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      marginBottom: 8
+    }
+  }, "Salle : ", activeRoom), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'rgba(255,255,255,.7)',
+      marginBottom: 24
+    }
+  }, "Cliquez pour rejoindre la visioconf\xE9rence"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-lg",
+    style: {
+      background: '#2E7D32',
+      color: '#fff',
+      border: 'none',
+      fontSize: 16,
+      padding: '14px 32px'
+    },
+    onClick: () => launchJitsi(activeRoom)
+  }, "\uD83D\uDCF9 Rejoindre la vid\xE9oconf\xE9rence"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'rgba(255,255,255,.5)',
+      fontSize: 12,
+      marginTop: 12
+    }
+  }, "Powered by Jitsi Meet \u2014 Gratuit, s\xE9curis\xE9")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'rgba(255,255,255,.1)',
+      borderRadius: 12,
+      padding: '16px 24px',
+      maxWidth: 400,
+      width: '100%'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      color: '#fff',
+      marginBottom: 8,
+      fontSize: 13
+    }
+  }, "Partager ce lien de r\xE9union :"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'rgba(255,255,255,.2)',
+      borderRadius: 8,
+      padding: '8px 12px',
+      display: 'flex',
+      gap: 8,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'rgba(255,255,255,.8)',
+      fontSize: 11,
+      flex: 1,
+      wordBreak: 'break-all'
+    }
+  }, "https://meet.jit.si/", activeRoom), /*#__PURE__*/React.createElement("button", {
+    onClick: () => navigator.clipboard.writeText(`https://meet.jit.si/${activeRoom}`),
+    style: {
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      color: '#fff',
+      fontSize: 16
+    }
+  }, "\uD83D\uDCCB")))));
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: "Chat & Visioconf\xE9rence"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 720,
+      margin: '0 auto',
+      padding: '16px'
+    }
+  }, /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px'
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      marginBottom: 12,
+      fontSize: 15
+    }
+  }, "\uD83C\uDFA5 Cr\xE9er une salle de visioconf\xE9rence"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    style: {
+      flex: 1
+    },
+    placeholder: "Nom de la r\xE9union (ex: R\xE9union AMES)",
+    value: newRoom,
+    onChange: e => setNewRoom(e.target.value),
+    onKeyDown: e => e.key === 'Enter' && createRoom()
+  }), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: createRoom,
+    disabled: !newRoom.trim()
+  }, "Cr\xE9er")))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 14,
+      marginBottom: 10,
+      color: 'var(--t3)',
+      textTransform: 'uppercase',
+      letterSpacing: .5
+    }
+  }, "Salles actives (", rooms.length, ")"), rooms.length === 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      padding: '40px',
+      color: 'var(--t4)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 48,
+      marginBottom: 12
+    }
+  }, "\uD83C\uDFA5"), /*#__PURE__*/React.createElement("p", null, "Aucune salle active. Cr\xE9ez-en une !")), rooms.map(r => /*#__PURE__*/React.createElement(Card, {
+    key: r.id,
+    hover: true,
+    style: {
+      marginBottom: 10
+    },
+    onClick: () => joinRoom(r.roomId || r.id)
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px',
+      display: 'flex',
+      gap: 12,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 48,
+      height: 48,
+      borderRadius: 12,
+      background: 'var(--primary-l)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 24,
+      flexShrink: 0
+    }
+  }, "\uD83C\uDFA5"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 14
+    }
+  }, r.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'var(--t4)'
+    }
+  }, "Cr\xE9\xE9 par ", r.creator, " \xB7 ", new Date(r.date).toLocaleString('fr-FR'))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    onClick: e => {
+      e.stopPropagation();
+      joinRoom(r.roomId || r.id);
+    }
+  }, "Rejoindre")))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--primary-l)',
+      border: '1px solid var(--primary)',
+      borderRadius: 12,
+      padding: '14px 16px',
+      marginTop: 16,
+      fontSize: 13,
+      color: 'var(--primary)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 6
+    }
+  }, "\u2139\uFE0F \xC0 propos de la visioconf\xE9rence"), /*#__PURE__*/React.createElement("ul", {
+    style: {
+      paddingLeft: 16,
+      lineHeight: 2,
+      color: 'var(--t2)'
+    }
+  }, /*#__PURE__*/React.createElement("li", null, "Technologie Jitsi Meet \u2014 gratuite et s\xE9curis\xE9e"), /*#__PURE__*/React.createElement("li", null, "Jusqu'\xE0 100 participants par salle"), /*#__PURE__*/React.createElement("li", null, "Partage d'\xE9cran, enregistrement disponibles"), /*#__PURE__*/React.createElement("li", null, "Aucune installation requise")))));
+}
+
+// ── BANNIÈRE PUBLICITAIRE ──
+function AdBanner({
+  ads
+}) {
+  const [idx, setIdx] = useState(0);
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    if (!ads?.length) return;
+    const t = setInterval(() => setIdx(i => (i + 1) % ads.length), 5000);
+    return () => clearInterval(t);
+  }, [ads]);
+  if (!ads?.length || !visible) return null;
+  const ad = ads[idx];
+  if (!ad) return null;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'relative',
+      background: `linear-gradient(135deg,${ad.color || '#2E7D32'},${ad.color || '#1B5E20'})`,
+      padding: '12px 16px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 12,
+      cursor: 'pointer'
+    },
+    onClick: () => ad.link && (window.location.hash = ad.link.replace('#', ''))
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 28,
+      flexShrink: 0
+    }
+  }, ad.emoji || '📢'), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      color: '#fff'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 13,
+      marginBottom: 2
+    }
+  }, ad.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      opacity: .85
+    }
+  }, ad.content)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      alignItems: 'center'
+    }
+  }, ads.length > 1 && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 10,
+      color: 'rgba(255,255,255,.7)'
+    }
+  }, idx + 1, "/", ads.length), /*#__PURE__*/React.createElement("button", {
+    onClick: e => {
+      e.stopPropagation();
+      setVisible(false);
+    },
+    style: {
+      background: 'rgba(255,255,255,.2)',
+      border: 'none',
+      color: '#fff',
+      borderRadius: '50%',
+      width: 22,
+      height: 22,
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 12,
+      flexShrink: 0
+    }
+  }, "\u2715")));
+}
+
+// ── PAGE ADHÉSION ──
+function AdhesionPage() {
+  const nav = useNavigate();
+  const {
+    user,
+    profile
+  } = useAuth();
+  const {
+    t
+  } = useLang();
+  const [step, setStep] = useState(1);
+  const [memberships, setMemberships] = useState([]);
+  const [form, setForm] = useState({
+    name: '',
+    firstname: '',
+    email: '',
+    phone: '',
+    country: '',
+    city: '',
+    profession: '',
+    assocId: '',
+    type: 'Annuelle',
+    amount: 50,
+    currency: 'EUR',
+    paymentMethod: 'virement'
+  });
+  const [saving, setSaving] = useState(false);
+  const [done, setDone] = useState(false);
+  const set = k => v => setForm(f => ({
+    ...f,
+    [k]: v
+  }));
+  useEffect(() => {
+    listenMemberships(setMemberships);
+    if (profile) {
+      set('name')(profile.name || '');
+      set('firstname')(profile.firstname || '');
+      set('email')(profile.email || '');
+      set('phone')(profile.phone || '');
+      set('country')(profile.country || '');
+      set('city')(profile.city || '');
+    }
+  }, [profile]);
+  const TYPES = [{
+    id: 'Annuelle',
+    price: 50,
+    label: 'Cotisation Annuelle',
+    desc: 'Accès complet 12 mois'
+  }, {
+    id: 'Fondateur',
+    price: 150,
+    label: 'Membre Fondateur',
+    desc: 'Soutien exceptionnel + avantages'
+  }, {
+    id: 'Bienfaiteur',
+    price: 300,
+    label: 'Membre Bienfaiteur',
+    desc: 'Grand soutien + tous avantages VIP'
+  }];
+  const PAYMENTS = [{
+    id: 'orange',
+    emoji: '🟠',
+    name: 'Orange Money'
+  }, {
+    id: 'moov',
+    emoji: '🔵',
+    name: 'Moov Money'
+  }, {
+    id: 'paypal',
+    emoji: '🅿️',
+    name: 'PayPal'
+  }, {
+    id: 'virement',
+    emoji: '🏦',
+    name: 'Virement bancaire'
+  }, {
+    id: 'cash',
+    emoji: '💵',
+    name: 'Cash'
+  }];
+  const handleSubmit = async () => {
+    if (!form.name || !form.email || !form.phone || !form.country) {
+      alert('Champs obligatoires manquants');
+      return;
+    }
+    setSaving(true);
+    await createMembership({
+      ...form,
+      uid: user?.uid || null
+    });
+    setDone(true);
+    setSaving(false);
+  };
+  if (done) return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: '100dvh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       background: 'var(--bg)',
-      flexDirection: 'column',
-      gap: 16
+      padding: 20
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 60
+      textAlign: 'center',
+      animation: 'fadeIn .4s'
     }
-  }, "\uD83D\uDD10"), /*#__PURE__*/React.createElement("h2", null, "Acc\xE8s Admin Requis"), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 80,
+      marginBottom: 16
+    }
+  }, "\uD83C\uDF89"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      color: 'var(--primary)',
+      marginBottom: 8
+    }
+  }, "Adh\xE9sion enregistr\xE9e !"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--t3)',
+      marginBottom: 6
+    }
+  }, "Votre demande a \xE9t\xE9 transmise."), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--t4)',
+      fontSize: 12,
+      marginBottom: 24
+    }
+  }, "Vous recevrez votre carte de membre apr\xE8s validation du paiement."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10,
+      justifyContent: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
     className: "btn btn-primary",
-    onClick: () => nav('/auth')
-  }, "Connexion Admin"));
-  const tabs = ['📊 Stats', '👥 Membres', '🏛 Assoc.', '⚙️ Config'];
+    onClick: () => nav('/member-card')
+  }, "\uD83E\uDEAA Ma carte"), /*#__PURE__*/React.createElement("button", {
+    className: "btn",
+    onClick: () => nav('/')
+  }, "Accueil"))));
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: "Adh\xE9sion & Cotisation"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 600,
+      margin: '0 auto',
+      padding: '16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3,1fr)',
+      gap: 10,
+      marginBottom: 16
+    }
+  }, [{
+    v: memberships.length || 247,
+    l: 'Membres',
+    i: '👥'
+  }, {
+    v: 35,
+    l: 'Pays',
+    i: '🌍'
+  }, {
+    v: DEMO_ASSOC_V2.length,
+    l: 'Assoc.',
+    i: '🏛'
+  }].map(s => /*#__PURE__*/React.createElement("div", {
+    key: s.l,
+    style: {
+      background: 'var(--surface)',
+      borderRadius: 12,
+      border: '1px solid var(--border)',
+      padding: '12px',
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 20,
+      marginBottom: 4
+    }
+  }, s.i), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 20,
+      color: 'var(--primary)'
+    }
+  }, s.v), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: 'var(--t4)',
+      fontWeight: 600
+    }
+  }, s.l)))), step === 1 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      animation: 'fadeIn .2s'
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      marginBottom: 14,
+      fontSize: 16
+    }
+  }, "1. Choisir le type d'adh\xE9sion"), TYPES.map(tp => /*#__PURE__*/React.createElement("div", {
+    key: tp.id,
+    onClick: () => {
+      set('type')(tp.id);
+      set('amount')(tp.price);
+      setStep(2);
+    },
+    style: {
+      background: form.type === tp.id ? 'var(--primary-l)' : 'var(--surface)',
+      border: `2px solid ${form.type === tp.id ? 'var(--primary)' : 'var(--border)'}`,
+      borderRadius: 14,
+      padding: '16px',
+      marginBottom: 10,
+      cursor: 'pointer',
+      transition: 'all .15s'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 15,
+      color: 'var(--primary)'
+    }
+  }, tp.label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: 'var(--t3)',
+      marginTop: 3
+    }
+  }, tp.desc)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 900,
+      fontSize: 22,
+      color: 'var(--gold)'
+    }
+  }, tp.price, "\u20AC"))))), step === 2 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      animation: 'fadeIn .2s'
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      marginBottom: 14,
+      fontSize: 16
+    }
+  }, "2. Vos informations"), /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Pr\xE9nom *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    value: form.firstname,
+    onChange: e => set('firstname')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Nom *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    value: form.name,
+    onChange: e => set('name')(e.target.value)
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Email *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "email",
+    value: form.email,
+    onChange: e => set('email')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "T\xE9l\xE9phone *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "tel",
+    value: form.phone,
+    onChange: e => set('phone')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Pays *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    value: form.country,
+    onChange: e => set('country')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Ville"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    value: form.city,
+    onChange: e => set('city')(e.target.value)
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Profession"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    value: form.profession,
+    onChange: e => set('profession')(e.target.value)
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10,
+      marginTop: 12
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-full",
+    onClick: () => setStep(1)
+  }, "\u2190 Retour"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    onClick: () => {
+      if (!form.name || !form.email || !form.phone || !form.country) return alert('Remplissez les champs obligatoires');
+      setStep(3);
+    }
+  }, "Continuer \u2192"))), step === 3 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      animation: 'fadeIn .2s'
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      marginBottom: 14,
+      fontSize: 16
+    }
+  }, "3. Mode de paiement"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--gold-l)',
+      border: '1px solid var(--gold)',
+      borderRadius: 12,
+      padding: '12px 14px',
+      marginBottom: 14,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 700
+    }
+  }, "Montant \xE0 payer"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 900,
+      fontSize: 22,
+      color: 'var(--gold)'
+    }
+  }, form.amount, "\u20AC")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 8,
+      marginBottom: 14
+    }
+  }, PAYMENTS.map(pm => /*#__PURE__*/React.createElement("button", {
+    key: pm.id,
+    onClick: () => set('paymentMethod')(pm.id),
+    style: {
+      padding: '12px',
+      borderRadius: 10,
+      border: `2px solid ${form.paymentMethod === pm.id ? 'var(--primary)' : 'var(--border)'}`,
+      background: form.paymentMethod === pm.id ? 'var(--primary-l)' : 'var(--surface)',
+      cursor: 'pointer',
+      textAlign: 'center',
+      transition: 'all .15s'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 24,
+      marginBottom: 4
+    }
+  }, pm.emoji), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 700,
+      color: form.paymentMethod === pm.id ? 'var(--primary)' : 'var(--t3)'
+    }
+  }, pm.name)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-full",
+    onClick: () => setStep(2)
+  }, "\u2190 Retour"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full btn-lg",
+    onClick: handleSubmit,
+    disabled: saving
+  }, saving ? 'Envoi...' : '✓ Valider l\'adhésion')))));
+}
+
+// ── PAGE COTISATIONS ──
+function CotisationsPage() {
+  const nav = useNavigate();
+  const {
+    user,
+    profile
+  } = useAuth();
+  const [memberships, setMemberships] = useState([]);
+  const {
+    isAdmin
+  } = useAdmin();
+  useEffect(() => listenMemberships(setMemberships), []);
+  const {
+    displayed,
+    hasMore,
+    loaderRef
+  } = useInfiniteScroll(memberships, 15);
+  const myMs = memberships.filter(m => m.uid === user?.uid);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: "Cotisations"
+  }), myMs.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--primary)',
+      color: '#fff',
+      padding: '14px 20px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 28
+    }
+  }, "\u2705"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800
+    }
+  }, "Cotisation active"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      opacity: .85
+    }
+  }, myMs[0].memberNum, " \xB7 ", myMs[0].type)), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm",
+    style: {
+      marginLeft: 'auto',
+      background: 'rgba(255,255,255,.2)',
+      color: '#fff',
+      border: 'none'
+    },
+    onClick: () => nav('/member-card')
+  }, "Voir carte")), !myMs.length && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--gold-l)',
+      borderBottom: '1px solid var(--gold)',
+      padding: '14px 20px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 24
+    }
+  }, "\u26A0\uFE0F"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      color: '#92400E'
+    }
+  }, "Pas encore membre"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: '#92400E'
+    }
+  }, "Adh\xE9rez pour acc\xE9der \xE0 tous les avantages")), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm",
+    style: {
+      background: 'var(--gold)',
+      color: '#fff',
+      border: 'none'
+    },
+    onClick: () => nav('/adhesion')
+  }, "S'inscrire")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3,1fr)',
+      gap: 8,
+      padding: '14px 16px',
+      background: 'var(--surface)',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, [{
+    v: memberships.length || 247,
+    l: 'Membres actifs',
+    i: '👥'
+  }, {
+    v: memberships.filter(m => m.type === 'Fondateur').length || 12,
+    l: 'Fondateurs',
+    i: '⭐'
+  }, {
+    v: memberships.filter(m => m.type === 'Bienfaiteur').length || 5,
+    l: 'Bienfaiteurs',
+    i: '🏆'
+  }].map(s => /*#__PURE__*/React.createElement("div", {
+    key: s.l,
+    style: {
+      textAlign: 'center',
+      padding: '8px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 16,
+      marginBottom: 2
+    }
+  }, s.i), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 18,
+      color: 'var(--primary)'
+    }
+  }, s.v), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      color: 'var(--t4)',
+      fontWeight: 600,
+      lineHeight: 1.2
+    }
+  }, s.l)))), isAdmin && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      fontSize: 14,
+      marginBottom: 10
+    }
+  }, "Liste des cotisants (", memberships.length, ")"), displayed.map(m => /*#__PURE__*/React.createElement(Card, {
+    key: m.id,
+    style: {
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '10px 14px',
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 36,
+      height: 36,
+      borderRadius: '50%',
+      background: 'var(--primary-l)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 18
+    }
+  }, "\uD83D\uDC64"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      fontSize: 13
+    }
+  }, m.firstname, " ", m.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, m.country, " \xB7 ", m.type, " \xB7 ", m.amount, m.currency)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'right'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: m.status === 'active' ? 'var(--success)' : 'var(--warning)'
+    }
+  }, m.status === 'active' ? '✅ Actif' : '⏳ En attente'), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: 'var(--t4)'
+    }
+  }, m.memberNum))))), /*#__PURE__*/React.createElement(LoadMore, {
+    hasMore: hasMore,
+    loaderRef: loaderRef
+  })), !isAdmin && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '20px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full btn-lg",
+    onClick: () => nav('/adhesion')
+  }, "\uD83D\uDCB3 Payer ma cotisation")));
+}
+
+// ════════ ADMIN PAGE V2 — Password + toutes fonctions ════════
+function AdminLoginModal({
+  onSuccess
+}) {
+  const [pwd, setPwd] = useState('');
+  const [err, setErr] = useState('');
+  const [loading, setLoading] = useState(false);
+  const {
+    checkAdmin
+  } = useAdmin();
+  const doLogin = async () => {
+    if (!pwd) {
+      setErr('Entrez le mot de passe');
+      return;
+    }
+    setLoading(true);
+    const ok = await checkAdmin(pwd);
+    if (ok) onSuccess();else setErr('Mot de passe incorrect');
+    setLoading(false);
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      inset: 0,
+      zIndex: 2000,
+      background: 'rgba(0,0,0,.7)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--surface)',
+      borderRadius: 20,
+      padding: '32px 28px',
+      maxWidth: 380,
+      width: '100%',
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 56,
+      marginBottom: 14
+    }
+  }, "\uD83D\uDEE1"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      marginBottom: 6,
+      color: 'var(--primary)'
+    }
+  }, "Espace Admin"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--t4)',
+      fontSize: 13,
+      marginBottom: 20
+    }
+  }, "Entrez le mot de passe administrateur"), err && /*#__PURE__*/React.createElement("div", {
+    className: "err-box"
+  }, err), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "password",
+    placeholder: "Mot de passe admin",
+    value: pwd,
+    onChange: e => setPwd(e.target.value),
+    onKeyDown: e => e.key === 'Enter' && doLogin(),
+    autoFocus: true
+  })), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full btn-lg",
+    onClick: doLogin,
+    disabled: loading
+  }, loading ? 'Vérification...' : 'Accéder →')));
+}
+function AdminPageV2() {
+  const nav = useNavigate();
+  const {
+    isAdmin,
+    logout,
+    checkAdmin
+  } = useAdmin();
+  const {
+    t
+  } = useLang();
+  const [showLogin, setShowLogin] = useState(!isAdmin);
+  const [tab, setTab] = useState(0);
+  const [members, setMembers] = useState([]);
+  const [assocs, setAssocs] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [memberships, setMemberships] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [news, setNews] = useState([]);
+  const [ads, setAds] = useState([]);
+  const [rooms, setRooms] = useState([]);
+
+  // Modifier le mot de passe admin
+  const [newPwd, setNewPwd] = useState('');
+  const [pwdSaved, setPwdSaved] = useState(false);
+  const savePwd = async () => {
+    if (newPwd.length < 4) {
+      alert('Mot de passe trop court');
+      return;
+    }
+    if (db) await db.ref('config/adminPassword').set(newPwd);
+    setPwdSaved(true);
+    setTimeout(() => setPwdSaved(false), 2000);
+    setNewPwd('');
+  };
+  useEffect(() => {
+    if (!isAdmin) return;
+    listenMembers(setMembers);
+    listenAssoc(setAssocs);
+    listenEvents(setEvents);
+    listenMemberships(setMemberships);
+    listenPosts(setPosts);
+    listenNews(setNews);
+    listenAds(setAds);
+    if (db) db.ref('videoRooms').on('value', s => {
+      const d = s.val();
+      setRooms(d ? Object.entries(d).map(([id, v]) => ({
+        id,
+        ...v
+      })) : []);
+    });
+    return () => {
+      if (db) db.ref('videoRooms').off('value');
+    };
+  }, [isAdmin]);
+
+  // Formulaire nouvelle pub
+  const [adForm, setAdForm] = useState({
+    title: '',
+    content: '',
+    emoji: '📢',
+    link: '',
+    days: 7,
+    color: '#2E7D32'
+  });
+  const setAd = k => v => setAdForm(f => ({
+    ...f,
+    [k]: v
+  }));
+  const publishAd = async () => {
+    if (!adForm.title || !adForm.content) {
+      alert('Titre et contenu requis');
+      return;
+    }
+    await createAd(adForm);
+    setAdForm({
+      title: '',
+      content: '',
+      emoji: '📢',
+      link: '',
+      days: 7,
+      color: '#2E7D32'
+    });
+    alert('Annonce publiée !');
+  };
+
+  // Formulaire nouvelle actualité
+  const [newsForm, setNewsForm] = useState({
+    title: '',
+    content: '',
+    category: 'Événement',
+    image: '📰',
+    source: 'Admin DMC',
+    expiresAt: 0
+  });
+  const setNf = k => v => setNewsForm(f => ({
+    ...f,
+    [k]: v
+  }));
+  const publishNews = async () => {
+    if (!newsForm.title || !newsForm.content) {
+      alert('Titre et contenu requis');
+      return;
+    }
+    if (!db) {
+      alert('Firebase requis');
+      return;
+    }
+    const expiresAt = newsForm.days ? Date.now() + AUTO_DELETE_MS * (newsForm.days || 2) : null;
+    await db.ref('news').push({
+      ...newsForm,
+      author: 'Admin DMC',
+      date: new Date().toISOString().split('T')[0],
+      likes: 0,
+      comments: 0,
+      expiresAt,
+      createdAt: Date.now()
+    });
+    setNewsForm({
+      title: '',
+      content: '',
+      category: 'Événement',
+      image: '📰',
+      source: 'Admin DMC',
+      expiresAt: 0
+    });
+    alert('Actualité publiée !');
+  };
+  if (!isAdmin) return /*#__PURE__*/React.createElement(AdminLoginModal, {
+    onSuccess: () => setShowLogin(false)
+  });
+  const TABS = ['📊 Dashboard', '👥 Membres', '🏛 Associations', '💳 Cotisations', '📰 Actualités', '📢 Publicités', '🎥 Vidéo', '⚙️ Config'];
+  const totalRevenue = memberships.reduce((sum, m) => sum + (m.amount || 0), 0);
   return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: '100dvh',
@@ -4793,54 +6525,82 @@ function AdminPage() {
     style: {
       background: '#0F172A',
       color: '#fff',
-      padding: '14px 20px',
+      padding: '12px 20px',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      position: 'sticky',
+      top: 0,
+      zIndex: 200
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontWeight: 800,
-      color: 'var(--primary)',
-      fontSize: 16
+      color: '#4CAF50',
+      fontSize: 16,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8
     }
-  }, "\uD83D\uDEE1 DMC Admin"), /*#__PURE__*/React.createElement("button", {
-    className: "btn-ghost btn-sm",
+  }, "\uD83D\uDEE1 DMC Admin"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn-sm",
     style: {
       color: '#fff',
-      background: 'transparent',
-      border: '1px solid rgba(255,255,255,.2)',
+      background: 'rgba(255,255,255,.1)',
+      border: 'none',
       borderRadius: 6,
       padding: '5px 10px',
       cursor: 'pointer',
-      fontSize: 12
+      fontSize: 11
     },
     onClick: () => nav('/')
-  }, "\u2190 Site")), /*#__PURE__*/React.createElement("div", {
+  }, "\u2190 Site"), /*#__PURE__*/React.createElement("button", {
+    className: "btn-sm",
+    style: {
+      color: '#ff6b6b',
+      background: 'rgba(255,0,0,.1)',
+      border: 'none',
+      borderRadius: 6,
+      padding: '5px 10px',
+      cursor: 'pointer',
+      fontSize: 11
+    },
+    onClick: logout
+  }, "D\xE9connexion"))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       background: '#1E293B',
       overflowX: 'auto',
-      scrollbarWidth: 'none'
+      scrollbarWidth: 'none',
+      position: 'sticky',
+      top: 48,
+      zIndex: 199
     }
-  }, tabs.map((lb, i) => /*#__PURE__*/React.createElement("button", {
+  }, TABS.map((lb, i) => /*#__PURE__*/React.createElement("button", {
     key: i,
     onClick: () => setTab(i),
     style: {
-      padding: '10px 16px',
-      fontSize: 12,
-      fontWeight: 600,
-      color: tab === i ? 'var(--primary)' : '#9CA3AF',
+      padding: '10px 14px',
+      fontSize: 11,
+      fontWeight: 700,
+      color: tab === i ? '#4CAF50' : '#9CA3AF',
       cursor: 'pointer',
       border: 'none',
       background: 'transparent',
-      borderBottom: `2px solid ${tab === i ? 'var(--primary)' : 'transparent'}`,
+      borderBottom: `2.5px solid ${tab === i ? '#4CAF50' : 'transparent'}`,
       whiteSpace: 'nowrap',
       flexShrink: 0
     }
   }, lb))), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '16px 20px'
+      padding: '16px 20px',
+      maxWidth: 900,
+      margin: '0 auto'
     }
   }, tab === 0 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -4860,30 +6620,48 @@ function AdminPage() {
     i: '🏛',
     c: 'var(--gold)'
   }, {
-    l: 'Validées',
-    v: assocs.filter(a => a.validated).length,
-    i: '✅',
-    c: '#22C55E'
+    l: 'Cotisants',
+    v: memberships.length,
+    i: '💳',
+    c: '#1D4ED8'
   }, {
-    l: 'En attente',
-    v: assocs.filter(a => !a.validated).length,
-    i: '⏳',
-    c: '#F59E0B'
+    l: 'Revenus (€)',
+    v: totalRevenue.toLocaleString(),
+    i: '💰',
+    c: '#16A34A'
+  }, {
+    l: 'Événements',
+    v: events.length,
+    i: '🗓',
+    c: '#9333EA'
+  }, {
+    l: 'Publications',
+    v: posts.length,
+    i: '📣',
+    c: '#EA580C'
   }].map(s => /*#__PURE__*/React.createElement(Card, {
     key: s.l
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       padding: '16px',
-      textAlign: 'center'
+      display: 'flex',
+      gap: 12,
+      alignItems: 'center'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 28,
-      marginBottom: 6
+      fontSize: 32,
+      width: 52,
+      height: 52,
+      background: s.c + '20',
+      borderRadius: 12,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
     }
-  }, s.i), /*#__PURE__*/React.createElement("div", {
+  }, s.i), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 28,
+      fontSize: 26,
       fontWeight: 900,
       color: s.c
     }
@@ -4893,7 +6671,7 @@ function AdminPage() {
       color: 'var(--t4)',
       fontWeight: 600
     }
-  }, s.l))))), IS_DEMO && /*#__PURE__*/React.createElement("div", {
+  }, s.l)))))), IS_DEMO && /*#__PURE__*/React.createElement("div", {
     style: {
       background: '#FEF3C7',
       border: '1px solid #F59E0B',
@@ -4902,12 +6680,63 @@ function AdminPage() {
       fontSize: 12,
       color: '#92400E'
     }
-  }, "\u26A0\uFE0F Mode d\xE9mo actif \u2014 Configurez Firebase pour les vraies donn\xE9es")), tab === 1 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }, "\u26A0\uFE0F Mode d\xE9mo \u2014 Configurez Firebase pour les vraies donn\xE9es. Admin pwd: tata123"), assocs.filter(a => !a.validated).length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontWeight: 700,
-      marginBottom: 10
+      marginBottom: 8,
+      color: 'var(--warning)'
     }
-  }, members.length, " membres inscrits"), members.slice(0, 20).map(m => /*#__PURE__*/React.createElement("div", {
+  }, "\u23F3 Associations en attente (", assocs.filter(a => !a.validated).length, ")"), assocs.filter(a => !a.validated).map(a => /*#__PURE__*/React.createElement(Card, {
+    key: a.id,
+    style: {
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '10px 14px',
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 24
+    }
+  }, a.logo), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      fontSize: 13
+    }
+  }, a.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, a.country, " \xB7 ", a.members, " membres")), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm btn-primary",
+    onClick: () => db && db.ref(`associations/${a.id}`).update({
+      validated: true
+    })
+  }, "Valider \u2713"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm",
+    style: {
+      color: 'var(--danger)'
+    },
+    onClick: () => db && db.ref(`associations/${a.id}`).remove()
+  }, "\u2715")))))), tab === 1 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 12
+    }
+  }, members.length, " membres inscrits"), members.slice(0, 50).map(m => /*#__PURE__*/React.createElement("div", {
     key: m.id || m.uid,
     style: {
       display: 'flex',
@@ -4933,19 +6762,40 @@ function AdminPage() {
       fontSize: 11,
       color: 'var(--t4)'
     }
-  }, m.country, " \xB7 ", m.profession)), /*#__PURE__*/React.createElement(Badge, {
-    color: "green"
-  }, m.memberNum)))), tab === 2 && /*#__PURE__*/React.createElement("div", null, assocs.map(a => /*#__PURE__*/React.createElement(Card, {
+  }, m.country, ", ", m.city, " \xB7 ", m.profession)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'right'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: 'var(--t4)'
+    }
+  }, m.email), /*#__PURE__*/React.createElement("button", {
+    className: "btn-sm",
+    style: {
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      color: 'var(--danger)',
+      fontSize: 12
+    },
+    onClick: () => confirm('Supprimer ce membre ?') && db && db.ref(`users/${m.uid || m.id}`).remove()
+  }, "\uD83D\uDDD1"))))), tab === 2 && /*#__PURE__*/React.createElement("div", null, assocs.map(a => /*#__PURE__*/React.createElement(Card, {
     key: a.id,
     style: {
       marginBottom: 10
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '12px 14px',
+      padding: '12px 14px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
       display: 'flex',
       gap: 10,
-      alignItems: 'center'
+      alignItems: 'flex-start',
+      marginBottom: 8
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
@@ -4958,26 +6808,139 @@ function AdminPage() {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontWeight: 700,
-      fontSize: 13
+      fontSize: 14
     }
   }, a.name), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 11,
+      fontSize: 12,
       color: 'var(--t4)'
     }
-  }, a.country, " \xB7 ", a.members, " membres")), /*#__PURE__*/React.createElement("div", {
+  }, a.country, " \xB7 Pr\xE9sident: ", a.president, " \xB7 ", a.members, " membres")), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
-      gap: 6
+      gap: 6,
+      flexShrink: 0
     }
-  }, a.validated ? /*#__PURE__*/React.createElement(Badge, {
-    color: "green"
-  }, "\u2713") : /*#__PURE__*/React.createElement("button", {
+  }, !a.validated && /*#__PURE__*/React.createElement("button", {
     className: "btn btn-sm btn-primary",
     onClick: () => db && db.ref(`associations/${a.id}`).update({
       validated: true
     })
-  }, "Valider")))))), tab === 3 && /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement("div", {
+  }, "Valider"), a.validated && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: 'var(--success)',
+      fontWeight: 700
+    }
+  }, "\u2705 Valid\xE9e"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm",
+    style: {
+      color: 'var(--danger)'
+    },
+    onClick: () => confirm('Supprimer ?') && db && db.ref(`associations/${a.id}`).remove()
+  }, "\uD83D\uDDD1"))), a.bureau && a.bureau.length > 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--bg)',
+      borderRadius: 8,
+      padding: '8px 12px',
+      fontSize: 11,
+      color: 'var(--t3)'
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "Bureau :"), " ", a.bureau.map(b => `${b.role}: ${b.name}`).join(' · ')))))), tab === 3 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
+      borderRadius: 12,
+      padding: '16px',
+      color: '#fff',
+      marginBottom: 14,
+      display: 'flex',
+      gap: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 24,
+      fontWeight: 900
+    }
+  }, memberships.length), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      opacity: .8
+    }
+  }, "Total membres")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 24,
+      fontWeight: 900
+    }
+  }, totalRevenue, "\u20AC"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      opacity: .8
+    }
+  }, "Revenus cotisations")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 24,
+      fontWeight: 900
+    }
+  }, memberships.filter(m => m.status === 'active').length), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      opacity: .8
+    }
+  }, "Actifs"))), memberships.map(m => /*#__PURE__*/React.createElement("div", {
+    key: m.id,
+    style: {
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center',
+      padding: '10px 0',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      fontSize: 13
+    }
+  }, m.firstname, " ", m.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, m.memberNum, " \xB7 ", m.type, " \xB7 ", m.amount, m.currency)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'right'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: m.status === 'active' ? 'var(--success)' : 'var(--warning)'
+    }
+  }, m.status === 'active' ? '✅ Actif' : '⏳ Attente'), m.status !== 'active' && /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm btn-primary",
+    onClick: () => db && db.ref(`memberships/${m.id}`).update({
+      status: 'active'
+    })
+  }, "Activer"))))), tab === 4 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 14
+    }
+  }, /*#__PURE__*/React.createElement("div", {
     style: {
       padding: '14px 16px'
     }
@@ -4986,857 +6949,541 @@ function AdminPage() {
       fontWeight: 700,
       marginBottom: 12
     }
-  }, "Configuration"), /*#__PURE__*/React.createElement("div", {
+  }, "\u2795 Publier une actualit\xE9"), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Titre *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Titre de l'actualit\xE9",
+    value: newsForm.title,
+    onChange: e => setNf('title')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Contenu *"), /*#__PURE__*/React.createElement("textarea", {
+    className: "fi",
+    rows: 3,
+    placeholder: "Contenu complet...",
+    value: newsForm.content,
+    onChange: e => setNf('content')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Cat\xE9gorie"), /*#__PURE__*/React.createElement("select", {
+    className: "fi",
+    value: newsForm.category,
+    onChange: e => setNf('category')(e.target.value)
+  }, ['Événement', 'Éducation', 'Finance', 'Culture', 'Tech', 'Politique', 'Santé', 'Opportunité'].map(c => /*#__PURE__*/React.createElement("option", {
+    key: c
+  }, c)))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Emoji/Image"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "\uD83D\uDCF0",
+    value: newsForm.image,
+    onChange: e => setNf('image')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Suppression auto (jours)"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "number",
+    placeholder: "2",
+    value: newsForm.days || '',
+    onChange: e => setNf('days')(parseInt(e.target.value) || 2)
+  }))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    onClick: publishNews
+  }, "\uD83D\uDCF0 Publier l'actualit\xE9"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 8
+    }
+  }, "Actualit\xE9s publi\xE9es (", news.length, ")"), news.map(n => /*#__PURE__*/React.createElement("div", {
+    key: n.id,
+    style: {
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center',
+      padding: '10px 0',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 24
+    }
+  }, n.image), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      fontSize: 13
+    }
+  }, n.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, n.date, " \xB7 ", n.category)), /*#__PURE__*/React.createElement("button", {
+    style: {
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      color: 'var(--danger)',
+      fontSize: 16
+    },
+    onClick: () => confirm('Supprimer ?') && db && db.ref(`news/${n.id}`).remove()
+  }, "\uD83D\uDDD1")))), tab === 5 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 14
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 12
+    }
+  }, "\u2795 Cr\xE9er une annonce publicitaire"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Titre *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Titre de l'annonce",
+    value: adForm.title,
+    onChange: e => setAd('title')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Emoji"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "\uD83D\uDCE2",
+    value: adForm.emoji,
+    onChange: e => setAd('emoji')(e.target.value)
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Message *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Texte de l'annonce...",
+    value: adForm.content,
+    onChange: e => setAd('content')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Lien (facultatif)"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "#/events",
+    value: adForm.link,
+    onChange: e => setAd('link')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Couleur"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "color",
+    value: adForm.color,
+    onChange: e => setAd('color')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Dur\xE9e (jours)"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "number",
+    placeholder: "7",
+    value: adForm.days,
+    onChange: e => setAd('days')(parseInt(e.target.value) || 7)
+  }))), adForm.title && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: 'var(--t3)',
+      marginBottom: 6
+    }
+  }, "APER\xC7U"), /*#__PURE__*/React.createElement(AdBanner, {
+    ads: [adForm]
+  })), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    onClick: publishAd
+  }, "\uD83D\uDCE2 Publier l'annonce"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 8
+    }
+  }, "Annonces actives (", ads.length, ")"), ads.map(a => /*#__PURE__*/React.createElement(Card, {
+    key: a.id,
+    style: {
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '10px 14px',
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 24
+    }
+  }, a.emoji), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      fontSize: 13
+    }
+  }, a.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, a.content?.slice(0, 60))), /*#__PURE__*/React.createElement("button", {
+    style: {
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      color: 'var(--danger)',
+      fontSize: 16
+    },
+    onClick: () => deleteAd(a.id)
+  }, "\uD83D\uDDD1"))))), tab === 6 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 12
+    }
+  }, rooms.length, " salles de visioconf\xE9rence"), rooms.map(r => /*#__PURE__*/React.createElement(Card, {
+    key: r.id,
+    style: {
+      marginBottom: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '10px 14px',
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 22
+    }
+  }, "\uD83C\uDFA5"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      fontSize: 13
+    }
+  }, r.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, "Cr\xE9\xE9 par ", r.creator)), /*#__PURE__*/React.createElement("button", {
+    style: {
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      color: 'var(--danger)',
+      fontSize: 16
+    },
+    onClick: () => db && db.ref(`videoRooms/${r.id}`).update({
+      active: false
+    })
+  }, "\uD83D\uDDD1"))))), tab === 7 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 12
+    }
+  }, "\uD83D\uDD11 Modifier le mot de passe admin"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13,
+      color: 'var(--t4)',
+      marginBottom: 12
+    }
+  }, "Mot de passe actuel : ", /*#__PURE__*/React.createElement("strong", null, "tata123"), " (par d\xE9faut)"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    style: {
+      flex: 1
+    },
+    type: "password",
+    placeholder: "Nouveau mot de passe (min. 4 car.)",
+    value: newPwd,
+    onChange: e => setNewPwd(e.target.value),
+    onKeyDown: e => e.key === 'Enter' && savePwd()
+  }), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: savePwd
+  }, pwdSaved ? '✅ Sauvé' : 'Enregistrer')), !db && /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 11,
+      color: 'var(--warning)',
+      marginTop: 6
+    }
+  }, "\u26A0\uFE0F Firebase requis pour sauvegarder"))), /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 8
+    }
+  }, "\uD83D\uDDD1 Suppression automatique"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
       color: 'var(--t2)',
       lineHeight: 1.8
     }
-  }, "Firebase: ", IS_DEMO ? '❌ Mode démo' : '✅ Connecté', /*#__PURE__*/React.createElement("br", null), "Admin: ", ADMIN_EMAILS.join(', ') || 'Aucun', /*#__PURE__*/React.createElement("br", null), "Version: DMC v1.0")))));
+  }, "\u2022 \xC9v\xE9nements : supprim\xE9s ", /*#__PURE__*/React.createElement("strong", null, "48h apr\xE8s la date"), /*#__PURE__*/React.createElement("br", null), "\u2022 Annonces publicitaires : supprim\xE9es apr\xE8s la dur\xE9e choisie", /*#__PURE__*/React.createElement("br", null), "\u2022 Actualit\xE9s : supprim\xE9es apr\xE8s la dur\xE9e choisie", /*#__PURE__*/React.createElement("br", null), "\u2022 Salles vid\xE9o : supprim\xE9es 48h apr\xE8s cr\xE9ation", /*#__PURE__*/React.createElement("br", null), "\u2022 Publications : conserv\xE9es (suppression manuelle)"))), /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 8
+    }
+  }, "\u2139\uFE0F \xC9tat du syst\xE8me"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: 'var(--t2)',
+      lineHeight: 2
+    }
+  }, "Firebase : ", IS_DEMO ? '❌ Non configuré' : '✅ Connecté', /*#__PURE__*/React.createElement("br", null), "Version : DMC v2.0", /*#__PURE__*/React.createElement("br", null), "Membres : ", members.length, /*#__PURE__*/React.createElement("br", null), "Associations : ", assocs.length))))));
 }
-// ═══ PAGES SUPPLÉMENTAIRES ═══
-function AssocDetailPage() {
-  const {
-    id
-  } = useParams();
-  const nav = useNavigate();
+
+// ════════ APP V2 FINAL + LAYOUT SIDEBAR DESKTOP ════════
+function SidebarNav() {
+  const nav = useNavigate(),
+    loc = useLocation();
   const {
     user
   } = useAuth();
-  const a = DEMO_ASSOC.find(a => a.id === id) || DEMO_ASSOC[0];
+  const {
+    t
+  } = useLang();
+  const {
+    isAdmin
+  } = useAdmin();
+  const items = [{
+    p: '/',
+    icon: '🏠',
+    lb: 'Accueil'
+  }, {
+    p: '/news',
+    icon: '📰',
+    lb: t('news')
+  }, {
+    p: '/members',
+    icon: '👥',
+    lb: t('members')
+  }, {
+    p: '/associations',
+    icon: '🏛',
+    lb: t('assoc')
+  }, {
+    p: '/events',
+    icon: '🗓',
+    lb: t('events')
+  }, {
+    p: '/media',
+    icon: '🎬',
+    lb: t('media')
+  }, {
+    p: '/messages',
+    icon: '💬',
+    lb: t('messages')
+  }, {
+    p: '/cotisations',
+    icon: '💳',
+    lb: 'Cotisations'
+  }, {
+    p: '/cagnottes',
+    icon: '💝',
+    lb: 'Cagnotte'
+  }, {
+    p: '/adhesion',
+    icon: '🪪',
+    lb: 'Adhésion'
+  }, {
+    p: '/video',
+    icon: '🎥',
+    lb: 'Chat & Vidéo'
+  }, {
+    p: user ? '/profile' : '/auth',
+    icon: user ? '👤' : '🔑',
+    lb: user ? t('profile') : t('login')
+  }, {
+    p: '/settings',
+    icon: '⚙️',
+    lb: t('settings')
+  }, isAdmin && {
+    p: '/admin',
+    icon: '🛡',
+    lb: 'Administration'
+  }, user && {
+    p: null,
+    icon: '🚪',
+    lb: 'Déconnexion',
+    action: () => logoutUser()
+  }].filter(Boolean);
+  const isA = p => p && (p === '/' ? loc.pathname === '/' : loc.pathname.startsWith(p));
   return /*#__PURE__*/React.createElement("div", {
     style: {
-      minHeight: '100dvh',
-      background: 'var(--bg)',
-      paddingBottom: 80
-    }
-  }, /*#__PURE__*/React.createElement(TopNav, {
-    back: "/associations"
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
-      padding: '24px 20px',
-      textAlign: 'center',
-      color: '#fff'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 60,
-      marginBottom: 10
-    }
-  }, a.logo), /*#__PURE__*/React.createElement("h1", {
-    style: {
-      fontSize: 20,
-      fontWeight: 800,
-      marginBottom: 4
-    }
-  }, a.name), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 13,
-      opacity: .85
-    }
-  }, a.acronym, " \xB7 ", a.country), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 8,
-      display: 'flex',
-      gap: 8,
-      justifyContent: 'center',
-      flexWrap: 'wrap'
-    }
-  }, a.validated && /*#__PURE__*/React.createElement(Badge, {
-    color: "green"
-  }, "\u2713 Valid\xE9e"), /*#__PURE__*/React.createElement(Badge, {
-    color: "gold"
-  }, a.category))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '16px 20px'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(3,1fr)',
-      gap: 10,
-      marginBottom: 16
-    }
-  }, [{
-    v: a.members,
-    l: 'Membres',
-    i: '👥'
-  }, {
-    v: a.founded,
-    l: 'Fondée',
-    i: '📅'
-  }, {
-    v: a.country,
-    l: 'Pays',
-    i: '🌍'
-  }].map(s => /*#__PURE__*/React.createElement("div", {
-    key: s.l,
-    style: {
-      textAlign: 'center',
-      padding: '12px',
+      width: 220,
+      flexShrink: 0,
       background: 'var(--surface)',
-      borderRadius: 10,
-      border: '1px solid var(--border)'
+      borderRight: '1px solid var(--border)',
+      height: '100%',
+      overflowY: 'auto',
+      display: 'flex',
+      flexDirection: 'column'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 20,
-      marginBottom: 4
+      padding: '18px 16px',
+      borderBottom: '1px solid var(--border)'
     }
-  }, s.i), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontWeight: 800,
-      fontSize: 14,
-      color: 'var(--primary)'
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10
     }
-  }, s.v), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 32
+    }
+  }, "\uD83C\uDDF2\uD83C\uDDF1"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 900,
+      fontSize: 13,
+      color: 'var(--primary)',
+      lineHeight: 1
+    }
+  }, "DIASPORA"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 900,
+      fontSize: 13,
+      color: 'var(--gold)',
+      lineHeight: 1
+    }
+  }, "MALI"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 900,
+      fontSize: 11,
+      color: 'var(--t3)',
+      lineHeight: 1
+    }
+  }, "CONNECT"))), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 10,
       color: 'var(--t4)',
-      fontWeight: 600
+      marginTop: 6,
+      fontStyle: 'italic'
     }
-  }, s.l)))), /*#__PURE__*/React.createElement(Card, {
+  }, "Unis partout, forts ensemble")), /*#__PURE__*/React.createElement("div", {
     style: {
-      marginBottom: 12
+      flex: 1,
+      padding: '8px 8px'
     }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, items.map((item, i) => /*#__PURE__*/React.createElement("button", {
+    key: i,
+    onClick: () => {
+      if (item.action) item.action();else if (item.p) nav(item.p);
+    },
     style: {
-      padding: '14px 16px'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      marginBottom: 8
-    }
-  }, "\xC0 propos"), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 13,
-      lineHeight: 1.7,
-      color: 'var(--t2)'
-    }
-  }, a.description))), /*#__PURE__*/React.createElement(Card, {
-    style: {
-      marginBottom: 16
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '14px 16px'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      marginBottom: 8
-    }
-  }, "Direction"), /*#__PURE__*/React.createElement("div", {
-    style: {
+      width: '100%',
       display: 'flex',
-      gap: 10,
-      alignItems: 'center'
-    }
-  }, /*#__PURE__*/React.createElement(Avatar, {
-    src: "\uD83D\uDC64",
-    size: 44
-  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 600,
-      fontSize: 14
-    }
-  }, a.president), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 12,
-      color: 'var(--t4)'
-    }
-  }, "Pr\xE9sident(e)"))))), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary btn-full btn-lg",
-    onClick: () => user ? alert('Demande envoyée !') : nav('/auth')
-  }, user ? '✓ Rejoindre l\'association' : 'Se connecter pour rejoindre')));
-}
-function EventDetailPage() {
-  const {
-    id
-  } = useParams();
-  const nav = useNavigate();
-  const {
-    user
-  } = useAuth();
-  const ev = DEMO_EVENTS.find(e => e.id === id) || DEMO_EVENTS[0];
-  const pct = Math.round(ev.registered / ev.capacity * 100);
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      minHeight: '100dvh',
-      background: 'var(--bg)',
-      paddingBottom: 100
-    }
-  }, /*#__PURE__*/React.createElement(TopNav, {
-    back: "/events"
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
-      padding: '24px 20px',
-      textAlign: 'center',
-      color: '#fff'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 60,
-      marginBottom: 10
-    }
-  }, ev.emoji), /*#__PURE__*/React.createElement("h1", {
-    style: {
-      fontSize: 20,
-      fontWeight: 800,
-      marginBottom: 6
-    }
-  }, ev.title), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 13,
-      opacity: .85
-    }
-  }, ev.category, " \xB7 ", ev.organizer)), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '16px 20px'
-    }
-  }, /*#__PURE__*/React.createElement(Card, {
-    style: {
-      marginBottom: 12
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '14px 16px'
-    }
-  }, [{
-    i: '📅',
-    l: 'Date',
-    v: ev.date + ' à ' + ev.time
-  }, {
-    i: '📍',
-    l: 'Lieu',
-    v: ev.location
-  }, {
-    i: '🌍',
-    l: 'Pays',
-    v: ev.country
-  }, {
-    i: '👤',
-    l: 'Organisateur',
-    v: ev.organizer
-  }].map(r => /*#__PURE__*/React.createElement("div", {
-    key: r.l,
-    style: {
-      display: 'flex',
-      gap: 10,
       alignItems: 'center',
-      padding: '8px 0',
-      borderBottom: '1px solid var(--border)'
+      gap: 10,
+      padding: '9px 12px',
+      border: 'none',
+      background: isA(item.p) ? 'var(--primary-l)' : 'transparent',
+      borderRadius: 8,
+      cursor: 'pointer',
+      color: isA(item.p) ? 'var(--primary)' : 'var(--t2)',
+      fontWeight: isA(item.p) ? 700 : 500,
+      fontSize: 13,
+      marginBottom: 2,
+      transition: 'all .15s',
+      textAlign: 'left'
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 18,
-      width: 26
+      width: 24,
+      textAlign: 'center'
     }
-  }, r.i), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }, item.icon), /*#__PURE__*/React.createElement("span", null, item.lb)))), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 11,
+      padding: '10px 16px',
+      fontSize: 10,
       color: 'var(--t4)',
-      fontWeight: 600
+      borderTop: '1px solid var(--border)'
     }
-  }, r.l), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 600,
-      fontSize: 14
-    }
-  }, r.v)))))), /*#__PURE__*/React.createElement(Card, {
-    style: {
-      marginBottom: 12
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '14px 16px'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      marginBottom: 8
-    }
-  }, "Description"), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 13,
-      lineHeight: 1.7,
-      color: 'var(--t2)'
-    }
-  }, ev.description))), /*#__PURE__*/React.createElement(Card, {
-    style: {
-      marginBottom: 16
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '14px 16px'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      marginBottom: 8
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontWeight: 700
-    }
-  }, "Disponibilit\xE9"), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontWeight: 700,
-      color: pct >= 90 ? 'var(--danger)' : 'var(--primary)'
-    }
-  }, 100 - pct, "% dispo")), /*#__PURE__*/React.createElement(ProgressBar, {
-    value: ev.registered,
-    max: ev.capacity,
-    color: pct >= 90 ? 'var(--danger)' : 'var(--primary)'
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 12,
-      color: 'var(--t4)',
-      marginTop: 4
-    }
-  }, ev.registered, " / ", ev.capacity, " inscrits"))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: 'fixed',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      background: 'rgba(255,255,255,.97)',
-      backdropFilter: 'blur(12px)',
-      borderTop: '1px solid var(--border)',
-      padding: '12px 20px',
-      paddingBottom: 'calc(12px + env(safe-area-inset-bottom))'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      maxWidth: 600,
-      margin: '0 auto'
-    }
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 22,
-      fontWeight: 900,
-      color: ev.price === 0 ? 'var(--primary)' : 'var(--gold)'
-    }
-  }, ev.price === 0 ? 'Gratuit' : ev.price + '€'), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 11,
-      color: 'var(--t4)'
-    }
-  }, "par personne")), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary btn-lg",
-    onClick: () => user ? registerEvent(ev.id, user.uid).then(() => alert('Inscription confirmée !')) : nav('/auth')
-  }, ev.price === 0 ? '✓ S\'inscrire' : '🎫 Acheter')))));
+  }, "DMC v2.0 \xB7 \uD83C\uDF0D Worldwide"));
 }
-function CreateAssocPage() {
-  const nav = useNavigate();
-  const {
-    user,
-    profile
-  } = useAuth();
-  const {
-    t
-  } = useLang();
-  const [form, setForm] = useState({
-    name: '',
-    acronym: '',
-    country: '',
-    city: '',
-    president: '',
-    description: '',
-    category: 'Communautaire',
-    founded: new Date().getFullYear().toString(),
-    logo: '🏛'
-  });
-  const [saving, setSaving] = useState(false);
-  const LOGOS = ['🏛', '🇲🇱', '🌍', '🤝', '⭐', '🎯', '🌱', '💫', '🦅', '🕊', '🌟', '🏆'];
-  const CATS = ['Communautaire', 'Culturelle', 'Sportive', 'Humanitaire', 'Professionnelle', 'Religieuse', 'Union', 'Fédération'];
-  const set = k => v => setForm(f => ({
-    ...f,
-    [k]: v
-  }));
-  const save = async () => {
-    if (!form.name || !form.country || !form.president) {
-      alert('Nom, pays et président requis');
-      return;
-    }
-    setSaving(true);
-    await createAssoc({
-      ...form,
-      creatorUid: user?.uid,
-      members: 1
-    });
-    nav('/associations');
-  };
+function AppContentV2({
+  ads
+}) {
+  const loc = useLocation();
+  const hideSidebar = ['/auth', '/member-card', '/video'];
+  const showSidebar = !hideSidebar.some(p => loc.pathname.startsWith(p));
   return /*#__PURE__*/React.createElement("div", {
     style: {
-      minHeight: '100dvh',
-      background: 'var(--bg)',
-      paddingBottom: 40
-    }
-  }, /*#__PURE__*/React.createElement(TopNav, {
-    back: "/associations",
-    title: t('newAssoc')
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '16px 20px',
-      maxWidth: 600,
-      margin: '0 auto'
-    }
-  }, /*#__PURE__*/React.createElement(Card, {
-    style: {
-      marginBottom: 12
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '14px 16px'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 12,
-      fontWeight: 700,
-      color: 'var(--t4)',
-      textTransform: 'uppercase',
-      marginBottom: 10
-    }
-  }, "Logo de l\\'association"), /*#__PURE__*/React.createElement("div", {
-    style: {
       display: 'flex',
-      flexWrap: 'wrap',
-      gap: 8
+      minHeight: '100dvh'
     }
-  }, LOGOS.map(l => /*#__PURE__*/React.createElement("button", {
-    key: l,
-    onClick: () => set('logo')(l),
+  }, showSidebar && /*#__PURE__*/React.createElement("div", {
+    className: "sidebar-desktop"
+  }, /*#__PURE__*/React.createElement(SidebarNav, null)), /*#__PURE__*/React.createElement("div", {
     style: {
-      width: 44,
-      height: 44,
-      fontSize: 26,
-      border: `2px solid ${form.logo === l ? 'var(--primary)' : 'var(--border)'}`,
-      borderRadius: 8,
-      cursor: 'pointer',
-      background: form.logo === l ? 'var(--primary-l)' : 'var(--surface)'
+      flex: 1,
+      minWidth: 0
     }
-  }, l))))), /*#__PURE__*/React.createElement(Card, {
-    style: {
-      marginBottom: 12
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '14px 16px'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Nom complet *"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    placeholder: "Association des Maliens en...",
-    value: form.name,
-    onChange: e => set('name')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 10
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Sigle / Acronyme"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    placeholder: "AMES",
-    value: form.acronym,
-    onChange: e => set('acronym')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Fond\xE9e en"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    type: "number",
-    placeholder: "2020",
-    value: form.founded,
-    onChange: e => set('founded')(e.target.value)
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Pays *"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    placeholder: "Espagne, France...",
-    value: form.country,
-    onChange: e => set('country')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Ville principale"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    placeholder: "Madrid, Paris...",
-    value: form.city,
-    onChange: e => set('city')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Pr\xE9sident(e) *"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    placeholder: "Nom du pr\xE9sident",
-    value: form.president,
-    onChange: e => set('president')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Cat\xE9gorie"), /*#__PURE__*/React.createElement("select", {
-    className: "fi",
-    value: form.category,
-    onChange: e => set('category')(e.target.value)
-  }, CATS.map(c => /*#__PURE__*/React.createElement("option", {
-    key: c
-  }, c)))), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Description"), /*#__PURE__*/React.createElement("textarea", {
-    className: "fi",
-    rows: 3,
-    placeholder: "D\xE9crivez votre association...",
-    value: form.description,
-    onChange: e => set('description')(e.target.value)
-  })))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'var(--gold-l)',
-      border: '1px solid var(--gold)',
-      borderRadius: 10,
-      padding: '10px 14px',
-      fontSize: 12,
-      color: '#92400E',
-      marginBottom: 16
-    }
-  }, "\u23F3 Votre association sera valid\xE9e par un administrateur avant d\\'appara\xEEtre publiquement."), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary btn-full btn-lg",
-    onClick: save,
-    disabled: saving
-  }, saving ? 'Envoi...' : '🏛 Soumettre l\'association')));
-}
-function CreateEventPage() {
-  const nav = useNavigate();
-  const {
-    user,
-    profile
-  } = useAuth();
-  const {
-    t
-  } = useLang();
-  const [form, setForm] = useState({
-    title: '',
-    date: '',
-    time: '',
-    location: '',
-    country: '',
-    description: '',
-    category: 'Conférence',
-    price: 0,
-    capacity: 100,
-    emoji: '🗓'
-  });
-  const [saving, setSaving] = useState(false);
-  const EMOJIS = ['🗓', '🎭', '🌍', '🏆', '💼', '🎵', '⚽', '🏥', '🎓', '🎉', '🤝', '🕌'];
-  const CATS = ['Conférence', 'Culture', 'Sport', 'Business', 'Santé', 'Éducation', 'Social', 'Religion'];
-  const set = k => v => setForm(f => ({
-    ...f,
-    [k]: v
-  }));
-  const save = async () => {
-    if (!form.title || !form.date || !form.location) {
-      alert('Titre, date et lieu requis');
-      return;
-    }
-    setSaving(true);
-    await createEvent({
-      ...form,
-      price: parseInt(form.price) || 0,
-      capacity: parseInt(form.capacity) || 100,
-      organizer: profile?.firstname + ' ' + profile?.name,
-      creatorUid: user?.uid
-    });
-    nav('/events');
-  };
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      minHeight: '100dvh',
-      background: 'var(--bg)',
-      paddingBottom: 40
-    }
-  }, /*#__PURE__*/React.createElement(TopNav, {
-    back: "/events",
-    title: t('createEvent') || 'Créer un événement'
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '16px 20px',
-      maxWidth: 600,
-      margin: '0 auto'
-    }
-  }, /*#__PURE__*/React.createElement(Card, {
-    style: {
-      marginBottom: 12
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '14px 16px'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: 8,
-      marginBottom: 12
-    }
-  }, EMOJIS.map(e => /*#__PURE__*/React.createElement("button", {
-    key: e,
-    onClick: () => set('emoji')(e),
-    style: {
-      width: 40,
-      height: 40,
-      fontSize: 22,
-      border: `2px solid ${form.emoji === e ? 'var(--primary)' : 'var(--border)'}`,
-      borderRadius: 8,
-      cursor: 'pointer',
-      background: form.emoji === e ? 'var(--primary-l)' : 'var(--surface)'
-    }
-  }, e))), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Titre *"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    placeholder: "Titre de votre \xE9v\xE9nement",
-    value: form.title,
-    onChange: e => set('title')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 10
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Date *"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    type: "date",
-    value: form.date,
-    onChange: e => set('date')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Heure"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    type: "time",
-    value: form.time,
-    onChange: e => set('time')(e.target.value)
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Lieu *"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    placeholder: "Salle, adresse...",
-    value: form.location,
-    onChange: e => set('location')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 10
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Pays"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    placeholder: "France",
-    value: form.country,
-    onChange: e => set('country')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Cat\xE9gorie"), /*#__PURE__*/React.createElement("select", {
-    className: "fi",
-    value: form.category,
-    onChange: e => set('category')(e.target.value)
-  }, CATS.map(c => /*#__PURE__*/React.createElement("option", {
-    key: c
-  }, c))))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 10
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Prix (\u20AC, 0=gratuit)"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    type: "number",
-    value: form.price,
-    onChange: e => set('price')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Capacit\xE9"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    type: "number",
-    value: form.capacity,
-    onChange: e => set('capacity')(e.target.value)
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Description"), /*#__PURE__*/React.createElement("textarea", {
-    className: "fi",
-    rows: 3,
-    placeholder: "D\xE9crivez votre \xE9v\xE9nement...",
-    value: form.description,
-    onChange: e => set('description')(e.target.value)
-  })))), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary btn-full btn-lg",
-    onClick: save,
-    disabled: saving
-  }, saving ? 'Publication...' : '🗓 Publier l\'événement')));
-}
-function CreateCagnottePage() {
-  const nav = useNavigate();
-  const {
-    user,
-    profile
-  } = useAuth();
-  const [form, setForm] = useState({
-    title: '',
-    description: '',
-    goal: '',
-    currency: 'EUR',
-    emoji: '💝',
-    category: 'Urgence',
-    deadline: ''
-  });
-  const [saving, setSaving] = useState(false);
-  const EMOJIS = ['💝', '🏥', '🎓', '🏫', '⚽', '🌍', '🏠', '🍽', '❤️', '🤝', '🌱', '🕊'];
-  const CATS = ['Urgence', 'Santé', 'Éducation', 'Humanitaire', 'Culture', 'Sport', 'Religion', 'Social'];
-  const CURRENCIES = ['EUR', 'USD', 'GBP', 'XOF', 'XAF', 'CAD'];
-  const set = k => v => setForm(f => ({
-    ...f,
-    [k]: v
-  }));
-  const save = async () => {
-    if (!form.title || !form.goal || !form.deadline) {
-      alert('Titre, objectif et date requis');
-      return;
-    }
-    setSaving(true);
-    await createCagnotte({
-      ...form,
-      goal: parseInt(form.goal) || 0,
-      creator: profile?.firstname + ' ' + profile?.name,
-      creatorUid: user?.uid
-    });
-    nav('/cagnottes');
-  };
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      minHeight: '100dvh',
-      background: 'var(--bg)',
-      paddingBottom: 40
-    }
-  }, /*#__PURE__*/React.createElement(TopNav, {
-    back: "/cagnottes",
-    title: "Cr\xE9er une cagnotte"
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '16px 20px',
-      maxWidth: 600,
-      margin: '0 auto'
-    }
-  }, /*#__PURE__*/React.createElement(Card, {
-    style: {
-      marginBottom: 12
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '14px 16px'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: 8,
-      marginBottom: 12
-    }
-  }, EMOJIS.map(e => /*#__PURE__*/React.createElement("button", {
-    key: e,
-    onClick: () => set('emoji')(e),
-    style: {
-      width: 40,
-      height: 40,
-      fontSize: 22,
-      border: `2px solid ${form.emoji === e ? 'var(--primary)' : 'var(--border)'}`,
-      borderRadius: 8,
-      cursor: 'pointer',
-      background: form.emoji === e ? 'var(--primary-l)' : 'var(--surface)'
-    }
-  }, e))), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Titre *"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    placeholder: "Aide m\xE9dicale pour...",
-    value: form.title,
-    onChange: e => set('title')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Description"), /*#__PURE__*/React.createElement("textarea", {
-    className: "fi",
-    rows: 3,
-    placeholder: "Expliquez votre collecte...",
-    value: form.description,
-    onChange: e => set('description')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 10
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Objectif *"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    type: "number",
-    placeholder: "5000",
-    value: form.goal,
-    onChange: e => set('goal')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Devise"), /*#__PURE__*/React.createElement("select", {
-    className: "fi",
-    value: form.currency,
-    onChange: e => set('currency')(e.target.value)
-  }, CURRENCIES.map(c => /*#__PURE__*/React.createElement("option", {
-    key: c
-  }, c))))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 10
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Cat\xE9gorie"), /*#__PURE__*/React.createElement("select", {
-    className: "fi",
-    value: form.category,
-    onChange: e => set('category')(e.target.value)
-  }, CATS.map(c => /*#__PURE__*/React.createElement("option", {
-    key: c
-  }, c)))), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Date limite *"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    type: "date",
-    value: form.deadline,
-    onChange: e => set('deadline')(e.target.value)
-  }))))), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary btn-full btn-lg",
-    onClick: save,
-    disabled: saving
-  }, saving ? 'Création...' : '💝 Lancer la cagnotte')));
-}
-
-// ═══ APP + RENDER ═══
-function AppContent() {
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      paddingBottom: 76
-    }
-  }, /*#__PURE__*/React.createElement(Routes, null, /*#__PURE__*/React.createElement(Route, {
+  }, ads && ads.length > 0 && /*#__PURE__*/React.createElement(AdBanner, {
+    ads: ads
+  }), /*#__PURE__*/React.createElement(Routes, null, /*#__PURE__*/React.createElement(Route, {
     path: "/",
     element: /*#__PURE__*/React.createElement(HomePage, null)
   }), /*#__PURE__*/React.createElement(Route, {
@@ -5891,6 +7538,15 @@ function AppContent() {
     path: "/create-post",
     element: /*#__PURE__*/React.createElement(CreatePostPage, null)
   }), /*#__PURE__*/React.createElement(Route, {
+    path: "/adhesion",
+    element: /*#__PURE__*/React.createElement(AdhesionPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/cotisations",
+    element: /*#__PURE__*/React.createElement(CotisationsPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/video",
+    element: /*#__PURE__*/React.createElement(VideoConferencePage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
     path: "/auth",
     element: /*#__PURE__*/React.createElement(AuthPage, null)
   }), /*#__PURE__*/React.createElement(Route, {
@@ -5898,14 +7554,20 @@ function AppContent() {
     element: /*#__PURE__*/React.createElement(SettingsPage, null)
   }), /*#__PURE__*/React.createElement(Route, {
     path: "/admin",
-    element: /*#__PURE__*/React.createElement(AdminPage, null)
+    element: /*#__PURE__*/React.createElement(AdminPageV2, null)
   }), /*#__PURE__*/React.createElement(Route, {
     path: "*",
     element: /*#__PURE__*/React.createElement(HomePage, null)
-  })), /*#__PURE__*/React.createElement(BottomNav, null), /*#__PURE__*/React.createElement(FAB, null), /*#__PURE__*/React.createElement(InstallBanner, null));
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      paddingBottom: 'env(safe-area-inset-bottom)'
+    }
+  })));
 }
-function App() {
-  return /*#__PURE__*/React.createElement(HashRouter, null, /*#__PURE__*/React.createElement(DarkProvider, null, /*#__PURE__*/React.createElement(LangProvider, null, /*#__PURE__*/React.createElement(PwaProvider, null, /*#__PURE__*/React.createElement(AuthProvider, null, IS_DEMO && /*#__PURE__*/React.createElement("div", {
+function AppV2() {
+  const [ads, setAds] = useState([]);
+  useEffect(() => listenAds(setAds), []);
+  return /*#__PURE__*/React.createElement(HashRouter, null, /*#__PURE__*/React.createElement(DarkProvider, null, /*#__PURE__*/React.createElement(LangProvider, null, /*#__PURE__*/React.createElement(PwaProvider, null, /*#__PURE__*/React.createElement(AdminProvider, null, /*#__PURE__*/React.createElement(AuthProvider, null, IS_DEMO && /*#__PURE__*/React.createElement("div", {
     style: {
       position: 'fixed',
       top: 0,
@@ -5919,15 +7581,19 @@ function App() {
       padding: '5px 12px',
       fontWeight: 700
     }
-  }, "\u2699\uFE0F Mode d\xE9mo \u2014 Configurez Firebase dans firebase-config.json"), /*#__PURE__*/React.createElement("div", {
+  }, "\u2699\uFE0F Mode d\xE9mo \u2014 Configurez Firebase \xB7 Admin: tata123"), /*#__PURE__*/React.createElement("div", {
     style: {
-      paddingTop: IS_DEMO ? 26 : 0
+      paddingTop: IS_DEMO ? 26 : 0,
+      minHeight: '100dvh',
+      background: 'var(--bg)'
     }
-  }, /*#__PURE__*/React.createElement(AppContent, null)))))));
+  }, /*#__PURE__*/React.createElement(AppContentV2, {
+    ads: ads
+  }), /*#__PURE__*/React.createElement(BottomNav, null), /*#__PURE__*/React.createElement(FAB, null), /*#__PURE__*/React.createElement(InstallBanner, null))))))));
 }
 const root = createRoot(document.getElementById('root'));
-root.render(/*#__PURE__*/React.createElement(App, null));
-console.log('🇲🇱 Diaspora Mali Connect — Chargé');
+root.render(/*#__PURE__*/React.createElement(AppV2, null));
+console.log('🇲🇱 Diaspora Mali Connect v2 — Admin: tata123');
 </script>
 
 <script>
