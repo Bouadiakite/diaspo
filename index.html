@@ -5,17 +5,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
 <meta name="theme-color" content="#2E7D32">
 <meta name="description" content="Diaspora Mali Connect — La plateforme des Maliens du monde entier">
-<meta property="og:title" content="Diaspora Mali Connect 🇲🇱">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="DMC">
 <link rel="manifest" href="manifest.json">
-<title>Diaspora Mali Connect 🇲🇱</title>
+<title>Diaspora Mali Connect</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+
+
 
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -136,32 +137,29 @@ textarea.fi{resize:vertical;min-height:70px}
 @media print{
   .bottom-nav,.fab,.fab-menu,.top-nav,.sidebar-desktop{display:none!important}
 }
+
+
 </style>
 </head>
 <body>
 
 <div id="root">
-  <div style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#E8F5E9 0%,#fff 60%);font-family:'Plus Jakarta Sans',system-ui,sans-serif">
-    <div style="font-size:72px;margin-bottom:16px">🇲🇱</div>
+  <div id="splash" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#E8F5E9 0%,#fff 60%);font-family:'Plus Jakarta Sans',system-ui,sans-serif">
+    <div style="font-size:72px;margin-bottom:16px">&#127474;&#127473;</div>
     <h1 style="font-size:22px;font-weight:900;color:#2E7D32;margin:0 0 4px">DIASPORA MALI CONNECT</h1>
     <p style="color:#9CA3AF;font-size:12px;margin:0 0 6px;font-style:italic">Unis partout, forts ensemble</p>
-    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">🌍 FR · EN · ES · BM · AR</p>
+    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">FR &bull; EN &bull; ES &bull; BM &bull; AR</p>
     <div style="width:32px;height:32px;border:3px solid #C8E6C9;border-top-color:#2E7D32;border-radius:50%;animation:spin .8s linear infinite"></div>
-    <p id="dmc-status" style="color:#D1D5DB;font-size:11px;margin-top:14px">Chargement...</p>
+    <p id="dmc-st" style="color:#D1D5DB;font-size:11px;margin-top:14px">Chargement...</p>
   </div>
 </div>
 <noscript><div style="padding:40px;text-align:center"><h2>JavaScript requis</h2></div></noscript>
 
 <script>
-window.onerror=function(msg,src,line){
-  var r=document.getElementById('root');
-  if(r)r.innerHTML='<div style="padding:30px;font-family:system-ui;min-height:100vh;background:#FEF2F2"><div style="font-size:48px;margin-bottom:12px">⚠️</div><h2 style="color:#DC2626;margin-bottom:12px">Erreur DMC</h2><p style="font-size:14px;color:#374151;background:#fff;padding:12px;border-radius:8px">'+(msg||'Erreur')+'</p><button onclick="location.reload()" style="margin-top:16px;padding:12px 24px;background:#2E7D32;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700">Recharger</button></div>';
-};
-function dmc_status(m){var e=document.getElementById('dmc-status');if(e)e.textContent=m}
-dmc_status('Chargement...');
+function dmc_st(m){var e=document.getElementById('dmc-st');if(e)e.textContent=m}
 </script>
 
-<!-- CONFIG FIREBASE — Admin: tata123 -->
+<!-- CONFIG FIREBASE — Admin par defaut: tata123 -->
 <script>
 window.FIREBASE_CONFIG = {
   apiKey:            "REMPLACEZ_PAR_VOTRE_API_KEY",
@@ -175,14 +173,48 @@ window.FIREBASE_CONFIG = {
 window.ADMIN_EMAILS = ["admin@diaspora-mali.com"];
 </script>
 
+<!-- React 18 — cdnjs/Cloudflare (primaire) + unpkg (secours) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"
+  onerror="this.onerror=null;this.src='https://unpkg.com/react@18.3.1/umd/react.production.min.js'"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"
+  onerror="this.onerror=null;this.src='https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js'"
+  crossorigin="anonymous"></script>
 
-<!-- ════════════════════ DIASPORA MALI CONNECT v2 ════════════════════ -->
-<!-- 🌍 FR · English · Español · Bambara · العربية  |  Admin: tata123 -->
+<!-- Firebase 10 compat — Google CDN -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+<!-- PDF + QR Code -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js" crossorigin></script>
+
+<!-- APPLICATION DMC v2 -->
 <script>
+dmc_st('React charge...');
 // ═══════════════════════════════════════════════
 //  DIASPORA MALI CONNECT — App principale
 //  Single-file React + Firebase Compat + PWA
 // ═══════════════════════════════════════════════
+
+// Vérification CDN avant démarrage
+(function() {
+  if (!window.React || !window.ReactDOM) {
+    var r = document.getElementById('root');
+    if (r) r.innerHTML = '<div style="padding:40px;text-align:center;font-family:system-ui;min-height:100vh;background:#E8F5E9">'
+      + '<div style="font-size:56px;margin-bottom:16px">🇲🇱</div>'
+      + '<h2 style="color:#2E7D32;margin-bottom:8px">Diaspora Mali Connect</h2>'
+      + '<p style="color:#6B7280;margin-bottom:6px">Connexion internet requise pour charger l\'application.</p>'
+      + '<p style="font-size:12px;color:#9CA3AF;margin-bottom:20px">React CDN unavailable — Check your connection</p>'
+      + '<button onclick="location.reload()" style="padding:12px 28px;background:#2E7D32;color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700;margin-right:10px">🔄 Réessayer</button>'
+      + '</div>';
+    return;
+  }
+  startDMC();
+})();
+
+function startDMC() {
 
 const React = window.React;
 const {
@@ -7593,7 +7625,8 @@ function AppV2() {
 }
 const root = createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(AppV2, null));
-console.log('🇲🇱 Diaspora Mali Connect v2 — Admin: tata123');
+console.log('🇲🇱 Diaspora Mali Connect v2 — Admin: tata123')
+} // fin startDMC;
 </script>
 
 <script>
