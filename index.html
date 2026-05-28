@@ -19,6 +19,7 @@
 
 
 
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 :root{
@@ -139,12 +140,13 @@ textarea.fi{resize:vertical;min-height:70px}
 }
 
 
+
 </style>
 </head>
 <body>
 
 <div id="root">
-  <div id="splash" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#E8F5E9 0%,#fff 60%);font-family:'Plus Jakarta Sans',system-ui,sans-serif">
+  <div id="splash" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#E8F5E9 0%,#fff 60%);font-family:'Plus Jakarta Sans',system-ui,sans-serif;z-index:9999">
     <div style="font-size:72px;margin-bottom:16px">&#127474;&#127473;</div>
     <h1 style="font-size:22px;font-weight:900;color:#2E7D32;margin:0 0 4px">DIASPORA MALI CONNECT</h1>
     <p style="color:#9CA3AF;font-size:12px;margin:0 0 6px;font-style:italic">Unis partout, forts ensemble</p>
@@ -156,10 +158,17 @@ textarea.fi{resize:vertical;min-height:70px}
 <noscript><div style="padding:40px;text-align:center"><h2>JavaScript requis</h2></div></noscript>
 
 <script>
-function dmc_st(m){var e=document.getElementById('dmc-st');if(e)e.textContent=m}
+function dmc_st(m) {
+  var e = document.getElementById('dmc-st');
+  if (e) e.textContent = m;
+}
+dmc_st('Chargement librairies...');
 </script>
 
-<!-- CONFIG FIREBASE — Admin par defaut: tata123 -->
+<!-- ====================================================== -->
+<!--  CONFIG FIREBASE — Modifiez avec vos vraies cles       -->
+<!--  Mot de passe admin : tata123                          -->
+<!-- ====================================================== -->
 <script>
 window.FIREBASE_CONFIG = {
   apiKey:            "REMPLACEZ_PAR_VOTRE_API_KEY",
@@ -173,13 +182,11 @@ window.FIREBASE_CONFIG = {
 window.ADMIN_EMAILS = ["admin@diaspora-mali.com"];
 </script>
 
-<!-- React 18 — cdnjs/Cloudflare (primaire) + unpkg (secours) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"
-  onerror="this.onerror=null;this.src='https://unpkg.com/react@18.3.1/umd/react.production.min.js'"
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"
-  onerror="this.onerror=null;this.src='https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js'"
-  crossorigin="anonymous"></script>
+<!-- React 18 — jsDelivr (CDN global fiable) -->
+<script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+
+<script>dmc_st('Firebase...');</script>
 
 <!-- Firebase 10 compat — Google CDN -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -187,34 +194,48 @@ window.ADMIN_EMAILS = ["admin@diaspora-mali.com"];
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 
 <!-- PDF + QR Code -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js" crossorigin></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js" crossorigin="anonymous"></script>
 
-<!-- APPLICATION DMC v2 -->
+<script>dmc_st('Demarrage app...');</script>
+
+<!-- ====================================================== -->
+<!--  APPLICATION DIASPORA MALI CONNECT v2                  -->
+<!-- ====================================================== -->
 <script>
-dmc_st('React charge...');
+
+/* ============================================================
+   DIASPORA MALI CONNECT v2 — Démarrage sécurisé
+   Admin: tata123
+   ============================================================ */
+
+// Timeout : si l'app ne démarre pas en 8s → afficher erreur
+var _dmcTimeout = setTimeout(function() {
+  var splash = document.getElementById('root');
+  if(splash && splash.querySelector('#splash')) {
+    splash.innerHTML = '<div style="padding:40px;text-align:center;font-family:system-ui;min-height:100vh;background:#E8F5E9">'
+      + '<div style="font-size:56px;margin-bottom:16px">&#127474;&#127473;</div>'
+      + '<h2 style="color:#2E7D32;margin-bottom:8px">Diaspora Mali Connect</h2>'
+      + '<p style="color:#6B7280;margin-bottom:6px">Le chargement prend trop longtemps.</p>'
+      + '<p style="font-size:12px;color:#9CA3AF;margin-bottom:20px">React: '+(window.React?'OK':'Non chargé')+' | DOM: OK</p>'
+      + '<button onclick="location.reload()" style="padding:12px 28px;background:#2E7D32;color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700">&#8635; Recharger</button>'
+      + '</div>';
+  }
+}, 8000);
+
+try {
+
+  // Vérification React
+  if(!window.React) throw new Error('React CDN non chargé (window.React undefined)');
+  if(!window.ReactDOM) throw new Error('ReactDOM CDN non chargé');
+  if(!window.ReactDOM.createRoot) throw new Error('React 18 createRoot non disponible');
+
+  dmc_st && dmc_st('React OK, démarrage...');
+
 // ═══════════════════════════════════════════════
 //  DIASPORA MALI CONNECT — App principale
 //  Single-file React + Firebase Compat + PWA
 // ═══════════════════════════════════════════════
-
-// Vérification CDN avant démarrage
-(function() {
-  if (!window.React || !window.ReactDOM) {
-    var r = document.getElementById('root');
-    if (r) r.innerHTML = '<div style="padding:40px;text-align:center;font-family:system-ui;min-height:100vh;background:#E8F5E9">'
-      + '<div style="font-size:56px;margin-bottom:16px">🇲🇱</div>'
-      + '<h2 style="color:#2E7D32;margin-bottom:8px">Diaspora Mali Connect</h2>'
-      + '<p style="color:#6B7280;margin-bottom:6px">Connexion internet requise pour charger l\'application.</p>'
-      + '<p style="font-size:12px;color:#9CA3AF;margin-bottom:20px">React CDN unavailable — Check your connection</p>'
-      + '<button onclick="location.reload()" style="padding:12px 28px;background:#2E7D32;color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700;margin-right:10px">🔄 Réessayer</button>'
-      + '</div>';
-    return;
-  }
-  startDMC();
-})();
-
-function startDMC() {
 
 const React = window.React;
 const {
@@ -7625,14 +7646,31 @@ function AppV2() {
 }
 const root = createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(AppV2, null));
-console.log('🇲🇱 Diaspora Mali Connect v2 — Admin: tata123')
-} // fin startDMC;
+console.log('🇲🇱 Diaspora Mali Connect v2 — Admin: tata123');
+
+  // Annuler le timeout si l'app a démarré avec succès
+  clearTimeout(_dmcTimeout);
+
+} catch(_err) {
+  clearTimeout(_dmcTimeout);
+  console.error('DMC Error:', _err);
+  var r = document.getElementById('root');
+  if(r) r.innerHTML = '<div style="padding:40px;text-align:center;font-family:system-ui;min-height:100vh;background:#FEF2F2">'
+    + '<div style="font-size:56px;margin-bottom:16px">&#9888;&#65039;</div>'
+    + '<h2 style="color:#DC2626;margin-bottom:8px">Erreur de démarrage</h2>'
+    + '<p style="font-size:13px;color:#374151;background:#fff;padding:12px;border-radius:8px;margin-bottom:16px;text-align:left">' + _err.message + '</p>'
+    + '<p style="font-size:11px;color:#9CA3AF;margin-bottom:20px">React: '+(window.React?'&#10003;':'&#10007;')+' | ReactDOM: '+(window.ReactDOM?'&#10003;':'&#10007;')+'</p>'
+    + '<button onclick="location.reload()" style="padding:12px 28px;background:#2E7D32;color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700">&#8635; Recharger</button>'
+    + '</div>';
+}
+
 </script>
 
 <script>
-if('serviceWorker' in navigator && location.protocol==='https:'){
-  navigator.serviceWorker.register('sw.js').catch(function(e){console.warn('SW:',e)});
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('sw.js').catch(function(e) { console.warn('SW:', e); });
 }
 </script>
+
 </body>
 </html>
