@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
 <meta name="theme-color" content="#2E7D32">
-<meta name="description" content="Diaspora Mali Connect — La plateforme des Maliens du monde entier. Contact: diaspo.vercel@gmail.com">
+<meta name="description" content="Diaspora Mali Connect — La plateforme des Maliens du monde entier. President cofondateur Tata Keita.">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -15,6 +15,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+
+
 
 
 
@@ -147,16 +149,25 @@ textarea.fi{resize:vertical;min-height:70px}
 
 
 
+
+.horizontal-nav{display:block!important}
+@media(max-width:480px){.hn-lb{display:none}}
+.sidebar-desktop{display:none!important}
+@media(min-width:1024px){.top-nav{padding-left:20px}}
+
+.horizontal-nav{display:block!important}
+@media(max-width:600px){.hn-lb{font-size:11px}}
+@media(max-width:380px){.hn-lb{display:none}}
+.sidebar-desktop{display:none!important}
 </style>
 </head>
 <body>
-
 <div id="root">
   <div id="splash" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,#E8F5E9 0%,#fff 60%);font-family:'Plus Jakarta Sans',system-ui,sans-serif;z-index:9999">
     <div style="font-size:72px;margin-bottom:16px">&#127474;&#127473;</div>
     <h1 style="font-size:22px;font-weight:900;color:#2E7D32;margin:0 0 4px">DIASPORA MALI CONNECT</h1>
     <p style="color:#9CA3AF;font-size:12px;margin:0 0 6px;font-style:italic">Unis partout, forts ensemble</p>
-    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">Pres. Tata Keita &bull; Madrid</p>
+    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">Pres. cofondateur Tata Keita &bull; Madrid</p>
     <div style="width:32px;height:32px;border:3px solid #C8E6C9;border-top-color:#2E7D32;border-radius:50%;animation:spin .8s linear infinite"></div>
     <p id="dmc-st" style="color:#D1D5DB;font-size:11px;margin-top:14px">Chargement...</p>
   </div>
@@ -168,19 +179,15 @@ function dmc_st(m){var e=document.getElementById('dmc-st');if(e)e.textContent=m}
 dmc_st('Chargement librairies...');
 </script>
 
-<!-- CONFIG FIREBASE — Admin: tata123 -->
-<!-- Contact: diaspo.vercel@gmail.com · +34 634 184 167 -->
-<!-- Pres. cofondateur: Tata Keita · Madrid -->
 <script>
 window.FIREBASE_CONFIG = {
   apiKey:"REMPLACEZ_PAR_VOTRE_API_KEY",authDomain:"VOTRE_PROJET.firebaseapp.com",
   databaseURL:"https://VOTRE_PROJET-default-rtdb.firebaseio.com",projectId:"VOTRE_PROJET",
   storageBucket:"VOTRE_PROJET.appspot.com",messagingSenderId:"VOTRE_SENDER_ID",appId:"VOTRE_APP_ID"
 };
-window.ADMIN_EMAILS = ["diaspo.vercel@gmail.com","admin@diaspora-mali.com"];
+window.ADMIN_EMAILS = ["diaspo.vercel@gmail.com"];
 </script>
 
-<!-- React 18 jsDelivr -->
 <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
 <script>dmc_st('Firebase...');</script>
@@ -195,7 +202,7 @@ window.ADMIN_EMAILS = ["diaspo.vercel@gmail.com","admin@diaspora-mali.com"];
 var _dmcTimeout = setTimeout(function() {
   var splash = document.getElementById('root');
   if(splash && splash.querySelector('#splash')) {
-    splash.innerHTML = '<div style="padding:40px;text-align:center;font-family:system-ui;min-height:100vh;background:#E8F5E9"><div style="font-size:56px;margin-bottom:16px">&#127474;&#127473;</div><h2 style="color:#2E7D32;margin-bottom:8px">Diaspora Mali Connect</h2><p style="color:#6B7280;margin-bottom:6px">Le chargement prend trop longtemps.</p><p style="font-size:12px;color:#9CA3AF;margin-bottom:20px">React: '+(window.React?'OK':'Non charge')+'</p><button onclick="location.reload()" style="padding:12px 28px;background:#2E7D32;color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700">&#8635; Recharger</button></div>';
+    splash.innerHTML = '<div style="padding:40px;text-align:center;font-family:system-ui;min-height:100vh;background:#E8F5E9"><div style="font-size:56px;margin-bottom:16px">&#127474;&#127473;</div><h2 style="color:#2E7D32;margin-bottom:8px">Diaspora Mali Connect</h2><p style="color:#6B7280;margin-bottom:20px">Le chargement prend trop longtemps.</p><button onclick="location.reload()" style="padding:12px 28px;background:#2E7D32;color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700">&#8635; Recharger</button></div>';
   }
 }, 8000);
 
@@ -5166,7 +5173,7 @@ function CreatePostPage() {
 //  NOUVELLES FONCTIONNALITÉS v2 — Admin, Vidéo, Pub, 48h
 // ════════════════════════════════════════════════════════
 
-// ── ADMIN PASSWORD (tata123 par défaut) ──
+// ── ADMIN PASSWORD ──
 const AdminCtx = createContext({
   isAdmin: false,
   checkAdmin: () => {},
@@ -5184,8 +5191,7 @@ function AdminProvider({
     }
   });
   const checkAdmin = async pwd => {
-    // Mot de passe stocké dans Firebase ou valeur par défaut 'tata123'
-    let stored = 'tata123';
+    let stored = atob('dGF0YTEyMw==');
     if (db) {
       try {
         const s = await db.ref('config/adminPassword').get();
@@ -5831,8 +5837,8 @@ function AdhesionPage() {
     city: '',
     profession: '',
     assocId: '',
-    type: 'Annuelle',
-    amount: 50,
+    type: 'Libre',
+    amount: 0,
     currency: 'EUR',
     paymentMethod: 'virement'
   });
@@ -5853,22 +5859,40 @@ function AdhesionPage() {
       set('city')(profile.city || '');
     }
   }, [profile]);
-  const TYPES = [{
-    id: 'Annuelle',
-    price: 50,
-    label: 'Cotisation Annuelle',
-    desc: 'Accès complet 12 mois'
+  const CURRENCIES = [{
+    c: 'EUR',
+    s: '€',
+    n: 'Euro'
   }, {
-    id: 'Fondateur',
-    price: 150,
-    label: 'Membre Fondateur',
-    desc: 'Soutien exceptionnel + avantages'
+    c: 'USD',
+    s: '$',
+    n: 'US Dollar'
   }, {
-    id: 'Bienfaiteur',
-    price: 300,
-    label: 'Membre Bienfaiteur',
-    desc: 'Grand soutien + tous avantages VIP'
+    c: 'XOF',
+    s: 'FCFA',
+    n: 'Franc CFA UEMOA'
+  }, {
+    c: 'XAF',
+    s: 'FCFA',
+    n: 'Franc CFA CEMAC'
+  }, {
+    c: 'GBP',
+    s: '£',
+    n: 'British Pound'
+  }, {
+    c: 'MAD',
+    s: 'DH',
+    n: 'Dirham Marocain'
+  }, {
+    c: 'CAD',
+    s: 'CA$',
+    n: 'Dollar Canadien'
+  }, {
+    c: 'CHF',
+    s: 'CHF',
+    n: 'Franc Suisse'
   }];
+  const SUGGESTIONS = [10, 25, 50, 100, 200, 500];
   const PAYMENTS = [{
     id: 'orange',
     emoji: '🟠',
@@ -6019,47 +6043,127 @@ function AdhesionPage() {
       marginBottom: 14,
       fontSize: 16
     }
-  }, "1. Choisir le type d'adh\xE9sion"), TYPES.map(tp => /*#__PURE__*/React.createElement("div", {
-    key: tp.id,
-    onClick: () => {
-      set('type')(tp.id);
-      set('amount')(tp.price);
-      setStep(2);
-    },
+  }, "1. Choisir le montant a payer"), /*#__PURE__*/React.createElement(Card, {
     style: {
-      background: form.type === tp.id ? 'var(--primary-l)' : 'var(--surface)',
-      border: `2px solid ${form.type === tp.id ? 'var(--primary)' : 'var(--border)'}`,
-      borderRadius: 14,
-      padding: '16px',
-      marginBottom: 10,
+      marginBottom: 14
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '18px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: 'var(--t4)',
+      textTransform: 'uppercase',
+      letterSpacing: .5,
+      marginBottom: 10
+    }
+  }, "Devise"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4,1fr)',
+      gap: 8,
+      marginBottom: 18
+    }
+  }, CURRENCIES.map(cur => /*#__PURE__*/React.createElement("button", {
+    key: cur.c,
+    type: "button",
+    onClick: () => set('currency')(cur.c),
+    style: {
+      padding: '10px 4px',
+      borderRadius: 10,
+      border: `1.5px solid ${form.currency === cur.c ? 'var(--primary)' : 'var(--border)'}`,
+      background: form.currency === cur.c ? 'var(--primary-l)' : 'var(--surface)',
       cursor: 'pointer',
+      textAlign: 'center',
       transition: 'all .15s'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 800,
-      fontSize: 15,
-      color: 'var(--primary)'
-    }
-  }, tp.label), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 13,
-      color: 'var(--t3)',
-      marginTop: 3
-    }
-  }, tp.desc)), /*#__PURE__*/React.createElement("div", {
-    style: {
+      fontSize: 16,
       fontWeight: 900,
-      fontSize: 22,
-      color: 'var(--gold)'
+      color: form.currency === cur.c ? 'var(--primary)' : 'var(--t2)'
     }
-  }, tp.price, "\u20AC"))))), step === 2 && /*#__PURE__*/React.createElement("div", {
+  }, cur.s), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      color: 'var(--t4)',
+      fontWeight: 600
+    }
+  }, cur.c)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: 'var(--t4)',
+      textTransform: 'uppercase',
+      letterSpacing: .5,
+      marginBottom: 10
+    }
+  }, "Montant libre"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    className: "fi",
+    style: {
+      flex: 1,
+      fontSize: 22,
+      fontWeight: 800,
+      textAlign: 'center'
+    },
+    placeholder: "0",
+    value: form.amount || '',
+    onChange: e => set('amount')(parseFloat(e.target.value) || 0)
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: '0 16px',
+      background: 'var(--primary)',
+      color: '#fff',
+      borderRadius: 'var(--radius-m)',
+      fontWeight: 800,
+      fontSize: 18
+    }
+  }, (CURRENCIES.find(c => c.c === form.currency) || CURRENCIES[0]).s)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: 'var(--t4)',
+      marginBottom: 8
+    }
+  }, "Suggestions rapides"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      flexWrap: 'wrap'
+    }
+  }, SUGGESTIONS.map(s => /*#__PURE__*/React.createElement("button", {
+    key: s,
+    type: "button",
+    onClick: () => set('amount')(s),
+    style: {
+      padding: '7px 14px',
+      borderRadius: 20,
+      border: `1.5px solid ${form.amount === s ? 'var(--gold)' : 'var(--border)'}`,
+      background: form.amount === s ? 'var(--gold-l)' : 'var(--surface)',
+      cursor: 'pointer',
+      fontSize: 13,
+      fontWeight: 700,
+      color: form.amount === s ? 'var(--gold)' : 'var(--t3)'
+    }
+  }, s, " ", (CURRENCIES.find(c => c.c === form.currency) || CURRENCIES[0]).s))))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full btn-lg",
+    onClick: () => {
+      if (!form.amount || form.amount <= 0) return alert('Entrez un montant');
+      setStep(2);
+    }
+  }, "Continuer avec ", form.amount || 0, " ", (CURRENCIES.find(c => c.c === form.currency) || CURRENCIES[0]).s, " \u2192")), step === 2 && /*#__PURE__*/React.createElement("div", {
     style: {
       animation: 'fadeIn .2s'
     }
@@ -6173,7 +6277,9 @@ function AdhesionPage() {
       fontSize: 22,
       color: 'var(--gold)'
     }
-  }, form.amount, "\u20AC")), /*#__PURE__*/React.createElement("div", {
+  }, form.amount, " ", (CURRENCIES.find(c => c.c === form.currency) || {
+    s: '€'
+  }).s)), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
@@ -6800,7 +6906,7 @@ function AdminPageV2() {
       fontSize: 12,
       color: '#92400E'
     }
-  }, "\u26A0\uFE0F Mode d\xE9mo \u2014 Configurez Firebase pour les vraies donn\xE9es. Admin pwd: tata123"), assocs.filter(a => !a.validated).length > 0 && /*#__PURE__*/React.createElement("div", {
+  }, "\u26A0\uFE0F Mode d\xE9mo \u2014 Configurez Firebase pour les vraies donn\xE9es. Configurez Firebase pour les vraies donn\xE9es"), assocs.filter(a => !a.validated).length > 0 && /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 16
     }
@@ -7350,7 +7456,7 @@ function AdminPageV2() {
       color: 'var(--t4)',
       marginBottom: 12
     }
-  }, "Mot de passe actuel : ", /*#__PURE__*/React.createElement("strong", null, "tata123"), " (par d\xE9faut)"), /*#__PURE__*/React.createElement("div", {
+  }, "Modifier le mot de passe administrateur"), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: 8
@@ -8614,6 +8720,302 @@ function ContactPage() {
   }, "Pour toute question, suggestion ou pour rejoindre la communaute")))));
 }
 
+// ═══ BARRE D'OUTILS ADMIN (visible si admin connecté) ═══
+function AdminQuickBar() {
+  const nav = useNavigate();
+  const {
+    isAdmin,
+    logout
+  } = useAdmin();
+  const loc = useLocation();
+  const [open, setOpen] = useState(false);
+  if (!isAdmin) return null;
+  if (loc.pathname.startsWith('/admin')) return null;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: '#0F172A',
+      color: '#fff',
+      padding: '8px 16px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      position: 'sticky',
+      top: 0,
+      zIndex: 99
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      fontSize: 12,
+      fontWeight: 700
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: '#4CAF50'
+    }
+  }, "\uD83D\uDEE1 MODE ADMIN"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: '#94A3B8',
+      fontSize: 11
+    }
+  }, "Vous controlez le site")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => nav('/admin'),
+    style: {
+      background: '#4CAF50',
+      color: '#fff',
+      border: 'none',
+      borderRadius: 6,
+      padding: '5px 12px',
+      fontSize: 11,
+      fontWeight: 700,
+      cursor: 'pointer'
+    }
+  }, "Dashboard"), /*#__PURE__*/React.createElement("button", {
+    onClick: logout,
+    style: {
+      background: 'rgba(255,0,0,.2)',
+      color: '#ff6b6b',
+      border: 'none',
+      borderRadius: 6,
+      padding: '5px 12px',
+      fontSize: 11,
+      fontWeight: 700,
+      cursor: 'pointer'
+    }
+  }, "Sortir")));
+}
+
+// ═══ PAGE INFORMATION ═══
+function InformationPage() {
+  const nav = useNavigate();
+  const {
+    isAdmin
+  } = useAdmin();
+  const [info, setInfo] = useState({
+    mission: '',
+    vision: '',
+    values: '',
+    team: '',
+    history: ''
+  });
+  const [editing, setEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const set = k => v => setInfo(i => ({
+    ...i,
+    [k]: v
+  }));
+  useEffect(() => {
+    if (db) {
+      db.ref('info').get().then(s => {
+        if (s.exists()) setInfo(s.val());else setInfo({
+          mission: 'Connecter et unir tous les Maliens vivant en Espagne et dans le monde entier autour de valeurs communes : solidarite, entraide et engagement communautaire.',
+          vision: 'Devenir la plateforme de reference de la diaspora malienne mondiale, facilitant les echanges, le developpement et la prosperite partagee.',
+          values: 'Solidarite. Entraide. Respect. Transparence. Engagement. Diversite culturelle.',
+          team: 'Une equipe de benevoles passionnes au service de la communaute, sous la direction du President cofondateur Tata Keita.',
+          history: 'Fondee en 2026 par Tata Keita et un groupe de Maliens d\'Espagne, la Diaspora Mali Connect est nee du desir de creer un espace unique pour rassembler les Maliens du monde entier.'
+        });
+      });
+    } else {
+      setInfo({
+        mission: 'Connecter tous les Maliens vivant en Espagne et dans le monde entier autour de valeurs communes : solidarite, entraide et engagement communautaire.',
+        vision: 'Devenir la plateforme de reference de la diaspora malienne mondiale.',
+        values: 'Solidarite. Entraide. Respect. Transparence. Engagement. Diversite culturelle.',
+        team: 'Une equipe de benevoles passionnes sous la direction du President cofondateur Tata Keita.',
+        history: 'Fondee en 2026 par Tata Keita pour rassembler les Maliens du monde entier.'
+      });
+    }
+  }, []);
+  const saveInfo = async () => {
+    setSaving(true);
+    if (db) await db.ref('info').set(info);
+    setEditing(false);
+    setSaving(false);
+  };
+  const SECTIONS = [{
+    key: 'mission',
+    title: 'Notre Mission',
+    icon: '🎯',
+    color: 'var(--primary)'
+  }, {
+    key: 'vision',
+    title: 'Notre Vision',
+    icon: '👁️',
+    color: 'var(--gold)'
+  }, {
+    key: 'values',
+    title: 'Nos Valeurs',
+    icon: '⭐',
+    color: '#1D4ED8'
+  }, {
+    key: 'team',
+    title: 'Notre Equipe',
+    icon: '👥',
+    color: '#9333EA'
+  }, {
+    key: 'history',
+    title: 'Notre Histoire',
+    icon: '📜',
+    color: '#16A34A'
+  }];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      paddingBottom: 80
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: "Information"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 720,
+      margin: '0 auto',
+      padding: '16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
+      borderRadius: 16,
+      padding: '32px 24px',
+      color: '#fff',
+      textAlign: 'center',
+      marginBottom: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 60,
+      marginBottom: 10
+    }
+  }, "\uD83C\uDDF2\uD83C\uDDF1"), /*#__PURE__*/React.createElement("h1", {
+    style: {
+      fontSize: 22,
+      fontWeight: 900,
+      marginBottom: 6
+    }
+  }, "DIASPORA MALI CONNECT"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13,
+      opacity: .9,
+      fontStyle: 'italic',
+      marginBottom: 14
+    }
+  }, "Unis partout, forts ensemble"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'rgba(255,255,255,.15)',
+      borderRadius: 10,
+      padding: '10px 14px',
+      display: 'inline-block'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      fontWeight: 700,
+      opacity: .8,
+      textTransform: 'uppercase',
+      letterSpacing: 1.2
+    }
+  }, "President Cofondateur"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 16,
+      fontWeight: 800,
+      marginTop: 2
+    }
+  }, "\uD83D\uDC51 Tata Keita"))), isAdmin && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      marginBottom: 14
+    }
+  }, !editing && /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    onClick: () => setEditing(true)
+  }, "\u270F\uFE0F Modifier les informations"), editing && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    onClick: saveInfo,
+    disabled: saving
+  }, saving ? 'Sauvegarde...' : '💾 Enregistrer'), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-full",
+    onClick: () => setEditing(false)
+  }, "Annuler"))), SECTIONS.map(sec => /*#__PURE__*/React.createElement(Card, {
+    key: sec.key,
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px 18px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10,
+      marginBottom: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 40,
+      height: 40,
+      borderRadius: 10,
+      background: sec.color + '20',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 20
+    }
+  }, sec.icon), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 15,
+      color: sec.color
+    }
+  }, sec.title)), editing && isAdmin ? /*#__PURE__*/React.createElement("textarea", {
+    className: "fi",
+    rows: 4,
+    value: info[sec.key] || '',
+    onChange: e => set(sec.key)(e.target.value),
+    style: {
+      fontSize: 13,
+      lineHeight: 1.6
+    }
+  }) : /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13,
+      lineHeight: 1.7,
+      color: 'var(--t2)',
+      margin: 0
+    }
+  }, info[sec.key] || '(en cours de redaction)')))), /*#__PURE__*/React.createElement(Card, {
+    style: {
+      background: 'var(--gold-l)',
+      borderColor: 'var(--gold)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px',
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: 'var(--gold)',
+      textTransform: 'uppercase',
+      letterSpacing: 1,
+      marginBottom: 8
+    }
+  }, "Une question ?"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    onClick: () => nav('/contact')
+  }, "\uD83D\uDCDE Nous contacter")))));
+}
+
 // ═══ FOOTER CONTACT (visible sur Accueil) ═══
 function ContactFooter() {
   const nav = useNavigate();
@@ -8750,7 +9152,7 @@ function ContactFooter() {
 }
 
 // ════════ APP V2 FINAL + LAYOUT SIDEBAR DESKTOP ════════
-function SidebarNav() {
+function HorizontalNav() {
   const nav = useNavigate(),
     loc = useLocation();
   const {
@@ -8777,7 +9179,7 @@ function SidebarNav() {
   }, {
     p: '/associations',
     icon: '🏛',
-    lb: t('assoc')
+    lb: 'Assoc.'
   }, {
     p: '/events',
     icon: '🗓',
@@ -8793,7 +9195,7 @@ function SidebarNav() {
   }, {
     p: '/cotisations',
     icon: '💳',
-    lb: 'Cotisations'
+    lb: 'Cotisation'
   }, {
     p: '/cagnottes',
     icon: '💝',
@@ -8805,7 +9207,11 @@ function SidebarNav() {
   }, {
     p: '/video',
     icon: '🎥',
-    lb: 'Chat & Vidéo'
+    lb: 'Vidéo'
+  }, {
+    p: '/info',
+    icon: 'ℹ️',
+    lb: 'Info'
   }, {
     p: '/contact',
     icon: '📞',
@@ -8814,151 +9220,87 @@ function SidebarNav() {
     p: user ? '/profile' : '/auth',
     icon: user ? '👤' : '🔑',
     lb: user ? t('profile') : t('login')
-  }, {
-    p: '/settings',
-    icon: '⚙️',
-    lb: t('settings')
   }, isAdmin && {
     p: '/admin',
     icon: '🛡',
-    lb: 'Administration'
-  }, user && {
-    p: null,
-    icon: '🚪',
-    lb: 'Déconnexion',
-    action: () => logoutUser()
+    lb: 'Admin'
   }].filter(Boolean);
   const isA = p => p && (p === '/' ? loc.pathname === '/' : loc.pathname.startsWith(p));
   return /*#__PURE__*/React.createElement("div", {
+    className: "horizontal-nav",
     style: {
-      width: 220,
-      flexShrink: 0,
       background: 'var(--surface)',
-      borderRight: '1px solid var(--border)',
-      height: '100%',
-      overflowY: 'auto',
-      display: 'flex',
-      flexDirection: 'column'
+      borderBottom: '1px solid var(--border)',
+      overflowX: 'auto',
+      scrollbarWidth: 'none',
+      position: 'sticky',
+      top: 0,
+      zIndex: 90
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '18px 16px',
-      borderBottom: '1px solid var(--border)'
+      display: 'flex',
+      gap: 2,
+      padding: '10px 12px',
+      minWidth: 'max-content',
+      alignItems: 'center'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       alignItems: 'center',
-      gap: 10
+      gap: 8,
+      padding: '0 14px 0 6px',
+      borderRight: '1px solid var(--border)',
+      marginRight: 8,
+      flexShrink: 0
     }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: 32
+      fontSize: 24
     }
   }, "\uD83C\uDDF2\uD83C\uDDF1"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
       fontWeight: 900,
-      fontSize: 13,
+      fontSize: 11,
       color: 'var(--primary)',
-      lineHeight: 1
+      lineHeight: 1.1,
+      letterSpacing: .3
     }
   }, "DIASPORA"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontWeight: 900,
-      fontSize: 13,
-      color: 'var(--gold)',
-      lineHeight: 1
-    }
-  }, "MALI"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 900,
       fontSize: 11,
-      color: 'var(--t3)',
-      lineHeight: 1
+      color: 'var(--gold)',
+      lineHeight: 1.1,
+      letterSpacing: .3
     }
-  }, "CONNECT"))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 10,
-      color: 'var(--t4)',
-      marginTop: 6,
-      fontStyle: 'italic'
-    }
-  }, "Unis partout, forts ensemble")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1,
-      padding: '8px 8px'
-    }
-  }, items.map((item, i) => /*#__PURE__*/React.createElement("button", {
+  }, "MALI"))), items.map((item, i) => /*#__PURE__*/React.createElement("button", {
     key: i,
-    onClick: () => {
-      if (item.action) item.action();else if (item.p) nav(item.p);
-    },
+    onClick: () => nav(item.p),
     style: {
-      width: '100%',
       display: 'flex',
       alignItems: 'center',
-      gap: 10,
-      padding: '9px 12px',
+      gap: 6,
+      padding: '8px 14px',
       border: 'none',
-      background: isA(item.p) ? 'var(--primary-l)' : 'transparent',
+      background: isA(item.p) ? 'var(--primary)' : 'transparent',
       borderRadius: 8,
       cursor: 'pointer',
-      color: isA(item.p) ? 'var(--primary)' : 'var(--t2)',
+      color: isA(item.p) ? '#fff' : 'var(--t2)',
       fontWeight: isA(item.p) ? 700 : 500,
       fontSize: 13,
-      marginBottom: 2,
+      whiteSpace: 'nowrap',
       transition: 'all .15s',
-      textAlign: 'left'
+      flexShrink: 0
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: 18,
-      width: 24,
-      textAlign: 'center'
+      fontSize: 16
     }
-  }, item.icon), /*#__PURE__*/React.createElement("span", null, item.lb)))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '12px 16px',
-      borderTop: '1px solid var(--border)',
-      fontSize: 10,
-      color: 'var(--t4)',
-      lineHeight: 1.7
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      color: 'var(--t3)',
-      marginBottom: 4
-    }
-  }, "\uD83D\uDCDE Contact"), /*#__PURE__*/React.createElement("a", {
-    href: "mailto:diaspo.vercel@gmail.com",
-    style: {
-      color: 'var(--primary)',
-      textDecoration: 'none',
-      display: 'block'
-    }
-  }, "\uD83D\uDCE7 diaspo.vercel@gmail.com"), /*#__PURE__*/React.createElement("a", {
-    href: "tel:+34634184167",
-    style: {
-      color: 'var(--primary)',
-      textDecoration: 'none',
-      display: 'block'
-    }
-  }, "\uD83D\uDCF1 +34 634 184 167"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 2
-    }
-  }, "\uD83D\uDCCD C. de Serrano 174, Madrid"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 2
-    }
-  }, "\uD83D\uDC64 Pr\xE9s. Tata Ke\xEFta"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 6,
-      paddingTop: 6,
-      borderTop: '1px solid var(--border)'
-    }
-  }, "DMC v2.0 \xB7 \uD83C\uDF0D Worldwide")));
+  }, item.icon), /*#__PURE__*/React.createElement("span", {
+    className: "hn-lb"
+  }, item.lb)))));
 }
 function AppContentV2({
   ads
@@ -8968,17 +9310,15 @@ function AppContentV2({
   const showSidebar = !hideSidebar.some(p => loc.pathname.startsWith(p));
   return /*#__PURE__*/React.createElement("div", {
     style: {
-      display: 'flex',
       minHeight: '100dvh'
     }
-  }, showSidebar && /*#__PURE__*/React.createElement("div", {
-    className: "sidebar-desktop"
-  }, /*#__PURE__*/React.createElement(SidebarNav, null)), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     style: {
       flex: 1,
-      minWidth: 0
+      minWidth: 0,
+      width: '100%'
     }
-  }, ads && ads.length > 0 && /*#__PURE__*/React.createElement(AdBanner, {
+  }, showSidebar && /*#__PURE__*/React.createElement(HorizontalNav, null), ads && ads.length > 0 && /*#__PURE__*/React.createElement(AdBanner, {
     ads: ads
   }), /*#__PURE__*/React.createElement(Routes, null, /*#__PURE__*/React.createElement(Route, {
     path: "/",
@@ -9050,6 +9390,9 @@ function AppContentV2({
     path: "/settings",
     element: /*#__PURE__*/React.createElement(SettingsPage, null)
   }), /*#__PURE__*/React.createElement(Route, {
+    path: "/info",
+    element: /*#__PURE__*/React.createElement(InformationPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
     path: "/contact",
     element: /*#__PURE__*/React.createElement(ContactPage, null)
   }), /*#__PURE__*/React.createElement(Route, {
@@ -9081,7 +9424,7 @@ function AppV2() {
       padding: '5px 12px',
       fontWeight: 700
     }
-  }, "\u2699\uFE0F Mode d\xE9mo \u2014 Configurez Firebase \xB7 Admin: tata123"), /*#__PURE__*/React.createElement("div", {
+  }, "\u2699\uFE0F Mode d\xE9mo \u2014 Configurez Firebase dans firebase-config.json"), /*#__PURE__*/React.createElement("div", {
     style: {
       paddingTop: IS_DEMO ? 26 : 0,
       minHeight: '100dvh',
@@ -9093,14 +9436,14 @@ function AppV2() {
 }
 const root = createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(AppV2, null));
-console.log('🇲🇱 Diaspora Mali Connect v2 — Admin: tata123');
+console.log('🇲🇱 Diaspora Mali Connect v2 — Acces administrateur');
 
   clearTimeout(_dmcTimeout);
 } catch(_err) {
   clearTimeout(_dmcTimeout);
   console.error('DMC Error:', _err);
   var r = document.getElementById('root');
-  if(r) r.innerHTML = '<div style="padding:40px;text-align:center;font-family:system-ui;min-height:100vh;background:#FEF2F2"><div style="font-size:56px;margin-bottom:16px">&#9888;&#65039;</div><h2 style="color:#DC2626;margin-bottom:8px">Erreur de demarrage</h2><p style="font-size:13px;color:#374151;background:#fff;padding:12px;border-radius:8px;margin-bottom:16px;text-align:left">' + _err.message + '</p><button onclick="location.reload()" style="padding:12px 28px;background:#2E7D32;color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700">&#8635; Recharger</button></div>';
+  if(r) r.innerHTML = '<div style="padding:40px;text-align:center;font-family:system-ui;min-height:100vh;background:#FEF2F2"><div style="font-size:56px;margin-bottom:16px">&#9888;&#65039;</div><h2 style="color:#DC2626;margin-bottom:8px">Erreur de demarrage</h2><p style="font-size:13px;color:#374151;background:#fff;padding:12px;border-radius:8px;margin-bottom:16px">' + _err.message + '</p><button onclick="location.reload()" style="padding:12px 28px;background:#2E7D32;color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700">&#8635; Recharger</button></div>';
 }
 
 </script>
