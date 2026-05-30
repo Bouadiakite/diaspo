@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
 <meta name="theme-color" content="#2E7D32">
-<meta name="description" content="Diaspora Mali Connect — Plateforme 100% gratuite. Inscription sans email. Pres. Tata Keita.">
+<meta name="description" content="Diaspora Mali Connect — Plateforme 100% gratuite. Pres. Tata Keita.">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+
 
 
 
@@ -189,6 +190,11 @@ textarea.fi{resize:vertical;min-height:70px}
 @media(max-width:600px){.hn-lb{font-size:11px}}
 @media(max-width:380px){.hn-lb{display:none}}
 .sidebar-desktop{display:none!important}
+
+.horizontal-nav{display:block!important}
+@media(max-width:600px){.hn-lb{font-size:11px}}
+@media(max-width:380px){.hn-lb{display:none}}
+.sidebar-desktop{display:none!important}
 </style>
 </head>
 <body>
@@ -197,7 +203,7 @@ textarea.fi{resize:vertical;min-height:70px}
     <div style="font-size:72px;margin-bottom:16px">&#127474;&#127473;</div>
     <h1 style="font-size:22px;font-weight:900;color:#2E7D32;margin:0 0 4px">DIASPORA MALI CONNECT</h1>
     <p style="color:#9CA3AF;font-size:12px;margin:0 0 6px;font-style:italic">Unis partout, forts ensemble</p>
-    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">100% Gratuit &bull; Sans email ni mot de passe</p>
+    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">100% Gratuit &bull; Adhesion sans email</p>
     <div style="width:32px;height:32px;border:3px solid #C8E6C9;border-top-color:#2E7D32;border-radius:50%;animation:spin .8s linear infinite"></div>
     <p id="dmc-st" style="color:#D1D5DB;font-size:11px;margin-top:14px">Chargement...</p>
   </div>
@@ -3019,60 +3025,98 @@ function HomePage() {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontWeight: 800,
-      fontSize: 15,
+      fontSize: 16,
       display: 'flex',
       alignItems: 'center',
-      gap: 6
+      gap: 8
     }
-  }, "\uD83D\uDCF0 Actualit\xE9s"), /*#__PURE__*/React.createElement("button", {
+  }, "\uD83D\uDCF0 Actualites & Informations"), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-ghost btn-sm",
     onClick: () => nav('/news')
   }, t('seeAll'), " \u2192")), /*#__PURE__*/React.createElement("div", {
     style: {
-      display: 'flex',
-      gap: 10,
-      padding: '0 16px 16px',
-      overflowX: 'auto',
-      scrollbarWidth: 'none'
+      padding: '0 16px 16px'
     }
-  }, news.map(n => /*#__PURE__*/React.createElement("div", {
+  }, news.map(n => /*#__PURE__*/React.createElement(Card, {
     key: n.id,
     style: {
-      minWidth: 220,
-      background: 'var(--surface)',
-      borderRadius: 'var(--radius-l)',
-      border: '1px solid var(--border)',
-      padding: 14,
-      flexShrink: 0,
-      cursor: 'pointer',
-      transition: 'all .2s'
-    },
-    onClick: () => nav('/news')
+      marginBottom: 14
+    }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 32,
-      marginBottom: 8,
-      textAlign: 'center',
-      padding: '12px',
-      background: 'var(--primary-l)',
-      borderRadius: 'var(--radius-m)'
+      padding: '16px 18px'
     }
-  }, n.image), /*#__PURE__*/React.createElement(Badge, {
-    color: "green"
-  }, n.category), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontWeight: 700,
-      fontSize: 13,
-      marginTop: 6,
-      marginBottom: 4,
-      lineHeight: 1.3
+      display: 'flex',
+      alignItems: 'flex-start',
+      gap: 10,
+      marginBottom: 10
     }
-  }, n.title), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 36,
+      width: 54,
+      height: 54,
+      background: 'var(--primary-l)',
+      borderRadius: 12,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0
+    }
+  }, n.image), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      marginBottom: 6,
+      flexWrap: 'wrap'
+    }
+  }, /*#__PURE__*/React.createElement(Badge, {
+    color: "green"
+  }, n.category), /*#__PURE__*/React.createElement(Badge, {
+    color: "gray"
+  }, n.date)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 15,
+      lineHeight: 1.3,
+      color: 'var(--t1)'
+    }
+  }, n.title))), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13,
+      lineHeight: 1.7,
+      color: 'var(--t2)',
+      marginBottom: 12,
+      whiteSpace: 'pre-wrap'
+    }
+  }, n.content), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingTop: 10,
+      borderTop: '1px solid var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 11,
+      color: 'var(--t4)',
+      fontWeight: 600
+    }
+  }, "Par ", n.author, " \xB7 ", n.source), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 14,
+      fontSize: 12,
       color: 'var(--t4)'
     }
-  }, n.date, " \xB7 \u2764 ", n.likes)))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null, "\u2764 ", n.likes || 0), /*#__PURE__*/React.createElement("span", null, "\uD83D\uDCAC ", n.comments || 0))))))), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: '0 16px'
     }
@@ -3101,36 +3145,40 @@ function HomePage() {
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontWeight: 800,
-      fontSize: 15,
+      fontSize: 16,
       marginBottom: 12,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between'
     }
-  }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDDD3 Prochains \xE9v\xE9nements"), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDDD3 Evenements (Culture, Business, Sport, Sante, Social)"), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-ghost btn-sm",
     onClick: () => nav('/events')
-  }, t('seeAll'), " \u2192")), DEMO_EVENTS.slice(0, 2).map(ev => /*#__PURE__*/React.createElement(Card, {
+  }, t('seeAll'), " \u2192")), DEMO_EVENTS.map(ev => /*#__PURE__*/React.createElement(Card, {
     key: ev.id,
     style: {
-      marginBottom: 10
+      marginBottom: 14
     },
     hover: true,
-    onClick: () => nav('/events')
+    onClick: () => nav('/event/' + ev.id)
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '12px 14px',
+      padding: '16px 18px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
       display: 'flex',
       gap: 12,
-      alignItems: 'center'
+      alignItems: 'flex-start',
+      marginBottom: 10
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 36,
-      width: 60,
-      height: 60,
+      width: 54,
+      height: 54,
       background: 'var(--primary-l)',
-      borderRadius: 'var(--radius-m)',
+      borderRadius: 12,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -3142,18 +3190,38 @@ function HomePage() {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontWeight: 700,
-      fontSize: 14,
-      marginBottom: 2
+      display: 'flex',
+      gap: 6,
+      marginBottom: 6,
+      flexWrap: 'wrap'
+    }
+  }, /*#__PURE__*/React.createElement(Badge, {
+    color: "blue"
+  }, ev.category), /*#__PURE__*/React.createElement(Badge, {
+    color: "green"
+  }, "\u2713 Gratuit")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 800,
+      fontSize: 15,
+      lineHeight: 1.3,
+      marginBottom: 4
     }
   }, ev.title), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
       color: 'var(--t4)'
     }
-  }, "\uD83D\uDCC5 ", ev.date, " \xB7 \uD83D\uDCCD ", ev.location), /*#__PURE__*/React.createElement("div", {
+  }, "\uD83D\uDCC5 ", ev.date, " a ", ev.time, " \xB7 \uD83D\uDCCD ", ev.location))), /*#__PURE__*/React.createElement("p", {
     style: {
-      marginTop: 6
+      fontSize: 13,
+      lineHeight: 1.7,
+      color: 'var(--t2)',
+      marginBottom: 12,
+      whiteSpace: 'pre-wrap'
+    }
+  }, ev.description), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 10
     }
   }, /*#__PURE__*/React.createElement(ProgressBar, {
     value: ev.registered,
@@ -3162,18 +3230,31 @@ function HomePage() {
     style: {
       fontSize: 11,
       color: 'var(--t4)',
-      marginTop: 3
+      marginTop: 4,
+      display: 'flex',
+      justifyContent: 'space-between'
     }
-  }, ev.registered, "/", ev.capacity, " inscrits"))), /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", null, ev.registered, " inscrits"), /*#__PURE__*/React.createElement("span", null, ev.capacity, " places"))), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 12,
-      fontWeight: 700,
-      color: 'var(--success)',
-      background: 'var(--success-l)',
-      padding: '3px 8px',
-      borderRadius: 14
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingTop: 10,
+      borderTop: '1px solid var(--border)'
     }
-  }, "\u2713 Gratuit"))))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)',
+      fontWeight: 600
+    }
+  }, "Organise par ", ev.organizer), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-sm btn-primary",
+    onClick: e => {
+      e.stopPropagation();
+      nav('/event/' + ev.id);
+    }
+  }, "\u2713 Participer")))))), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: '0 16px 80px'
     }
@@ -3256,13 +3337,9 @@ function MembersPage() {
   } = useLang();
   const [members, setMembers] = useState([]);
   const [q, setQ] = useState('');
-  const [country, setCountry] = useState('');
   useEffect(() => listenMembers(setMembers), []);
-  const COUNTRIES = ['', 'Mali', 'Espagne', 'France', 'USA', 'Canada', 'Belgique', 'Allemagne'];
   const filtered = members.filter(m => {
-    const match = !q || (m.firstname + ' ' + m.name).toLowerCase().includes(q.toLowerCase()) || m.city?.toLowerCase().includes(q.toLowerCase()) || m.profession?.toLowerCase().includes(q.toLowerCase());
-    const cc = !country || m.country === country;
-    return match && cc;
+    return !q || (m.firstname + ' ' + m.name).toLowerCase().includes(q.toLowerCase()) || m.city?.toLowerCase().includes(q.toLowerCase()) || m.profession?.toLowerCase().includes(q.toLowerCase());
   });
   const {
     displayed,
@@ -3294,26 +3371,17 @@ function MembersPage() {
     }
   }), /*#__PURE__*/React.createElement("div", {
     style: {
-      display: 'flex',
-      gap: 8,
-      overflowX: 'auto',
-      scrollbarWidth: 'none'
-    }
-  }, COUNTRIES.map(c => /*#__PURE__*/React.createElement("button", {
-    key: c || 'all',
-    onClick: () => setCountry(c),
-    style: {
-      padding: '5px 12px',
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 6,
+      padding: '5px 14px',
+      background: 'var(--primary-l)',
       borderRadius: 20,
-      border: `1.5px solid ${country === c ? 'var(--primary)' : 'var(--border)'}`,
-      background: country === c ? 'var(--primary)' : 'var(--surface)',
-      color: country === c ? '#fff' : 'var(--t3)',
-      cursor: 'pointer',
+      color: 'var(--primary)',
       fontSize: 12,
-      fontWeight: 600,
-      whiteSpace: 'nowrap'
+      fontWeight: 700
     }
-  }, c || t('all'))))), /*#__PURE__*/React.createElement("div", {
+  }, "\uD83D\uDC65 Adherents")), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: '12px 16px',
       fontSize: 12,
@@ -6259,20 +6327,17 @@ function CotisationsPage() {
   } = useAuth();
   const [memberships, setMemberships] = useState([]);
   const [q, setQ] = useState('');
-  const [country, setCountry] = useState('');
+  const country = ''; // Filtre pays retire
   useEffect(() => listenMemberships(setMemberships), []);
   const filtered = memberships.filter(m => {
     const name = ((m.firstname || '') + ' ' + (m.name || '')).toLowerCase();
-    const matchQ = !q || name.includes(q.toLowerCase()) || (m.memberNum || '').toLowerCase().includes(q.toLowerCase());
-    const matchC = !country || m.country === country;
-    return matchQ && matchC;
+    return !q || name.includes(q.toLowerCase()) || (m.memberNum || '').toLowerCase().includes(q.toLowerCase()) || (m.city || '').toLowerCase().includes(q.toLowerCase());
   }).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
   const {
     displayed,
     hasMore,
     loaderRef
   } = useInfiniteScroll(filtered, 20);
-  const COUNTRIES = ['', 'Mali', 'Espagne', 'France', 'USA', 'Canada', 'Belgique', 'Allemagne'];
   return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: '100dvh',
@@ -6383,26 +6448,24 @@ function CotisationsPage() {
     }
   }), /*#__PURE__*/React.createElement("div", {
     style: {
+      padding: '8px 0',
       display: 'flex',
-      gap: 6,
-      overflowX: 'auto',
-      scrollbarWidth: 'none'
+      alignItems: 'center',
+      gap: 8
     }
-  }, COUNTRIES.map(c => /*#__PURE__*/React.createElement("button", {
-    key: c || 'all',
-    onClick: () => setCountry(c),
+  }, /*#__PURE__*/React.createElement("span", {
     style: {
-      padding: '5px 12px',
-      borderRadius: 20,
-      border: '1.5px solid ' + (country === c ? 'var(--primary)' : 'var(--border)'),
-      background: country === c ? 'var(--primary)' : 'var(--surface)',
-      color: country === c ? '#fff' : 'var(--t3)',
-      cursor: 'pointer',
-      fontSize: 12,
-      fontWeight: 600,
-      whiteSpace: 'nowrap'
+      fontSize: 20
     }
-  }, c || 'Tous')))), /*#__PURE__*/React.createElement("div", {
+  }, "\uD83D\uDC65"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 800,
+      fontSize: 14,
+      color: 'var(--primary)',
+      textTransform: 'uppercase',
+      letterSpacing: .5
+    }
+  }, "Tous les Adherents"))), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: '10px 16px'
     }
@@ -6416,7 +6479,7 @@ function CotisationsPage() {
       marginBottom: 10,
       padding: '0 4px'
     }
-  }, filtered.length, " adherent(s) ", q || country ? ' (filtres actifs)' : ''), filtered.length === 0 && /*#__PURE__*/React.createElement("div", {
+  }, filtered.length, " adherent(s)", q ? ' trouve(s)' : ''), filtered.length === 0 && /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: 'center',
       padding: '40px 20px',
