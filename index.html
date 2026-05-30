@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
 <meta name="theme-color" content="#2E7D32">
-<meta name="description" content="Diaspora Mali Connect — La plateforme des Maliens du monde entier. President cofondateur Tata Keita.">
+<meta name="description" content="Diaspora Mali Connect — La plateforme des Maliens du monde entier. Pres. cofondateur Tata Keita.">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -15,6 +15,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+
+
 
 
 
@@ -154,6 +156,16 @@ textarea.fi{resize:vertical;min-height:70px}
 @media(max-width:480px){.hn-lb{display:none}}
 .sidebar-desktop{display:none!important}
 @media(min-width:1024px){.top-nav{padding-left:20px}}
+
+.horizontal-nav{display:block!important}
+@media(max-width:600px){.hn-lb{font-size:11px}}
+@media(max-width:380px){.hn-lb{display:none}}
+.sidebar-desktop{display:none!important}
+
+.horizontal-nav{display:block!important}
+@media(max-width:600px){.hn-lb{font-size:11px}}
+@media(max-width:380px){.hn-lb{display:none}}
+.sidebar-desktop{display:none!important}
 
 .horizontal-nav{display:block!important}
 @media(max-width:600px){.hn-lb{font-size:11px}}
@@ -780,8 +792,8 @@ const ADMIN_EMAILS = window.ADMIN_EMAILS || [];
 // ═══ DONNÉES DÉMO ═══
 const DEMO_MEMBERS = [{
   id: 'm1',
-  name: 'Diallo',
-  firstname: 'Amadou',
+  name: '001',
+  firstname: 'Adherent A',
   email: 'amadou@demo.com',
   country: 'Espagne',
   city: 'Madrid',
@@ -794,8 +806,8 @@ const DEMO_MEMBERS = [{
   bio: 'Malien de Madrid, passionné de culture et de tech.'
 }, {
   id: 'm2',
-  name: 'Traoré',
-  firstname: 'Fatoumata',
+  name: '002',
+  firstname: 'Adherente F',
   email: 'fato@demo.com',
   country: 'France',
   city: 'Paris',
@@ -808,8 +820,8 @@ const DEMO_MEMBERS = [{
   bio: 'Médecin à Paris, engagée pour la santé de la diaspora.'
 }, {
   id: 'm3',
-  name: 'Coulibaly',
-  firstname: 'Ibrahim',
+  name: '003',
+  firstname: 'Adherent I',
   email: 'ibrahim@demo.com',
   country: 'USA',
   city: 'New York',
@@ -822,8 +834,8 @@ const DEMO_MEMBERS = [{
   bio: 'Entrepreneur basé à New York.'
 }, {
   id: 'm4',
-  name: 'Keïta',
-  firstname: 'Mariam',
+  name: '004',
+  firstname: 'Adherente M',
   email: 'mariam@demo.com',
   country: 'Canada',
   city: 'Montréal',
@@ -836,8 +848,8 @@ const DEMO_MEMBERS = [{
   bio: 'Enseignante à Montréal.'
 }, {
   id: 'm5',
-  name: 'Sanogo',
-  firstname: 'Oumar',
+  name: '005',
+  firstname: 'Adherent O',
   email: 'oumar@demo.com',
   country: 'Allemagne',
   city: 'Berlin',
@@ -850,8 +862,8 @@ const DEMO_MEMBERS = [{
   bio: 'Architecte à Berlin.'
 }, {
   id: 'm6',
-  name: 'Bah',
-  firstname: 'Aissata',
+  name: '006',
+  firstname: 'Adherente B',
   email: 'aissata@demo.com',
   country: 'Belgique',
   city: 'Bruxelles',
@@ -869,7 +881,7 @@ const DEMO_ASSOC = [{
   acronym: 'AMES',
   country: 'Espagne',
   city: 'Madrid',
-  president: 'Amadou Diallo',
+  president: 'Adherent 001',
   members: 245,
   founded: '2010',
   logo: '🇲🇱',
@@ -882,7 +894,7 @@ const DEMO_ASSOC = [{
   acronym: 'MF-IDF',
   country: 'France',
   city: 'Paris',
-  president: 'Fatoumata Traoré',
+  president: 'Adherente 002',
   members: 890,
   founded: '2005',
   logo: '🗼',
@@ -895,7 +907,7 @@ const DEMO_ASSOC = [{
   acronym: 'MCU',
   country: 'USA',
   city: 'New York',
-  president: 'Ibrahim Coulibaly',
+  president: 'Adherent 003',
   members: 312,
   founded: '2012',
   logo: '🗽',
@@ -908,7 +920,7 @@ const DEMO_ASSOC = [{
   acronym: 'AMC',
   country: 'Canada',
   city: 'Montréal',
-  president: 'Mariam Keïta',
+  president: 'Adherente 004',
   members: 178,
   founded: '2015',
   logo: '🍁',
@@ -921,7 +933,7 @@ const DEMO_ASSOC = [{
   acronym: 'DMA',
   country: 'Allemagne',
   city: 'Berlin',
-  president: 'Oumar Sanogo',
+  president: 'Adherent 005',
   members: 134,
   founded: '2018',
   logo: '🦅',
@@ -934,7 +946,7 @@ const DEMO_ASSOC = [{
   acronym: 'UMB',
   country: 'Belgique',
   city: 'Bruxelles',
-  president: 'Aissata Bah',
+  president: 'Adherente 006',
   members: 98,
   founded: '2019',
   logo: '🇧🇪',
@@ -958,7 +970,7 @@ const DEMO_NEWS = [{
   title: 'Nouveau programme de bourses pour les jeunes maliens',
   content: 'Le gouvernement malien en partenariat avec plusieurs associations de la diaspora lance un programme de bourses d\'études pour 500 jeunes maliens résidant à l\'étranger.',
   category: 'Éducation',
-  author: 'Aminata Koné',
+  author: 'Redaction DMC',
   date: '2026-05-18',
   image: '🎓',
   likes: 567,
@@ -980,7 +992,7 @@ const DEMO_NEWS = [{
   title: 'Transferts d\'argent : nouvelles solutions pour la diaspora',
   content: 'Plusieurs nouvelles solutions de transfert d\'argent vers le Mali ont été lancées, réduisant significativement les frais pour les membres de la diaspora.',
   category: 'Finance',
-  author: 'Omar Traoré',
+  author: 'Equipe DMC',
   date: '2026-05-15',
   image: '💰',
   likes: 345,
@@ -1012,7 +1024,7 @@ const DEMO_NEWS = [{
 const DEMO_POSTS = [{
   id: 'p1',
   author: {
-    name: 'Amadou Diallo',
+    name: 'Adherent 001',
     avatar: '👨🏿',
     id: 'm1'
   },
@@ -1020,35 +1032,35 @@ const DEMO_POSTS = [{
   date: '2026-05-26T09:00',
   likes: 89,
   comments: [{
-    author: 'Fatoumata',
+    author: 'Adherente F',
     text: 'Félicitations ! Bravo à toute l\'équipe 🙌'
   }, {
-    author: 'Ibrahim',
+    author: 'Adherent I',
     text: 'Excellent travail ! Le Mali est fier de vous'
   }],
   media: null
 }, {
   id: 'p2',
   author: {
-    name: 'Fatoumata Traoré',
+    name: 'Adherente 002',
     avatar: '👩🏿',
     id: 'm2'
   },
-  content: 'Aujourd\'hui j\'ai eu le plaisir d\'accueillir 3 nouveaux membres dans notre association. Bienvenue à Kadidia, Moussa et Seydou dans la grande famille DMC ! 🎉',
+  content: 'Aujourd\'hui j\'ai eu le plaisir d\'accueillir 3 nouveaux membres dans notre association. Bienvenue à nos nouveaux membres dans la grande famille DMC ! 🎉',
   date: '2026-05-25T14:30',
   likes: 156,
   comments: [{
-    author: 'Mariam',
+    author: 'Adherente M',
     text: 'Bienvenue aux nouveaux !'
   }, {
-    author: 'Oumar',
+    author: 'Adherent O',
     text: 'Toujours en croissance 💪'
   }],
   media: '🤝'
 }, {
   id: 'p3',
   author: {
-    name: 'Ibrahim Coulibaly',
+    name: 'Adherent 003',
     avatar: '👨🏿‍💼',
     id: 'm3'
   },
@@ -1056,14 +1068,14 @@ const DEMO_POSTS = [{
   date: '2026-05-24T11:00',
   likes: 67,
   comments: [{
-    author: 'Aissata',
+    author: 'Adherente B',
     text: 'Je serai là !'
   }],
   media: '📅'
 }, {
   id: 'p4',
   author: {
-    name: 'Mariam Keïta',
+    name: 'Adherente 004',
     avatar: '👩🏿‍🏫',
     id: 'm4'
   },
@@ -1071,14 +1083,14 @@ const DEMO_POSTS = [{
   date: '2026-05-23T16:45',
   likes: 234,
   comments: [{
-    author: 'Amadou',
+    author: 'Adherent A',
     text: 'Magnifique initiative !'
   }, {
-    author: 'Fatoumata',
+    author: 'Adherente F',
     text: 'C\'est ça la vraie solidarité'
   }, {
-    author: 'Ibrahim',
-    text: 'Bravo Mariam !'
+    author: 'Adherent I',
+    text: 'Bravo a toute l\'equipe !'
   }],
   media: '📚'
 }];
@@ -1141,13 +1153,13 @@ const DEMO_EVENTS = [{
 }];
 const DEMO_CAGNOTTES = [{
   id: 'c1',
-  title: 'Aide rapatriement Boubacar',
-  description: 'Notre frère Boubacar a besoin de nous pour financer son retour au Mali suite à un accident.',
+  title: 'Aide rapatriement urgente',
+  description: 'Un de nos membres a besoin de nous pour financer son retour au Mali suite à un accident.',
   goal: 3000,
   raised: 2150,
   currency: 'EUR',
   emoji: '❤️',
-  creator: 'Amadou Diallo',
+  creator: 'Adherent 001',
   deadline: '2026-06-30',
   category: 'Urgence'
 }, {
@@ -1169,7 +1181,7 @@ const DEMO_CAGNOTTES = [{
   raised: 3200,
   currency: 'EUR',
   emoji: '⚽',
-  creator: 'Ibrahim Coulibaly',
+  creator: 'Adherent 003',
   deadline: '2026-08-15',
   category: 'Sport'
 }];
@@ -1196,7 +1208,7 @@ const DEMO_MEDIA = [{
   type: 'video',
   emoji: '🎬',
   title: 'Discours président AMES',
-  author: 'Amadou Diallo',
+  author: 'Adherent 001',
   date: '2026-01-20',
   likes: 456,
   category: 'Discours'
@@ -2530,14 +2542,14 @@ function AuthPage() {
     className: "fg"
   }, /*#__PURE__*/React.createElement("label", null, "Pr\xE9nom *"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
-    placeholder: "Amadou",
+    placeholder: "Votre prenom",
     value: form.firstname,
     onChange: e => set('firstname')(e.target.value)
   })), /*#__PURE__*/React.createElement("div", {
     className: "fg"
   }, /*#__PURE__*/React.createElement("label", null, "Nom *"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
-    placeholder: "Diallo",
+    placeholder: "Votre nom",
     value: form.name,
     onChange: e => set('name')(e.target.value)
   }))), /*#__PURE__*/React.createElement("div", {
@@ -2576,7 +2588,7 @@ function AuthPage() {
     className: "fg"
   }, /*#__PURE__*/React.createElement("label", null, "Ville"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
-    placeholder: "Madrid",
+    placeholder: "Votre ville",
     value: form.city,
     onChange: e => set('city')(e.target.value)
   }))), /*#__PURE__*/React.createElement("div", {
@@ -5296,7 +5308,7 @@ const deleteAd = id => db ? db.ref(`ads/${id}`).remove() : Promise.resolve();
 // Firebase membership helpers
 const DEMO_MEMBERS_SHIP = [{
   id: 'ms1',
-  name: 'Amadou Diallo',
+  name: 'Adherent 001',
   country: 'Espagne',
   city: 'Madrid',
   phone: '+34 612 345 678',
@@ -5310,7 +5322,7 @@ const DEMO_MEMBERS_SHIP = [{
   memberNum: 'DMC-2024-001'
 }, {
   id: 'ms2',
-  name: 'Fatoumata Traoré',
+  name: 'Adherente 002',
   country: 'France',
   city: 'Paris',
   phone: '+33 6 12 34 56 78',
@@ -5363,25 +5375,25 @@ const DEMO_ASSOC_V2 = [{
   acronym: 'AMES',
   country: 'Espagne',
   city: 'Madrid',
-  president: 'Amadou Diallo',
-  vicePresident: 'Ibrahim Koné',
-  secretary: 'Mariam Bah',
-  treasurer: 'Oumar Traoré',
+  president: 'Adherent 001',
+  vicePresident: 'Membre bureau',
+  secretary: 'Membre bureau',
+  treasurer: 'Membre bureau',
   bureau: [{
     role: 'Président',
-    name: 'Amadou Diallo',
+    name: 'Adherent 001',
     phone: '+34 612 345 678'
   }, {
     role: 'Vice-Président',
-    name: 'Ibrahim Koné',
+    name: 'Membre bureau',
     phone: '+34 655 234 567'
   }, {
     role: 'Secrétaire',
-    name: 'Mariam Bah',
+    name: 'Membre bureau',
     phone: '+34 678 901 234'
   }, {
     role: 'Trésorier',
-    name: 'Oumar Traoré',
+    name: 'Membre bureau',
     phone: '+34 699 012 345'
   }],
   members: 245,
@@ -5398,17 +5410,17 @@ const DEMO_ASSOC_V2 = [{
   acronym: 'MF-IDF',
   country: 'France',
   city: 'Paris',
-  president: 'Fatoumata Traoré',
-  vicePresident: 'Moussa Coulibaly',
-  secretary: 'Aissata Diarra',
-  treasurer: 'Seydou Keïta',
+  president: 'Adherente 002',
+  vicePresident: 'Membre bureau',
+  secretary: 'Membre bureau',
+  treasurer: 'Membre bureau',
   bureau: [{
     role: 'Présidente',
-    name: 'Fatoumata Traoré',
+    name: 'Adherente 002',
     phone: '+33 6 12 34 56 78'
   }, {
     role: 'Vice-Président',
-    name: 'Moussa Coulibaly',
+    name: 'Membre bureau',
     phone: '+33 6 23 45 67 89'
   }],
   members: 890,
@@ -5831,17 +5843,16 @@ function AdhesionPage() {
   const [form, setForm] = useState({
     name: '',
     firstname: '',
-    email: '',
     phone: '',
-    country: '',
+    address: '',
     city: '',
-    profession: '',
-    assocId: '',
+    country: 'Espagne',
     type: 'Libre',
     amount: 0,
     currency: 'EUR',
     paymentMethod: 'virement'
   });
+  const [generatedNum, setGeneratedNum] = useState('');
   const [saving, setSaving] = useState(false);
   const [done, setDone] = useState(false);
   const set = k => v => setForm(f => ({
@@ -5853,7 +5864,6 @@ function AdhesionPage() {
     if (profile) {
       set('name')(profile.name || '');
       set('firstname')(profile.firstname || '');
-      set('email')(profile.email || '');
       set('phone')(profile.phone || '');
       set('country')(profile.country || '');
       set('city')(profile.city || '');
@@ -5915,15 +5925,25 @@ function AdhesionPage() {
     name: 'Cash'
   }];
   const handleSubmit = async () => {
-    if (!form.name || !form.email || !form.phone || !form.country) {
+    if (!form.name || !form.firstname || !form.phone || !form.city) {
       alert('Champs obligatoires manquants');
       return;
     }
     setSaving(true);
-    await createMembership({
-      ...form,
-      uid: user?.uid || null
-    });
+    const num = 'DMC-' + new Date().getFullYear() + '-' + Math.floor(Math.random() * 9000 + 1000);
+    setGeneratedNum(num);
+    if (db) {
+      try {
+        await db.ref('memberships').push({
+          ...form,
+          memberNum: num,
+          status: 'pending',
+          createdAt: Date.now()
+        });
+      } catch (e) {
+        console.warn(e);
+      }
+    }
     setDone(true);
     setSaving(false);
   };
@@ -5933,12 +5953,13 @@ function AdhesionPage() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      background: 'var(--bg)',
+      background: 'linear-gradient(160deg,var(--primary-l) 0%,var(--bg) 60%)',
       padding: 20
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: 'center',
+      maxWidth: 420,
       animation: 'fadeIn .4s'
     }
   }, /*#__PURE__*/React.createElement("div", {
@@ -5949,32 +5970,73 @@ function AdhesionPage() {
   }, "\uD83C\uDF89"), /*#__PURE__*/React.createElement("h2", {
     style: {
       color: 'var(--primary)',
-      marginBottom: 8
+      marginBottom: 8,
+      fontSize: 24
     }
-  }, "Adh\xE9sion enregistr\xE9e !"), /*#__PURE__*/React.createElement("p", {
+  }, "Bienvenue dans la famille !"), /*#__PURE__*/React.createElement("p", {
     style: {
       color: 'var(--t3)',
-      marginBottom: 6
+      marginBottom: 20
     }
-  }, "Votre demande a \xE9t\xE9 transmise."), /*#__PURE__*/React.createElement("p", {
+  }, "Votre adh\xE9sion a \xE9t\xE9 enregistr\xE9e avec succ\xE8s."), /*#__PURE__*/React.createElement("div", {
     style: {
-      color: 'var(--t4)',
-      fontSize: 12,
-      marginBottom: 24
+      background: 'var(--surface)',
+      borderRadius: 16,
+      padding: '24px 20px',
+      marginBottom: 20,
+      boxShadow: '0 8px 30px rgba(0,0,0,.08)',
+      border: '2px solid var(--primary)'
     }
-  }, "Vous recevrez votre carte de membre apr\xE8s validation du paiement."), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: 'var(--t4)',
+      textTransform: 'uppercase',
+      letterSpacing: 1.5,
+      marginBottom: 8
+    }
+  }, "VOTRE NUMERO D'ADHESION"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 32,
+      fontWeight: 900,
+      color: 'var(--primary)',
+      letterSpacing: 3,
+      marginBottom: 8
+    }
+  }, generatedNum), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)'
+    }
+  }, "Conservez ce num\xE9ro pr\xE9cieusement")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--gold-l)',
+      borderRadius: 10,
+      padding: '12px',
+      fontSize: 12,
+      color: '#92400E',
+      marginBottom: 20
+    }
+  }, "\u23F3 Votre paiement de ", form.amount, " ", (CURRENCIES.find(c => c.c === form.currency) || {
+    s: '€'
+  }).s, " sera valid\xE9 par l'administrateur sous 24-48h"), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: 10,
-      justifyContent: 'center'
+      justifyContent: 'center',
+      flexWrap: 'wrap'
     }
   }, /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary",
-    onClick: () => nav('/member-card')
-  }, "\uD83E\uDEAA Ma carte"), /*#__PURE__*/React.createElement("button", {
-    className: "btn",
+    className: "btn btn-primary btn-lg",
+    onClick: () => {
+      navigator.clipboard?.writeText(generatedNum);
+      alert('Numéro copié!');
+    }
+  }, "\uD83D\uDCCB Copier mon N\xB0"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-lg",
     onClick: () => nav('/')
-  }, "Accueil"))));
+  }, "\u2190 Accueil"))));
   return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: '100dvh',
@@ -6186,28 +6248,31 @@ function AdhesionPage() {
     className: "fg"
   }, /*#__PURE__*/React.createElement("label", null, "Pr\xE9nom *"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
+    placeholder: "Votre prenom",
     value: form.firstname,
     onChange: e => set('firstname')(e.target.value)
   })), /*#__PURE__*/React.createElement("div", {
     className: "fg"
   }, /*#__PURE__*/React.createElement("label", null, "Nom *"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
+    placeholder: "Votre nom",
     value: form.name,
     onChange: e => set('name')(e.target.value)
   }))), /*#__PURE__*/React.createElement("div", {
     className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Email *"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    type: "email",
-    value: form.email,
-    onChange: e => set('email')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
   }, /*#__PURE__*/React.createElement("label", null, "T\xE9l\xE9phone *"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
     type: "tel",
+    placeholder: "+34 6XX XXX XXX",
     value: form.phone,
     onChange: e => set('phone')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Adresse"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Rue, num\xE9ro...",
+    value: form.address,
+    onChange: e => set('address')(e.target.value)
   })), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'grid',
@@ -6216,23 +6281,28 @@ function AdhesionPage() {
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Pays *"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, "Ville *"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
-    value: form.country,
-    onChange: e => set('country')(e.target.value)
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Ville"), /*#__PURE__*/React.createElement("input", {
-    className: "fi",
+    placeholder: "Votre ville",
     value: form.city,
     onChange: e => set('city')(e.target.value)
-  }))), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React.createElement("div", {
     className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Profession"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, "Pays"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
-    value: form.profession,
-    onChange: e => set('profession')(e.target.value)
-  })))), /*#__PURE__*/React.createElement("div", {
+    placeholder: "Votre pays",
+    value: form.country,
+    onChange: e => set('country')(e.target.value)
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--primary-l)',
+      borderRadius: 8,
+      padding: '10px 12px',
+      fontSize: 11,
+      color: 'var(--primary)',
+      lineHeight: 1.6
+    }
+  }, "\u2139\uFE0F ", /*#__PURE__*/React.createElement("strong", null, "Inscription simplifi\xE9e"), " \u2014 Aucun email requis. Un num\xE9ro d'adh\xE9sion unique sera g\xE9n\xE9r\xE9 automatiquement."))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: 10,
@@ -6244,7 +6314,7 @@ function AdhesionPage() {
   }, "\u2190 Retour"), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-primary btn-full",
     onClick: () => {
-      if (!form.name || !form.email || !form.phone || !form.country) return alert('Remplissez les champs obligatoires');
+      if (!form.name || !form.firstname || !form.phone || !form.city) return alert('Prénom, nom, téléphone et ville requis');
       setStep(3);
     }
   }, "Continuer \u2192"))), step === 3 && /*#__PURE__*/React.createElement("div", {
@@ -6644,11 +6714,112 @@ function AdminPageV2() {
     setTimeout(() => setPwdSaved(false), 2000);
     setNewPwd('');
   };
+
+  // États pour publication événement
+  const [evForm, setEvForm] = useState({
+    title: '',
+    description: '',
+    date: '',
+    time: '',
+    location: '',
+    category: 'Conférence',
+    price: 0,
+    capacity: 100,
+    emoji: '🗓'
+  });
+  const setEvF = k => v => setEvForm(f => ({
+    ...f,
+    [k]: v
+  }));
+  const publishEvent = async () => {
+    if (!evForm.title || !evForm.date || !evForm.location) {
+      alert('Titre, date, lieu requis');
+      return;
+    }
+    if (db) await db.ref('events').push({
+      ...evForm,
+      price: parseInt(evForm.price) || 0,
+      capacity: parseInt(evForm.capacity) || 100,
+      registered: 0,
+      organizer: 'Admin DMC',
+      createdAt: Date.now()
+    });
+    setEvForm({
+      title: '',
+      description: '',
+      date: '',
+      time: '',
+      location: '',
+      category: 'Conférence',
+      price: 0,
+      capacity: 100,
+      emoji: '🗓'
+    });
+    alert('Événement publié!');
+  };
+  // États pour upload média
+  const [mediaForm, setMediaForm] = useState({
+    title: '',
+    category: 'Événement',
+    type: '',
+    dataUrl: '',
+    fileName: '',
+    size: 0,
+    emoji: '📸'
+  });
+  const setMf = k => v => setMediaForm(f => ({
+    ...f,
+    [k]: v
+  }));
+  const [mediaList, setMediaList] = useState([]);
+  const handleMediaUpload = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (file.size > 3 * 1024 * 1024) {
+      alert('Fichier trop volumineux (max 3 Mo)');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = ev => {
+      setMediaForm({
+        ...mediaForm,
+        dataUrl: ev.target.result,
+        fileName: file.name,
+        size: file.size,
+        type: file.type.startsWith('video') ? 'video' : 'image'
+      });
+    };
+    reader.readAsDataURL(file);
+  };
+  const publishMedia = async () => {
+    if (!mediaForm.dataUrl || !mediaForm.title) {
+      alert('Titre et fichier requis');
+      return;
+    }
+    if (db) await db.ref('media').push({
+      ...mediaForm,
+      author: 'Admin DMC',
+      date: new Date().toISOString().split('T')[0],
+      likes: 0,
+      createdAt: Date.now()
+    });
+    setMediaForm({
+      title: '',
+      category: 'Événement',
+      type: '',
+      dataUrl: '',
+      fileName: '',
+      size: 0,
+      emoji: '📸'
+    });
+    alert('Média publié!');
+  };
   useEffect(() => {
     if (!isAdmin) return;
     listenMembers(setMembers);
     listenAssoc(setAssocs);
     listenEvents(setEvents);
+    listenMedia(setMediaList);
     listenMemberships(setMemberships);
     listenPosts(setPosts);
     listenNews(setNews);
@@ -6740,7 +6911,7 @@ function AdminPageV2() {
   if (!isAdmin) return /*#__PURE__*/React.createElement(AdminLoginModal, {
     onSuccess: () => setShowLogin(false)
   });
-  const TABS = ['📊 Dashboard', '👥 Membres', '🏛 Associations', '💳 Cotisations', '📰 Actualités', '📢 Publicités', '🎥 Vidéo', '⚙️ Config'];
+  const TABS = ['📊 Dashboard', '👥 Membres', '🏛 Assoc.', '💳 Cotis.', '📰 News', '📢 Pub', '🗓 Events', '📸 Médias', 'ℹ️ Info', '⚙️ Config'];
   const totalRevenue = memberships.reduce((sum, m) => sum + (m.amount || 0), 0);
   return /*#__PURE__*/React.createElement("div", {
     style: {
@@ -7391,28 +7562,123 @@ function AdminPageV2() {
       fontSize: 16
     },
     onClick: () => deleteAd(a.id)
-  }, "\uD83D\uDDD1"))))), tab === 6 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }, "\uD83D\uDDD1"))))), tab === 6 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 14
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontWeight: 700,
       marginBottom: 12
     }
-  }, rooms.length, " salles de visioconf\xE9rence"), rooms.map(r => /*#__PURE__*/React.createElement(Card, {
-    key: r.id,
+  }, "\u2795 Publier un \xE9v\xE9nement"), /*#__PURE__*/React.createElement("div", {
     style: {
-      marginBottom: 8
+      display: 'grid',
+      gridTemplateColumns: '2fr 1fr',
+      gap: 8
     }
   }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Titre *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Titre",
+    value: evForm.title,
+    onChange: e => setEvF('title')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Emoji"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "\uD83D\uDDD3",
+    value: evForm.emoji,
+    onChange: e => setEvF('emoji')(e.target.value)
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Description"), /*#__PURE__*/React.createElement("textarea", {
+    className: "fi",
+    rows: 2,
+    value: evForm.description,
+    onChange: e => setEvF('description')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '10px 14px',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Date *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "date",
+    value: evForm.date,
+    onChange: e => setEvF('date')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Heure"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "time",
+    value: evForm.time,
+    onChange: e => setEvF('time')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Cat\xE9gorie"), /*#__PURE__*/React.createElement("select", {
+    className: "fi",
+    value: evForm.category,
+    onChange: e => setEvF('category')(e.target.value)
+  }, ['Conférence', 'Culture', 'Sport', 'Business', 'Santé', 'Social', 'Religion'].map(c => /*#__PURE__*/React.createElement("option", {
+    key: c
+  }, c))))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Lieu *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Salle, ville",
+    value: evForm.location,
+    onChange: e => setEvF('location')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Prix (\u20AC, 0=gratuit)"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "number",
+    value: evForm.price,
+    onChange: e => setEvF('price')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Capacit\xE9"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "number",
+    value: evForm.capacity,
+    onChange: e => setEvF('capacity')(e.target.value)
+  }))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    onClick: publishEvent
+  }, "\uD83D\uDDD3 Publier l'\xE9v\xE9nement"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 8
+    }
+  }, "\xC9v\xE9nements publi\xE9s (", events.length, ")"), events.map(ev => /*#__PURE__*/React.createElement("div", {
+    key: ev.id,
+    style: {
       display: 'flex',
       gap: 10,
-      alignItems: 'center'
+      alignItems: 'center',
+      padding: '10px 0',
+      borderBottom: '1px solid var(--border)'
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 22
     }
-  }, "\uD83C\uDFA5"), /*#__PURE__*/React.createElement("div", {
+  }, ev.emoji), /*#__PURE__*/React.createElement("div", {
     style: {
       flex: 1
     }
@@ -7421,12 +7687,12 @@ function AdminPageV2() {
       fontWeight: 600,
       fontSize: 13
     }
-  }, r.name), /*#__PURE__*/React.createElement("div", {
+  }, ev.title), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
       color: 'var(--t4)'
     }
-  }, "Cr\xE9\xE9 par ", r.creator)), /*#__PURE__*/React.createElement("button", {
+  }, ev.date, " \xB7 ", ev.location)), /*#__PURE__*/React.createElement("button", {
     style: {
       background: 'none',
       border: 'none',
@@ -7434,10 +7700,197 @@ function AdminPageV2() {
       color: 'var(--danger)',
       fontSize: 16
     },
-    onClick: () => db && db.ref(`videoRooms/${r.id}`).update({
-      active: false
-    })
-  }, "\uD83D\uDDD1"))))), tab === 7 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
+    onClick: () => confirm('Supprimer?') && db && db.ref(`events/${ev.id}`).remove()
+  }, "\uD83D\uDDD1")))), tab === 7 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
+    style: {
+      marginBottom: 14
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 12
+    }
+  }, "\uD83D\uDCF8 Ajouter photo / vid\xE9o depuis la galerie"), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Choisir un fichier (photo ou vid\xE9o)"), /*#__PURE__*/React.createElement("input", {
+    type: "file",
+    accept: "image/*,video/*",
+    className: "fi",
+    onChange: handleMediaUpload,
+    style: {
+      padding: '8px'
+    }
+  })), mediaForm.dataUrl && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 10,
+      padding: 10,
+      background: 'var(--bg)',
+      borderRadius: 10,
+      textAlign: 'center'
+    }
+  }, mediaForm.type === 'image' ? /*#__PURE__*/React.createElement("img", {
+    src: mediaForm.dataUrl,
+    style: {
+      maxWidth: '100%',
+      maxHeight: 200,
+      borderRadius: 8
+    },
+    alt: ""
+  }) : /*#__PURE__*/React.createElement("video", {
+    src: mediaForm.dataUrl,
+    controls: true,
+    style: {
+      maxWidth: '100%',
+      maxHeight: 200,
+      borderRadius: 8
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)',
+      marginTop: 6
+    }
+  }, mediaForm.fileName, " (", Math.round(mediaForm.size / 1024), " Ko)")), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Titre *"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Titre du m\xE9dia",
+    value: mediaForm.title,
+    onChange: e => setMf('title')(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Cat\xE9gorie"), /*#__PURE__*/React.createElement("select", {
+    className: "fi",
+    value: mediaForm.category,
+    onChange: e => setMf('category')(e.target.value)
+  }, ['Événement', 'Culture', 'Sport', 'Discours', 'Education', 'Galerie'].map(c => /*#__PURE__*/React.createElement("option", {
+    key: c
+  }, c)))), /*#__PURE__*/React.createElement("div", {
+    className: "fg"
+  }, /*#__PURE__*/React.createElement("label", null, "Type"), /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    value: mediaForm.type || '(auto)',
+    disabled: true,
+    style: {
+      background: 'var(--bg)'
+    }
+  }))), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    onClick: publishMedia,
+    disabled: !mediaForm.dataUrl || !mediaForm.title
+  }, "\uD83D\uDCE4 Publier le m\xE9dia"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: 'var(--t4)',
+      marginTop: 8,
+      fontStyle: 'italic'
+    }
+  }, "\uD83D\uDCA1 Sur mobile, vous pourrez choisir entre prendre une photo, filmer ou s\xE9lectionner depuis votre galerie"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 8
+    }
+  }, "M\xE9dias publi\xE9s (", mediaList.length, ")"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fill,minmax(120px,1fr))',
+      gap: 8
+    }
+  }, mediaList.map(m => /*#__PURE__*/React.createElement("div", {
+    key: m.id,
+    style: {
+      background: 'var(--surface)',
+      borderRadius: 10,
+      border: '1px solid var(--border)',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: 90,
+      background: 'var(--primary-l)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'relative'
+    }
+  }, m.dataUrl && m.type === 'image' ? /*#__PURE__*/React.createElement("img", {
+    src: m.dataUrl,
+    style: {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover'
+    },
+    alt: ""
+  }) : m.dataUrl && m.type === 'video' ? /*#__PURE__*/React.createElement("video", {
+    src: m.dataUrl,
+    style: {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover'
+    }
+  }) : /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 36
+    }
+  }, m.emoji || '📸')), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '6px 8px',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 600,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      flex: 1
+    }
+  }, m.title), /*#__PURE__*/React.createElement("button", {
+    style: {
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      color: 'var(--danger)',
+      fontSize: 13
+    },
+    onClick: () => db && db.ref(`media/${m.id}`).remove()
+  }, "\uD83D\uDDD1")))))), tab === 8 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      marginBottom: 12
+    }
+  }, "\u2139\uFE0F Modifier les informations du site"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 12,
+      color: 'var(--t4)',
+      marginBottom: 14
+    }
+  }, "Aller sur ", /*#__PURE__*/React.createElement("a", {
+    href: "#/info",
+    style: {
+      color: 'var(--primary)'
+    }
+  }, "la page Information"), " pour modifier directement la mission, vision, valeurs, \xE9quipe et histoire de DMC."), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    onClick: () => nav('/info')
+  }, "\uD83D\uDCDD Aller \xE0 la page Information")))), tab === 9 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
     style: {
       marginBottom: 12
     }
@@ -9016,6 +9469,241 @@ function InformationPage() {
   }, "\uD83D\uDCDE Nous contacter")))));
 }
 
+// ═══ PUBLIC CHAT — Sans inscription ═══
+function PublicChatPage() {
+  const nav = useNavigate();
+  const {
+    isAdmin
+  } = useAdmin();
+  const [messages, setMessages] = useState([]);
+  const [pseudo, setPseudo] = useState(() => {
+    try {
+      return localStorage.getItem('dmc-pseudo') || '';
+    } catch {
+      return '';
+    }
+  });
+  const [text, setText] = useState('');
+  const endRef = useRef(null);
+  useEffect(() => {
+    if (!db) {
+      setMessages([{
+        id: 'pc1',
+        pseudo: 'Adherent A',
+        text: 'Salam aleykoum à tous les Maliens!',
+        createdAt: Date.now() - 3600000
+      }, {
+        id: 'pc2',
+        pseudo: 'Adherente F',
+        text: 'Bienvenue dans la diaspora 🇲🇱',
+        createdAt: Date.now() - 1800000
+      }, {
+        id: 'pc3',
+        pseudo: 'Admin DMC',
+        text: 'N\'oubliez pas l\'événement du 15 juillet à Paris!',
+        createdAt: Date.now() - 600000,
+        isAdmin: true
+      }]);
+      return;
+    }
+    const r = db.ref('publicChat').limitToLast(100);
+    r.on('value', s => {
+      const d = s.val();
+      const list = d ? Object.entries(d).map(([id, v]) => ({
+        id,
+        ...v
+      })).sort((a, b) => a.createdAt - b.createdAt) : [];
+      setMessages(list);
+      setTimeout(() => endRef.current?.scrollIntoView({
+        behavior: 'smooth'
+      }), 100);
+    });
+    return () => r.off('value');
+  }, []);
+  const send = async () => {
+    if (!text.trim()) return;
+    const p = pseudo.trim() || 'Anonyme';
+    try {
+      localStorage.setItem('dmc-pseudo', p);
+    } catch {}
+    if (db) {
+      await db.ref('publicChat').push({
+        pseudo: p,
+        text: text.trim(),
+        createdAt: Date.now(),
+        isAdmin
+      });
+    } else {
+      setMessages(m => [...m, {
+        id: 'tmp' + Date.now(),
+        pseudo: p,
+        text: text.trim(),
+        createdAt: Date.now(),
+        isAdmin
+      }]);
+    }
+    setText('');
+  };
+  const deleteMsg = id => {
+    if (!isAdmin) return;
+    if (db) db.ref(`publicChat/${id}`).remove();
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: '100dvh',
+      background: 'var(--bg)',
+      display: 'flex',
+      flexDirection: 'column'
+    }
+  }, /*#__PURE__*/React.createElement(TopNav, {
+    title: "\uD83D\uDCAC Chat Public"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--primary-l)',
+      borderBottom: '1px solid var(--border)',
+      padding: '10px 16px',
+      fontSize: 12,
+      color: 'var(--primary)',
+      display: 'flex',
+      gap: 8,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 18
+    }
+  }, "\uD83D\uDC4B"), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("strong", null, "Chat public ouvert \xE0 tous"), " \u2014 Aucune inscription requise. Choisissez un pseudo et discutez!")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      overflowY: 'auto',
+      padding: '14px 16px',
+      maxHeight: 'calc(100dvh - 200px)'
+    }
+  }, messages.length === 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      padding: '40px 20px',
+      color: 'var(--t4)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 48,
+      marginBottom: 12
+    }
+  }, "\uD83D\uDCAC"), /*#__PURE__*/React.createElement("p", null, "Soyez le premier \xE0 \xE9crire un message!")), messages.map(m => /*#__PURE__*/React.createElement("div", {
+    key: m.id,
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      alignItems: 'flex-start'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 36,
+      height: 36,
+      borderRadius: '50%',
+      background: m.isAdmin ? 'var(--gold)' : 'var(--primary)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: '#fff',
+      fontWeight: 800,
+      fontSize: 14,
+      flexShrink: 0
+    }
+  }, (m.pseudo || 'A')[0].toUpperCase()), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      background: 'var(--surface)',
+      borderRadius: 12,
+      padding: '10px 14px',
+      border: '1px solid var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      alignItems: 'center',
+      marginBottom: 4
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 700,
+      fontSize: 13,
+      color: m.isAdmin ? 'var(--gold)' : 'var(--primary)'
+    }
+  }, m.pseudo, m.isAdmin && ' 🛡'), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 10,
+      color: 'var(--t4)'
+    }
+  }, new Date(m.createdAt).toLocaleString('fr-FR', {
+    day: 'numeric',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit'
+  })), isAdmin && /*#__PURE__*/React.createElement("button", {
+    onClick: () => deleteMsg(m.id),
+    style: {
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      color: 'var(--danger)',
+      fontSize: 12,
+      marginLeft: 'auto'
+    }
+  }, "\uD83D\uDDD1")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 14,
+      lineHeight: 1.5,
+      color: 'var(--t2)',
+      wordBreak: 'break-word'
+    }
+  }, m.text))))), /*#__PURE__*/React.createElement("div", {
+    ref: endRef
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '10px 16px',
+      background: 'var(--surface)',
+      borderTop: '1px solid var(--border)',
+      display: 'flex',
+      gap: 8,
+      flexDirection: 'column',
+      paddingBottom: 'calc(10px + env(safe-area-inset-bottom))'
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    placeholder: "Votre pseudo (ou laisser vide pour Anonyme)",
+    value: pseudo,
+    onChange: e => setPseudo(e.target.value),
+    style: {
+      fontSize: 13
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    style: {
+      flex: 1
+    },
+    placeholder: "Tapez votre message...",
+    value: text,
+    onChange: e => setText(e.target.value),
+    onKeyDown: e => e.key === 'Enter' && send()
+  }), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary",
+    onClick: send,
+    disabled: !text.trim()
+  }, "\uD83D\uDCE4 Envoyer"))));
+}
+
 // ═══ FOOTER CONTACT (visible sur Accueil) ═══
 function ContactFooter() {
   const nav = useNavigate();
@@ -9209,6 +9897,10 @@ function HorizontalNav() {
     icon: '🎥',
     lb: 'Vidéo'
   }, {
+    p: '/chat',
+    icon: '💬',
+    lb: 'Chat'
+  }, {
     p: '/info',
     icon: 'ℹ️',
     lb: 'Info'
@@ -9389,6 +10081,9 @@ function AppContentV2({
   }), /*#__PURE__*/React.createElement(Route, {
     path: "/settings",
     element: /*#__PURE__*/React.createElement(SettingsPage, null)
+  }), /*#__PURE__*/React.createElement(Route, {
+    path: "/chat",
+    element: /*#__PURE__*/React.createElement(PublicChatPage, null)
   }), /*#__PURE__*/React.createElement(Route, {
     path: "/info",
     element: /*#__PURE__*/React.createElement(InformationPage, null)
