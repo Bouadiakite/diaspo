@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
 <meta name="theme-color" content="#2E7D32">
-<meta name="description" content="Diaspora Mali Connect — Plateforme 100% gratuite. Pres. Tata Keita.">
+<meta name="description" content="Diaspora Mali Connect — Plateforme des Maliens en Espagne. Pres. Tata Keita.">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -15,6 +15,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+
+
 
 
 
@@ -195,6 +197,16 @@ textarea.fi{resize:vertical;min-height:70px}
 @media(max-width:600px){.hn-lb{font-size:11px}}
 @media(max-width:380px){.hn-lb{display:none}}
 .sidebar-desktop{display:none!important}
+
+.horizontal-nav{display:block!important}
+@media(max-width:600px){.hn-lb{font-size:11px}}
+@media(max-width:380px){.hn-lb{display:none}}
+.sidebar-desktop{display:none!important}
+
+.horizontal-nav{display:block!important}
+@media(max-width:600px){.hn-lb{font-size:11px}}
+@media(max-width:380px){.hn-lb{display:none}}
+.sidebar-desktop{display:none!important}
 </style>
 </head>
 <body>
@@ -203,7 +215,7 @@ textarea.fi{resize:vertical;min-height:70px}
     <div style="font-size:72px;margin-bottom:16px">&#127474;&#127473;</div>
     <h1 style="font-size:22px;font-weight:900;color:#2E7D32;margin:0 0 4px">DIASPORA MALI CONNECT</h1>
     <p style="color:#9CA3AF;font-size:12px;margin:0 0 6px;font-style:italic">Unis partout, forts ensemble</p>
-    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">100% Gratuit &bull; Adhesion sans email</p>
+    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">Diaspora des Maliens en Espagne</p>
     <div style="width:32px;height:32px;border:3px solid #C8E6C9;border-top-color:#2E7D32;border-radius:50%;animation:spin .8s linear infinite"></div>
     <p id="dmc-st" style="color:#D1D5DB;font-size:11px;margin-top:14px">Chargement...</p>
   </div>
@@ -821,88 +833,18 @@ const ADMIN_EMAILS = window.ADMIN_EMAILS || [];
 // ═══ DONNÉES DÉMO ═══
 const DEMO_MEMBERS = [{
   id: 'm1',
-  name: '001',
-  firstname: 'Adherent A',
-  email: 'amadou@demo.com',
+  name: 'Keita',
+  firstname: 'Tata',
+  email: '',
   country: 'Espagne',
   city: 'Madrid',
-  profession: 'Ingénieur',
-  phone: '+34 612 345 678',
+  profession: 'President cofondateur',
+  phone: '+34 634 184 167',
   memberNum: 'DMC-2024-001',
-  joinedAt: '2024-01-15',
-  avatar: '👨🏿',
+  joinedAt: '2024-01-01',
+  avatar: '👑',
   online: true,
-  bio: 'Malien de Madrid, passionné de culture et de tech.'
-}, {
-  id: 'm2',
-  name: '002',
-  firstname: 'Adherente F',
-  email: 'fato@demo.com',
-  country: 'France',
-  city: 'Paris',
-  profession: 'Médecin',
-  phone: '+33 6 12 34 56 78',
-  memberNum: 'DMC-2024-002',
-  joinedAt: '2024-02-20',
-  avatar: '👩🏿',
-  online: true,
-  bio: 'Médecin à Paris, engagée pour la santé de la diaspora.'
-}, {
-  id: 'm3',
-  name: '003',
-  firstname: 'Adherent I',
-  email: 'ibrahim@demo.com',
-  country: 'USA',
-  city: 'New York',
-  profession: 'Entrepreneur',
-  phone: '+1 212 555 0100',
-  memberNum: 'DMC-2024-003',
-  joinedAt: '2024-03-10',
-  avatar: '👨🏿‍💼',
-  online: false,
-  bio: 'Entrepreneur basé à New York.'
-}, {
-  id: 'm4',
-  name: '004',
-  firstname: 'Adherente M',
-  email: 'mariam@demo.com',
-  country: 'Canada',
-  city: 'Montréal',
-  profession: 'Enseignante',
-  phone: '+1 514 555 0100',
-  memberNum: 'DMC-2024-004',
-  joinedAt: '2024-04-05',
-  avatar: '👩🏿‍🏫',
-  online: true,
-  bio: 'Enseignante à Montréal.'
-}, {
-  id: 'm5',
-  name: '005',
-  firstname: 'Adherent O',
-  email: 'oumar@demo.com',
-  country: 'Allemagne',
-  city: 'Berlin',
-  profession: 'Architecte',
-  phone: '+49 30 1234 5678',
-  memberNum: 'DMC-2024-005',
-  joinedAt: '2024-05-01',
-  avatar: '👨🏿‍🎨',
-  online: false,
-  bio: 'Architecte à Berlin.'
-}, {
-  id: 'm6',
-  name: '006',
-  firstname: 'Adherente B',
-  email: 'aissata@demo.com',
-  country: 'Belgique',
-  city: 'Bruxelles',
-  profession: 'Avocate',
-  phone: '+32 2 123 45 67',
-  memberNum: 'DMC-2024-006',
-  joinedAt: '2024-06-15',
-  avatar: '👩🏿‍⚖️',
-  online: true,
-  bio: 'Avocate à Bruxelles.'
+  bio: 'President cofondateur de la Diaspora Mali Connect.'
 }];
 const DEMO_ASSOC = [{
   id: 'a1',
@@ -910,78 +852,23 @@ const DEMO_ASSOC = [{
   acronym: 'AMES',
   country: 'Espagne',
   city: 'Madrid',
-  president: 'Adherent 001',
+  president: 'Tata Keita',
+  vicePresident: 'Membre bureau',
+  secretary: 'Membre bureau',
+  treasurer: 'Membre bureau',
+  bureau: [{
+    role: 'President',
+    name: 'Tata Keita',
+    phone: '+34 634 184 167'
+  }],
   members: 245,
   founded: '2010',
   logo: '🇲🇱',
   validated: true,
-  description: 'Première association malienne en Espagne, regroupant plus de 245 membres à travers tout le pays.',
-  category: 'Communautaire'
-}, {
-  id: 'a2',
-  name: 'Maliens de France — Île-de-France',
-  acronym: 'MF-IDF',
-  country: 'France',
-  city: 'Paris',
-  president: 'Adherente 002',
-  members: 890,
-  founded: '2005',
-  logo: '🗼',
-  validated: true,
-  description: 'Grande association francilienne avec de nombreux programmes culturels et sociaux.',
-  category: 'Culturelle'
-}, {
-  id: 'a3',
-  name: 'Mali Community USA',
-  acronym: 'MCU',
-  country: 'USA',
-  city: 'New York',
-  president: 'Adherent 003',
-  members: 312,
-  founded: '2012',
-  logo: '🗽',
-  validated: true,
-  description: 'Fédération des communautés maliennes aux États-Unis.',
-  category: 'Fédération'
-}, {
-  id: 'a4',
-  name: 'Association Maliens du Canada',
-  acronym: 'AMC',
-  country: 'Canada',
-  city: 'Montréal',
-  president: 'Adherente 004',
-  members: 178,
-  founded: '2015',
-  logo: '🍁',
-  validated: true,
-  description: 'Association culturelle et d\'entraide des Maliens au Canada.',
-  category: 'Culturelle'
-}, {
-  id: 'a5',
-  name: 'Diaspora Mali Allemagne',
-  acronym: 'DMA',
-  country: 'Allemagne',
-  city: 'Berlin',
-  president: 'Adherent 005',
-  members: 134,
-  founded: '2018',
-  logo: '🦅',
-  validated: false,
-  description: 'Association en cours de validation. Regroupant les Maliens d\'Allemagne.',
-  category: 'Communautaire'
-}, {
-  id: 'a6',
-  name: 'Union Maliens de Belgique',
-  acronym: 'UMB',
-  country: 'Belgique',
-  city: 'Bruxelles',
-  president: 'Adherente 006',
-  members: 98,
-  founded: '2019',
-  logo: '🇧🇪',
-  validated: true,
-  description: 'Union des communautés maliennes en Belgique.',
-  category: 'Union'
+  description: 'Association principale des Maliens en Espagne.',
+  category: 'Communautaire',
+  cotisation: 0,
+  currency: 'EUR'
 }];
 const DEMO_NEWS = [{
   id: 'n1',
@@ -1050,79 +937,7 @@ const DEMO_NEWS = [{
   comments: 55,
   source: 'Fondation Mali'
 }];
-const DEMO_POSTS = [{
-  id: 'p1',
-  author: {
-    name: 'Adherent 001',
-    avatar: '👨🏿',
-    id: 'm1'
-  },
-  content: 'Fiers d\'annoncer que notre association AMES compte maintenant 245 membres ! Merci à tous pour votre confiance et votre engagement. Ensemble nous sommes plus forts ! 🇲🇱❤️',
-  date: '2026-05-26T09:00',
-  likes: 89,
-  comments: [{
-    author: 'Adherente F',
-    text: 'Félicitations ! Bravo à toute l\'équipe 🙌'
-  }, {
-    author: 'Adherent I',
-    text: 'Excellent travail ! Le Mali est fier de vous'
-  }],
-  media: null
-}, {
-  id: 'p2',
-  author: {
-    name: 'Adherente 002',
-    avatar: '👩🏿',
-    id: 'm2'
-  },
-  content: 'Aujourd\'hui j\'ai eu le plaisir d\'accueillir 3 nouveaux membres dans notre association. Bienvenue à nos nouveaux membres dans la grande famille DMC ! 🎉',
-  date: '2026-05-25T14:30',
-  likes: 156,
-  comments: [{
-    author: 'Adherente M',
-    text: 'Bienvenue aux nouveaux !'
-  }, {
-    author: 'Adherent O',
-    text: 'Toujours en croissance 💪'
-  }],
-  media: '🤝'
-}, {
-  id: 'p3',
-  author: {
-    name: 'Adherent 003',
-    avatar: '👨🏿‍💼',
-    id: 'm3'
-  },
-  content: 'Rappel : notre prochain événement networking aura lieu ce samedi à New York. Venez nombreux ! Places limitées, inscrivez-vous vite via la section Événements 📅',
-  date: '2026-05-24T11:00',
-  likes: 67,
-  comments: [{
-    author: 'Adherente B',
-    text: 'Je serai là !'
-  }],
-  media: '📅'
-}, {
-  id: 'p4',
-  author: {
-    name: 'Adherente 004',
-    avatar: '👩🏿‍🏫',
-    id: 'm4'
-  },
-  content: 'Notre programme de tutorat pour les enfants de la diaspora malienne à Montréal a aidé 45 élèves cette année scolaire. Des résultats remarquables ! 📚✨',
-  date: '2026-05-23T16:45',
-  likes: 234,
-  comments: [{
-    author: 'Adherent A',
-    text: 'Magnifique initiative !'
-  }, {
-    author: 'Adherente F',
-    text: 'C\'est ça la vraie solidarité'
-  }, {
-    author: 'Adherent I',
-    text: 'Bravo a toute l\'equipe !'
-  }],
-  media: '📚'
-}];
+const DEMO_POSTS = [];
 const DEMO_EVENTS = [{
   id: 'ev1',
   title: 'Sommet Diaspora Mali 2026',
@@ -1178,7 +993,7 @@ const DEMO_EVENTS = [{
   registered: 312,
   price: 0,
   emoji: '🏥',
-  organizer: 'UMB Santé'
+  organizer: 'AMES'
 }];
 const DEMO_CAGNOTTES = [{
   id: 'c1',
@@ -1228,7 +1043,7 @@ const DEMO_MEDIA = [{
   type: 'photo',
   emoji: '🎵',
   title: 'Concert malien Paris',
-  author: 'MF-IDF',
+  author: 'AMES',
   date: '2025-12-10',
   likes: 189,
   category: 'Culture'
@@ -1246,25 +1061,16 @@ const DEMO_MEDIA = [{
   type: 'photo',
   emoji: '🍽️',
   title: 'Gastronomie malienne NYC',
-  author: 'MCU',
+  author: 'AMES',
   date: '2026-02-14',
   likes: 312,
   category: 'Culture'
-}, {
-  id: 'md5',
-  type: 'podcast',
-  emoji: '🎙️',
-  title: 'Podcast Diaspora #45',
-  author: 'DMC Radio',
-  date: '2026-03-01',
-  likes: 178,
-  category: 'Podcast'
 }, {
   id: 'md6',
   type: 'photo',
   emoji: '🎓',
   title: 'Remise de bourses Montréal',
-  author: 'AMC',
+  author: 'AMES',
   date: '2026-04-20',
   likes: 267,
   category: 'Éducation'
@@ -2077,10 +1883,6 @@ function TopNav({
     onClick: () => setDark(!dark),
     title: "Dark mode"
   }, dark ? '☀️' : '🌙'), /*#__PURE__*/React.createElement("button", {
-    className: "nav-icon-btn",
-    onClick: () => nav('/messages'),
-    title: "Messages"
-  }, "\uD83D\uDCAC"), /*#__PURE__*/React.createElement("button", {
     className: "nav-icon-btn",
     onClick: () => nav('/settings'),
     title: "\u2699\uFE0F"
@@ -3878,205 +3680,6 @@ function NewsPage() {
   })));
 }
 // ═══ MESSAGES PAGE ═══
-function MessagesPage() {
-  const nav = useNavigate(),
-    loc = useLocation();
-  const {
-    user,
-    profile
-  } = useAuth();
-  const {
-    t
-  } = useLang();
-  const {
-    uid
-  } = useParams();
-  const [convs, setConvs] = useState([]);
-  const [messages, setMessages] = useState([]);
-  const [text, setText] = useState('');
-  const [partner, setPartner] = useState(null);
-  const endRef = useRef(null);
-  const cid = user && uid ? convId(user.uid, uid) : null;
-  useEffect(() => {
-    if (user) return listenConvs(user.uid, setConvs);
-  }, [user]);
-  useEffect(() => {
-    if (!cid) return;
-    return listenMessages(cid, m => {
-      setMessages(m);
-      setTimeout(() => endRef.current?.scrollIntoView({
-        behavior: 'smooth'
-      }), 100);
-    });
-  }, [cid]);
-  useEffect(() => {
-    if (uid) {
-      const m = DEMO_MEMBERS.find(m => m.id === uid);
-      if (m) setPartner(m);
-    }
-  }, [uid]);
-  const send = async () => {
-    if (!text.trim() || !user) return;
-    await sendMessage(user.uid, profile?.firstname || 'Moi', uid, text);
-    setText('');
-  };
-  if (uid && (user || IS_DEMO)) return /*#__PURE__*/React.createElement("div", {
-    style: {
-      minHeight: '100dvh',
-      background: 'var(--bg)',
-      display: 'flex',
-      flexDirection: 'column'
-    }
-  }, /*#__PURE__*/React.createElement(TopNav, {
-    back: "/messages",
-    title: partner ? `${partner.firstname} ${partner.name}` : 'Conversation'
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1,
-      padding: '12px 16px',
-      overflowY: 'auto'
-    }
-  }, messages.length === 0 && /*#__PURE__*/React.createElement("div", {
-    style: {
-      textAlign: 'center',
-      padding: '40px 20px',
-      color: 'var(--t4)'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 48,
-      marginBottom: 12
-    }
-  }, "\uD83D\uDCAC"), /*#__PURE__*/React.createElement("p", null, "D\xE9marrez la conversation !")), messages.map(m => /*#__PURE__*/React.createElement("div", {
-    key: m.id,
-    style: {
-      display: 'flex',
-      justifyContent: m.fromUid === user?.uid ? 'flex-end' : 'flex-start',
-      marginBottom: 8
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      maxWidth: '75%',
-      padding: '10px 14px',
-      borderRadius: 18,
-      background: m.fromUid === user?.uid ? 'var(--primary)' : 'var(--surface)',
-      color: m.fromUid === user?.uid ? '#fff' : 'var(--t1)',
-      fontSize: 14,
-      boxShadow: '0 1px 3px rgba(0,0,0,.06)',
-      border: m.fromUid === user?.uid ? 'none' : '1px solid var(--border)'
-    }
-  }, m.text, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 10,
-      opacity: .7,
-      marginTop: 4,
-      textAlign: 'right'
-    }
-  }, new Date(m.createdAt).toLocaleTimeString('fr-FR', {
-    hour: '2-digit',
-    minute: '2-digit'
-  }))))), /*#__PURE__*/React.createElement("div", {
-    ref: endRef
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '10px 16px',
-      background: 'var(--surface)',
-      borderTop: '1px solid var(--border)',
-      display: 'flex',
-      gap: 8,
-      paddingBottom: 'calc(10px + env(safe-area-inset-bottom))'
-    }
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    style: {
-      flex: 1
-    },
-    placeholder: t('sendMsg'),
-    value: text,
-    onChange: e => setText(e.target.value),
-    onKeyDown: e => e.key === 'Enter' && send()
-  }), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary",
-    onClick: send,
-    disabled: !text.trim()
-  }, "\uD83D\uDCE4")));
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      minHeight: '100dvh',
-      background: 'var(--bg)',
-      paddingBottom: 80
-    }
-  }, /*#__PURE__*/React.createElement(TopNav, {
-    title: t('messages')
-  }), convs.length === 0 && /*#__PURE__*/React.createElement("div", {
-    style: {
-      textAlign: 'center',
-      padding: '60px 20px',
-      color: 'var(--t4)'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 60,
-      marginBottom: 12
-    }
-  }, "\uD83D\uDCAC"), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 14
-    }
-  }, "Aucune conversation. Contactez un membre !"), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary",
-    style: {
-      marginTop: 16
-    },
-    onClick: () => nav('/members')
-  }, "Trouver des membres \u2192")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '0 16px'
-    }
-  }, convs.map(c => {
-    const otherUid = c.p && Object.keys(c.p).find(k => k !== user?.uid);
-    const otherName = c.p && c.p[otherUid || ''] || 'Membre';
-    return /*#__PURE__*/React.createElement(Card, {
-      key: c.id,
-      hover: true,
-      style: {
-        marginBottom: 10,
-        cursor: 'pointer'
-      },
-      onClick: () => nav('/messages/' + (otherUid || ''))
-    }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        padding: '12px 14px',
-        display: 'flex',
-        gap: 10,
-        alignItems: 'center'
-      }
-    }, /*#__PURE__*/React.createElement(Avatar, {
-      src: "\uD83D\uDC64",
-      size: 46
-    }), /*#__PURE__*/React.createElement("div", {
-      style: {
-        flex: 1,
-        minWidth: 0
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontWeight: 700,
-        fontSize: 14
-      }
-    }, otherName), /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontSize: 12,
-        color: 'var(--t4)',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap'
-      }
-    }, c.last || '...'))));
-  })));
-}
-
-// ═══ MEDIA PAGE ═══
 function MediaPage() {
   const {
     t
@@ -4108,7 +3711,7 @@ function MediaPage() {
       overflowX: 'auto',
       scrollbarWidth: 'none'
     }
-  }, ['', 'photo', 'video', 'podcast'].map(tp => /*#__PURE__*/React.createElement("button", {
+  }, ['', 'photo', 'video'].map(tp => /*#__PURE__*/React.createElement("button", {
     key: tp || 'all',
     onClick: () => setType(tp),
     style: {
@@ -4122,7 +3725,7 @@ function MediaPage() {
       fontWeight: 600,
       whiteSpace: 'nowrap'
     }
-  }, tp === '' ? t('all') : tp === 'photo' ? '📸 Photos' : tp === 'video' ? '🎬 Vidéos' : '🎙 Podcasts'))), /*#__PURE__*/React.createElement("div", {
+  }, tp === '' ? t('all') : tp === 'photo' ? '📸 Photos' : '🎬 Vidéos'))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill,minmax(150px,1fr))',
@@ -4161,19 +3764,7 @@ function MediaPage() {
       color: '#fff',
       fontSize: 32
     }
-  }, "\u25B6"), m.type === 'podcast' && /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: 'absolute',
-      bottom: 6,
-      right: 6,
-      background: 'var(--primary)',
-      color: '#fff',
-      borderRadius: 4,
-      padding: '2px 6px',
-      fontSize: 9,
-      fontWeight: 700
-    }
-  }, "POD")), /*#__PURE__*/React.createElement("div", {
+  }, "\u25B6")), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: '8px 10px'
     }
@@ -5466,35 +5057,7 @@ const createAd = async data => {
 const deleteAd = id => db ? db.ref(`ads/${id}`).remove() : Promise.resolve();
 
 // Firebase membership helpers
-const DEMO_MEMBERS_SHIP = [{
-  id: 'ms1',
-  name: 'Adherent 001',
-  country: 'Espagne',
-  city: 'Madrid',
-  phone: '+34 612 345 678',
-  email: 'amadou@demo.com',
-  type: 'Annuelle',
-  amount: 50,
-  currency: 'EUR',
-  status: 'active',
-  paidAt: '2024-01-15',
-  expiresAt: new Date('2025-01-15').getTime(),
-  memberNum: 'DMC-2024-001'
-}, {
-  id: 'ms2',
-  name: 'Adherente 002',
-  country: 'France',
-  city: 'Paris',
-  phone: '+33 6 12 34 56 78',
-  email: 'fato@demo.com',
-  type: 'Annuelle',
-  amount: 50,
-  currency: 'EUR',
-  status: 'active',
-  paidAt: '2024-02-20',
-  expiresAt: new Date('2025-02-20').getTime(),
-  memberNum: 'DMC-2024-002'
-}];
+const DEMO_MEMBERS_SHIP = [];
 const listenMemberships = cb => {
   if (!db) {
     cb(DEMO_MEMBERS_SHIP);
@@ -5535,381 +5098,23 @@ const DEMO_ASSOC_V2 = [{
   acronym: 'AMES',
   country: 'Espagne',
   city: 'Madrid',
-  president: 'Adherent 001',
-  vicePresident: 'Membre bureau',
-  secretary: 'Membre bureau',
-  treasurer: 'Membre bureau',
+  president: 'Tata Keita',
   bureau: [{
-    role: 'Président',
-    name: 'Adherent 001',
-    phone: '+34 612 345 678'
-  }, {
-    role: 'Vice-Président',
-    name: 'Membre bureau',
-    phone: '+34 655 234 567'
-  }, {
-    role: 'Secrétaire',
-    name: 'Membre bureau',
-    phone: '+34 678 901 234'
-  }, {
-    role: 'Trésorier',
-    name: 'Membre bureau',
-    phone: '+34 699 012 345'
+    role: 'President',
+    name: 'Tata Keita',
+    phone: '+34 634 184 167'
   }],
   members: 245,
   founded: '2010',
   logo: '🇲🇱',
   validated: true,
-  description: 'Première et plus grande association malienne en Espagne.',
+  description: 'Association principale des Maliens en Espagne.',
   category: 'Communautaire',
-  cotisation: 30,
-  currency: 'EUR'
-}, {
-  id: 'a2',
-  name: 'Maliens de France — Île-de-France',
-  acronym: 'MF-IDF',
-  country: 'France',
-  city: 'Paris',
-  president: 'Adherente 002',
-  vicePresident: 'Membre bureau',
-  secretary: 'Membre bureau',
-  treasurer: 'Membre bureau',
-  bureau: [{
-    role: 'Présidente',
-    name: 'Adherente 002',
-    phone: '+33 6 12 34 56 78'
-  }, {
-    role: 'Vice-Président',
-    name: 'Membre bureau',
-    phone: '+33 6 23 45 67 89'
-  }],
-  members: 890,
-  founded: '2005',
-  logo: '🗼',
-  validated: true,
-  description: 'Grande association francilienne avec nombreux programmes.',
-  category: 'Culturelle',
-  cotisation: 25,
+  cotisation: 0,
   currency: 'EUR'
 }];
 
 // ── VIDEO CONFERENCE ──
-function VideoConferencePage() {
-  const nav = useNavigate();
-  const {
-    user,
-    profile
-  } = useAuth();
-  const {
-    t
-  } = useLang();
-  const [rooms, setRooms] = useState([]);
-  const [newRoom, setNewRoom] = useState('');
-  const [activeRoom, setActiveRoom] = useState(null);
-  const jitsiRef = useRef(null);
-
-  // Charger salles de conférence depuis Firebase
-  useEffect(() => {
-    if (!db) {
-      setRooms([{
-        id: 'r1',
-        name: 'Réunion Générale DMC',
-        creator: 'Admin',
-        date: new Date().toISOString(),
-        active: true
-      }, {
-        id: 'r2',
-        name: 'Comité Cultural',
-        creator: 'AMES',
-        date: new Date().toISOString(),
-        active: true
-      }]);
-      return;
-    }
-    const r = db.ref('videoRooms');
-    r.on('value', s => {
-      const d = s.val();
-      setRooms(d ? Object.entries(d).map(([id, v]) => ({
-        id,
-        ...v
-      })).filter(r => r.active) : []);
-    });
-    return () => r.off('value');
-  }, []);
-  const createRoom = async () => {
-    if (!newRoom.trim()) return;
-    const roomId = 'DMC-' + newRoom.replace(/\s+/g, '-') + '-' + Date.now().toString(36);
-    if (db) await db.ref('videoRooms').push({
-      name: newRoom,
-      roomId,
-      creator: profile?.firstname || 'Membre',
-      date: new Date().toISOString(),
-      active: true,
-      expiresAt: Date.now() + AUTO_DELETE_MS
-    });
-    setActiveRoom(roomId);
-    setNewRoom('');
-  };
-  const joinRoom = roomId => setActiveRoom(roomId);
-  const launchJitsi = roomId => {
-    // Ouvrir Jitsi Meet dans un nouvel onglet
-    const url = `https://meet.jit.si/${roomId}?userInfo.displayName=${encodeURIComponent(profile?.firstname || 'Membre')}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-  if (activeRoom) return /*#__PURE__*/React.createElement("div", {
-    style: {
-      minHeight: '100dvh',
-      background: '#000',
-      display: 'flex',
-      flexDirection: 'column'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '12px 16px',
-      background: '#1a1a2e'
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: '#fff',
-      fontWeight: 700,
-      fontSize: 15
-    }
-  }, "\uD83C\uDFA5 ", activeRoom), /*#__PURE__*/React.createElement("button", {
-    onClick: () => setActiveRoom(null),
-    style: {
-      background: '#DC2626',
-      border: 'none',
-      color: '#fff',
-      borderRadius: 8,
-      padding: '8px 16px',
-      cursor: 'pointer',
-      fontWeight: 600
-    }
-  }, "\u2715 Quitter")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'column',
-      gap: 20,
-      padding: 24
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      textAlign: 'center',
-      color: '#fff'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 64,
-      marginBottom: 16
-    }
-  }, "\uD83C\uDFA5"), /*#__PURE__*/React.createElement("h2", {
-    style: {
-      marginBottom: 8
-    }
-  }, "Salle : ", activeRoom), /*#__PURE__*/React.createElement("p", {
-    style: {
-      color: 'rgba(255,255,255,.7)',
-      marginBottom: 24
-    }
-  }, "Cliquez pour rejoindre la visioconf\xE9rence"), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-lg",
-    style: {
-      background: '#2E7D32',
-      color: '#fff',
-      border: 'none',
-      fontSize: 16,
-      padding: '14px 32px'
-    },
-    onClick: () => launchJitsi(activeRoom)
-  }, "\uD83D\uDCF9 Rejoindre la vid\xE9oconf\xE9rence"), /*#__PURE__*/React.createElement("p", {
-    style: {
-      color: 'rgba(255,255,255,.5)',
-      fontSize: 12,
-      marginTop: 12
-    }
-  }, "Powered by Jitsi Meet \u2014 Gratuit, s\xE9curis\xE9")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'rgba(255,255,255,.1)',
-      borderRadius: 12,
-      padding: '16px 24px',
-      maxWidth: 400,
-      width: '100%'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      color: '#fff',
-      marginBottom: 8,
-      fontSize: 13
-    }
-  }, "Partager ce lien de r\xE9union :"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'rgba(255,255,255,.2)',
-      borderRadius: 8,
-      padding: '8px 12px',
-      display: 'flex',
-      gap: 8,
-      alignItems: 'center'
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'rgba(255,255,255,.8)',
-      fontSize: 11,
-      flex: 1,
-      wordBreak: 'break-all'
-    }
-  }, "https://meet.jit.si/", activeRoom), /*#__PURE__*/React.createElement("button", {
-    onClick: () => navigator.clipboard.writeText(`https://meet.jit.si/${activeRoom}`),
-    style: {
-      background: 'none',
-      border: 'none',
-      cursor: 'pointer',
-      color: '#fff',
-      fontSize: 16
-    }
-  }, "\uD83D\uDCCB")))));
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      minHeight: '100dvh',
-      background: 'var(--bg)',
-      paddingBottom: 80
-    }
-  }, /*#__PURE__*/React.createElement(TopNav, {
-    title: "Chat & Visioconf\xE9rence"
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      maxWidth: 720,
-      margin: '0 auto',
-      padding: '16px'
-    }
-  }, /*#__PURE__*/React.createElement(Card, {
-    style: {
-      marginBottom: 16
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '16px'
-    }
-  }, /*#__PURE__*/React.createElement("h3", {
-    style: {
-      marginBottom: 12,
-      fontSize: 15
-    }
-  }, "\uD83C\uDFA5 Cr\xE9er une salle de visioconf\xE9rence"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 8
-    }
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    style: {
-      flex: 1
-    },
-    placeholder: "Nom de la r\xE9union (ex: R\xE9union AMES)",
-    value: newRoom,
-    onChange: e => setNewRoom(e.target.value),
-    onKeyDown: e => e.key === 'Enter' && createRoom()
-  }), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary",
-    onClick: createRoom,
-    disabled: !newRoom.trim()
-  }, "Cr\xE9er")))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      fontSize: 14,
-      marginBottom: 10,
-      color: 'var(--t3)',
-      textTransform: 'uppercase',
-      letterSpacing: .5
-    }
-  }, "Salles actives (", rooms.length, ")"), rooms.length === 0 && /*#__PURE__*/React.createElement("div", {
-    style: {
-      textAlign: 'center',
-      padding: '40px',
-      color: 'var(--t4)'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 48,
-      marginBottom: 12
-    }
-  }, "\uD83C\uDFA5"), /*#__PURE__*/React.createElement("p", null, "Aucune salle active. Cr\xE9ez-en une !")), rooms.map(r => /*#__PURE__*/React.createElement(Card, {
-    key: r.id,
-    hover: true,
-    style: {
-      marginBottom: 10
-    },
-    onClick: () => joinRoom(r.roomId || r.id)
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '14px 16px',
-      display: 'flex',
-      gap: 12,
-      alignItems: 'center'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      width: 48,
-      height: 48,
-      borderRadius: 12,
-      background: 'var(--primary-l)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: 24,
-      flexShrink: 0
-    }
-  }, "\uD83C\uDFA5"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      fontSize: 14
-    }
-  }, r.name), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 12,
-      color: 'var(--t4)'
-    }
-  }, "Cr\xE9\xE9 par ", r.creator, " \xB7 ", new Date(r.date).toLocaleString('fr-FR'))), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary btn-sm",
-    onClick: e => {
-      e.stopPropagation();
-      joinRoom(r.roomId || r.id);
-    }
-  }, "Rejoindre")))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'var(--primary-l)',
-      border: '1px solid var(--primary)',
-      borderRadius: 12,
-      padding: '14px 16px',
-      marginTop: 16,
-      fontSize: 13,
-      color: 'var(--primary)'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      marginBottom: 6
-    }
-  }, "\u2139\uFE0F \xC0 propos de la visioconf\xE9rence"), /*#__PURE__*/React.createElement("ul", {
-    style: {
-      paddingLeft: 16,
-      lineHeight: 2,
-      color: 'var(--t2)'
-    }
-  }, /*#__PURE__*/React.createElement("li", null, "Technologie Jitsi Meet \u2014 gratuite et s\xE9curis\xE9e"), /*#__PURE__*/React.createElement("li", null, "Jusqu'\xE0 100 participants par salle"), /*#__PURE__*/React.createElement("li", null, "Partage d'\xE9cran, enregistrement disponibles"), /*#__PURE__*/React.createElement("li", null, "Aucune installation requise")))));
-}
-
-// ── BANNIÈRE PUBLICITAIRE ──
 function AdBanner({
   ads
 }) {
@@ -6793,16 +5998,6 @@ function AdminPageV2() {
     listenPosts(setPosts);
     listenNews(setNews);
     listenAds(setAds);
-    if (db) db.ref('videoRooms').on('value', s => {
-      const d = s.val();
-      setRooms(d ? Object.entries(d).map(([id, v]) => ({
-        id,
-        ...v
-      })) : []);
-    });
-    return () => {
-      if (db) db.ref('videoRooms').off('value');
-    };
   }, [isAdmin]);
 
   // Formulaire nouvelle pub
@@ -9817,10 +9012,6 @@ function HorizontalNav() {
     icon: '🎬',
     lb: t('media')
   }, {
-    p: '/messages',
-    icon: '💬',
-    lb: t('messages')
-  }, {
     p: '/cotisations',
     icon: '👥',
     lb: 'Adherents'
@@ -9832,10 +9023,6 @@ function HorizontalNav() {
     p: '/adhesion',
     icon: '🪪',
     lb: 'Adhésion'
-  }, {
-    p: '/video',
-    icon: '🎥',
-    lb: 'Vidéo'
   }, {
     p: '/chat',
     icon: '💬',
@@ -9989,12 +9176,6 @@ function AppContentV2({
     path: "/news",
     element: /*#__PURE__*/React.createElement(NewsPage, null)
   }), /*#__PURE__*/React.createElement(Route, {
-    path: "/messages",
-    element: /*#__PURE__*/React.createElement(MessagesPage, null)
-  }), /*#__PURE__*/React.createElement(Route, {
-    path: "/messages/:uid",
-    element: /*#__PURE__*/React.createElement(MessagesPage, null)
-  }), /*#__PURE__*/React.createElement(Route, {
     path: "/media",
     element: /*#__PURE__*/React.createElement(MediaPage, null)
   }), /*#__PURE__*/React.createElement(Route, {
@@ -10012,9 +9193,6 @@ function AppContentV2({
   }), /*#__PURE__*/React.createElement(Route, {
     path: "/cotisations",
     element: /*#__PURE__*/React.createElement(CotisationsPage, null)
-  }), /*#__PURE__*/React.createElement(Route, {
-    path: "/video",
-    element: /*#__PURE__*/React.createElement(VideoConferencePage, null)
   }), /*#__PURE__*/React.createElement(Route, {
     path: "/auth",
     element: /*#__PURE__*/React.createElement(AuthPage, null)
