@@ -1,13 +1,19 @@
 {
-  "_comment": "Créez un projet Firebase sur https://console.firebase.google.com puis remplissez ces valeurs dans index.html",
+  "_comment": "Configuration Firebase pour Diaspora Mali Connect",
   "firebase": {
-    "apiKey":            "REMPLACEZ_PAR_VOTRE_API_KEY",
-    "authDomain":        "VOTRE_PROJET.firebaseapp.com",
-    "databaseURL":       "https://VOTRE_PROJET-default-rtdb.firebaseio.com",
-    "projectId":         "VOTRE_PROJET",
-    "storageBucket":     "VOTRE_PROJET.appspot.com",
-    "messagingSenderId": "VOTRE_SENDER_ID",
-    "appId":             "VOTRE_APP_ID"
+    "apiKey": "AIzaSyDgJEVVlGzCd7fdWHsnxq63bNe0G_o-ojY",
+    "authDomain": "diaspora-mali-connect.firebaseapp.com",
+    "databaseURL": "https://diaspora-mali-connect-default-rtdb.europe-west1.firebasedatabase.app",
+    "projectId": "diaspora-mali-connect",
+    "storageBucket": "diaspora-mali-connect.firebasestorage.app",
+    "messagingSenderId": "533187065588",
+    "appId": "1:533187065588:web:e6899d33198ad836ea90a1",
+    "measurementId": "G-R0FSVX0L8D"
   },
-  "adminEmails": ["admin@diaspora-mali.com"]
+  "adminEmails": ["diaspo.vercel@gmail.com"],
+  "_notes": [
+    "Mot de passe admin par defaut: tata123 (cache en base64 dans le code)",
+    "Pour changer le mot de passe admin: aller dans Admin > Config",
+    "databaseURL doit pointer vers Realtime Database (pas Firestore)"
+  ]
 }
