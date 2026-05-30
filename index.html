@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
 <meta name="theme-color" content="#2E7D32">
-<meta name="description" content="Diaspora Mali Connect — La plateforme des Maliens du monde entier. Pres. cofondateur Tata Keita.">
+<meta name="description" content="Diaspora Mali Connect — Plateforme 100% gratuite des Maliens du monde entier. Pres. cofondateur Tata Keita.">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+
 
 
 
@@ -171,6 +172,11 @@ textarea.fi{resize:vertical;min-height:70px}
 @media(max-width:600px){.hn-lb{font-size:11px}}
 @media(max-width:380px){.hn-lb{display:none}}
 .sidebar-desktop{display:none!important}
+
+.horizontal-nav{display:block!important}
+@media(max-width:600px){.hn-lb{font-size:11px}}
+@media(max-width:380px){.hn-lb{display:none}}
+.sidebar-desktop{display:none!important}
 </style>
 </head>
 <body>
@@ -179,7 +185,7 @@ textarea.fi{resize:vertical;min-height:70px}
     <div style="font-size:72px;margin-bottom:16px">&#127474;&#127473;</div>
     <h1 style="font-size:22px;font-weight:900;color:#2E7D32;margin:0 0 4px">DIASPORA MALI CONNECT</h1>
     <p style="color:#9CA3AF;font-size:12px;margin:0 0 6px;font-style:italic">Unis partout, forts ensemble</p>
-    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">Pres. cofondateur Tata Keita &bull; Madrid</p>
+    <p style="color:#CBD5E1;font-size:11px;margin:0 0 28px">Pres. cofondateur Tata Keita &bull; 100% Gratuit</p>
     <div style="width:32px;height:32px;border:3px solid #C8E6C9;border-top-color:#2E7D32;border-radius:50%;animation:spin .8s linear infinite"></div>
     <p id="dmc-st" style="color:#D1D5DB;font-size:11px;margin-top:14px">Chargement...</p>
   </div>
@@ -412,7 +418,7 @@ const LANGS = {
     uploadMedia: 'Ajouter un média',
     eventDate: 'Date',
     eventLocation: 'Lieu',
-    ticketBuy: 'Acheter un billet',
+    ticketBuy: 'Participer gratuitement',
     stats: 'Statistiques',
     users: 'Utilisateurs',
     payments: 'Paiements',
@@ -3089,11 +3095,14 @@ function HomePage() {
     }
   }, ev.registered, "/", ev.capacity, " inscrits"))), /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: 13,
+      fontSize: 12,
       fontWeight: 700,
-      color: ev.price === 0 ? 'var(--primary)' : 'var(--gold)'
+      color: 'var(--success)',
+      background: 'var(--success-l)',
+      padding: '3px 8px',
+      borderRadius: 14
     }
-  }, ev.price === 0 ? 'Gratuit' : ev.price + '€'))))), /*#__PURE__*/React.createElement("div", {
+  }, "\u2713 Gratuit"))))), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: '0 16px 80px'
     }
@@ -3530,12 +3539,15 @@ function EventsPage() {
     }
   }, ev.title), /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: 15,
+      fontSize: 13,
       fontWeight: 800,
-      color: ev.price === 0 ? 'var(--primary)' : 'var(--gold)',
-      flexShrink: 0
+      color: 'var(--success)',
+      flexShrink: 0,
+      background: 'var(--success-l)',
+      padding: '4px 10px',
+      borderRadius: 20
     }
-  }, ev.price === 0 ? 'Gratuit' : ev.price + '€')), /*#__PURE__*/React.createElement("div", {
+  }, "\u2713 Gratuit")), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
       color: 'var(--t4)',
@@ -3568,7 +3580,7 @@ function EventsPage() {
       e.stopPropagation();
       user ? registerEvent(ev.id, user.uid) : nav('/auth');
     }
-  }, ev.price === 0 ? '✓ S\'inscrire gratuitement' : '🎫 Acheter un billet')))), /*#__PURE__*/React.createElement(LoadMore, {
+  }, ev.price === 0 ? '✓ S\'inscrire gratuitement' : '✓ Participer gratuitement')))), /*#__PURE__*/React.createElement(LoadMore, {
     hasMore: hasMore,
     loaderRef: loaderRef
   })));
@@ -4153,9 +4165,13 @@ function CagnottesPage() {
       fontSize: 13
     },
     onClick: () => {
-      user ? contributeC(c.id, 10, user.uid) : nav('/auth');
+      const a = prompt('Montant a contribuer (en EUR) :', '10');
+      if (a && parseFloat(a) > 0) {
+        alert('Paiement par carte bancaire ou virement.\n\nContact: diaspo.vercel@gmail.com');
+        if (db) contributeC(c.id, parseFloat(a), user?.uid || 'anonyme');
+      }
     }
-  }, "\uD83D\uDC9D Contribuer"), /*#__PURE__*/React.createElement("button", {
+  }, "\uD83D\uDCB3 Contribuer"), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-sm",
     onClick: () => navigator.share ? navigator.share({
       title: c.title
@@ -5838,7 +5854,6 @@ function AdhesionPage() {
   const {
     t
   } = useLang();
-  const [step, setStep] = useState(1);
   const [memberships, setMemberships] = useState([]);
   const [form, setForm] = useState({
     name: '',
@@ -5846,15 +5861,11 @@ function AdhesionPage() {
     phone: '',
     address: '',
     city: '',
-    country: 'Espagne',
-    type: 'Libre',
-    amount: 0,
-    currency: 'EUR',
-    paymentMethod: 'virement'
+    country: ''
   });
-  const [generatedNum, setGeneratedNum] = useState('');
   const [saving, setSaving] = useState(false);
   const [done, setDone] = useState(false);
+  const [generatedNum, setGeneratedNum] = useState('');
   const set = k => v => setForm(f => ({
     ...f,
     [k]: v
@@ -5869,64 +5880,9 @@ function AdhesionPage() {
       set('city')(profile.city || '');
     }
   }, [profile]);
-  const CURRENCIES = [{
-    c: 'EUR',
-    s: '€',
-    n: 'Euro'
-  }, {
-    c: 'USD',
-    s: '$',
-    n: 'US Dollar'
-  }, {
-    c: 'XOF',
-    s: 'FCFA',
-    n: 'Franc CFA UEMOA'
-  }, {
-    c: 'XAF',
-    s: 'FCFA',
-    n: 'Franc CFA CEMAC'
-  }, {
-    c: 'GBP',
-    s: '£',
-    n: 'British Pound'
-  }, {
-    c: 'MAD',
-    s: 'DH',
-    n: 'Dirham Marocain'
-  }, {
-    c: 'CAD',
-    s: 'CA$',
-    n: 'Dollar Canadien'
-  }, {
-    c: 'CHF',
-    s: 'CHF',
-    n: 'Franc Suisse'
-  }];
-  const SUGGESTIONS = [10, 25, 50, 100, 200, 500];
-  const PAYMENTS = [{
-    id: 'orange',
-    emoji: '🟠',
-    name: 'Orange Money'
-  }, {
-    id: 'moov',
-    emoji: '🔵',
-    name: 'Moov Money'
-  }, {
-    id: 'paypal',
-    emoji: '🅿️',
-    name: 'PayPal'
-  }, {
-    id: 'virement',
-    emoji: '🏦',
-    name: 'Virement bancaire'
-  }, {
-    id: 'cash',
-    emoji: '💵',
-    name: 'Cash'
-  }];
   const handleSubmit = async () => {
     if (!form.name || !form.firstname || !form.phone || !form.city) {
-      alert('Champs obligatoires manquants');
+      alert('Prenom, nom, telephone et ville sont obligatoires');
       return;
     }
     setSaving(true);
@@ -5937,7 +5893,9 @@ function AdhesionPage() {
         await db.ref('memberships').push({
           ...form,
           memberNum: num,
-          status: 'pending',
+          status: 'active',
+          type: 'Gratuit',
+          amount: 0,
           createdAt: Date.now()
         });
       } catch (e) {
@@ -5978,7 +5936,7 @@ function AdhesionPage() {
       color: 'var(--t3)',
       marginBottom: 20
     }
-  }, "Votre adh\xE9sion a \xE9t\xE9 enregistr\xE9e avec succ\xE8s."), /*#__PURE__*/React.createElement("div", {
+  }, "Votre adhesion gratuite a ete enregistree avec succes."), /*#__PURE__*/React.createElement("div", {
     style: {
       background: 'var(--surface)',
       borderRadius: 16,
@@ -5996,7 +5954,7 @@ function AdhesionPage() {
       letterSpacing: 1.5,
       marginBottom: 8
     }
-  }, "VOTRE NUMERO D'ADHESION"), /*#__PURE__*/React.createElement("div", {
+  }, "VOTRE NUMERO D ADHESION"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 32,
       fontWeight: 900,
@@ -6009,18 +5967,16 @@ function AdhesionPage() {
       fontSize: 11,
       color: 'var(--t4)'
     }
-  }, "Conservez ce num\xE9ro pr\xE9cieusement")), /*#__PURE__*/React.createElement("div", {
+  }, "Conservez ce numero precieusement")), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: 'var(--gold-l)',
+      background: 'var(--success-l)',
       borderRadius: 10,
       padding: '12px',
       fontSize: 12,
-      color: '#92400E',
+      color: 'var(--success)',
       marginBottom: 20
     }
-  }, "\u23F3 Votre paiement de ", form.amount, " ", (CURRENCIES.find(c => c.c === form.currency) || {
-    s: '€'
-  }).s, " sera valid\xE9 par l'administrateur sous 24-48h"), /*#__PURE__*/React.createElement("div", {
+  }, "\u2713 Adhesion 100% gratuite \u2014 vous etes officiellement membre de la diaspora"), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: 10,
@@ -6028,15 +5984,15 @@ function AdhesionPage() {
       flexWrap: 'wrap'
     }
   }, /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary btn-lg",
+    className: "btn btn-primary",
     onClick: () => {
-      navigator.clipboard?.writeText(generatedNum);
-      alert('Numéro copié!');
+      navigator.clipboard.writeText(generatedNum);
+      alert('Numero copie: ' + generatedNum);
     }
-  }, "\uD83D\uDCCB Copier mon N\xB0"), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-lg",
+  }, "\uD83D\uDCCB Copier le numero"), /*#__PURE__*/React.createElement("button", {
+    className: "btn",
     onClick: () => nav('/')
-  }, "\u2190 Accueil"))));
+  }, "Accueil"))));
   return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: '100dvh',
@@ -6044,7 +6000,7 @@ function AdhesionPage() {
       paddingBottom: 80
     }
   }, /*#__PURE__*/React.createElement(TopNav, {
-    title: "Adh\xE9sion & Cotisation"
+    title: "Adhesion gratuite"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       maxWidth: 600,
@@ -6053,6 +6009,31 @@ function AdhesionPage() {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
+      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
+      borderRadius: 16,
+      padding: '22px 20px',
+      color: '#fff',
+      marginBottom: 16,
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 48,
+      marginBottom: 8
+    }
+  }, "\uD83E\uDEAA"), /*#__PURE__*/React.createElement("h1", {
+    style: {
+      fontSize: 18,
+      fontWeight: 900,
+      marginBottom: 4
+    }
+  }, "ADHESION GRATUITE"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 12,
+      opacity: .9
+    }
+  }, "Rejoignez la diaspora malienne mondiale gratuitement")), /*#__PURE__*/React.createElement("div", {
+    style: {
       display: 'grid',
       gridTemplateColumns: 'repeat(3,1fr)',
       gap: 10,
@@ -6060,16 +6041,16 @@ function AdhesionPage() {
     }
   }, [{
     v: memberships.length || 247,
-    l: 'Membres',
+    l: 'Adherents',
     i: '👥'
   }, {
     v: 35,
     l: 'Pays',
     i: '🌍'
   }, {
-    v: DEMO_ASSOC_V2.length,
-    l: 'Assoc.',
-    i: '🏛'
+    v: '100%',
+    l: 'Gratuit',
+    i: '🎁'
   }].map(s => /*#__PURE__*/React.createElement("div", {
     key: s.l,
     style: {
@@ -6087,7 +6068,7 @@ function AdhesionPage() {
   }, s.i), /*#__PURE__*/React.createElement("div", {
     style: {
       fontWeight: 800,
-      fontSize: 20,
+      fontSize: 18,
       color: 'var(--primary)'
     }
   }, s.v), /*#__PURE__*/React.createElement("div", {
@@ -6096,149 +6077,29 @@ function AdhesionPage() {
       color: 'var(--t4)',
       fontWeight: 600
     }
-  }, s.l)))), step === 1 && /*#__PURE__*/React.createElement("div", {
+  }, s.l)))), /*#__PURE__*/React.createElement("div", {
     style: {
-      animation: 'fadeIn .2s'
-    }
-  }, /*#__PURE__*/React.createElement("h3", {
-    style: {
+      background: 'var(--success-l)',
+      border: '1px solid var(--success)',
+      borderRadius: 10,
+      padding: '12px 14px',
+      fontSize: 12,
+      color: 'var(--success)',
       marginBottom: 14,
-      fontSize: 16
+      fontWeight: 600
     }
-  }, "1. Choisir le montant a payer"), /*#__PURE__*/React.createElement(Card, {
-    style: {
-      marginBottom: 14
-    }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, "\u2713 ", /*#__PURE__*/React.createElement("strong", null, "100% Gratuit"), " \u2014 Aucun email ni mot de passe requis. Numero d adherent genere automatiquement."), /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement("div", {
     style: {
       padding: '18px'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 11,
       fontWeight: 700,
-      color: 'var(--t4)',
-      textTransform: 'uppercase',
-      letterSpacing: .5,
-      marginBottom: 10
-    }
-  }, "Devise"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(4,1fr)',
-      gap: 8,
-      marginBottom: 18
-    }
-  }, CURRENCIES.map(cur => /*#__PURE__*/React.createElement("button", {
-    key: cur.c,
-    type: "button",
-    onClick: () => set('currency')(cur.c),
-    style: {
-      padding: '10px 4px',
-      borderRadius: 10,
-      border: `1.5px solid ${form.currency === cur.c ? 'var(--primary)' : 'var(--border)'}`,
-      background: form.currency === cur.c ? 'var(--primary-l)' : 'var(--surface)',
-      cursor: 'pointer',
-      textAlign: 'center',
-      transition: 'all .15s'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 16,
-      fontWeight: 900,
-      color: form.currency === cur.c ? 'var(--primary)' : 'var(--t2)'
-    }
-  }, cur.s), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 9,
-      color: 'var(--t4)',
-      fontWeight: 600
-    }
-  }, cur.c)))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 11,
-      fontWeight: 700,
-      color: 'var(--t4)',
-      textTransform: 'uppercase',
-      letterSpacing: .5,
-      marginBottom: 10
-    }
-  }, "Montant libre"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 8,
-      marginBottom: 12
-    }
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "number",
-    className: "fi",
-    style: {
-      flex: 1,
-      fontSize: 22,
-      fontWeight: 800,
-      textAlign: 'center'
-    },
-    placeholder: "0",
-    value: form.amount || '',
-    onChange: e => set('amount')(parseFloat(e.target.value) || 0)
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: '0 16px',
-      background: 'var(--primary)',
-      color: '#fff',
-      borderRadius: 'var(--radius-m)',
-      fontWeight: 800,
-      fontSize: 18
-    }
-  }, (CURRENCIES.find(c => c.c === form.currency) || CURRENCIES[0]).s)), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 11,
-      fontWeight: 700,
-      color: 'var(--t4)',
-      marginBottom: 8
-    }
-  }, "Suggestions rapides"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 6,
-      flexWrap: 'wrap'
-    }
-  }, SUGGESTIONS.map(s => /*#__PURE__*/React.createElement("button", {
-    key: s,
-    type: "button",
-    onClick: () => set('amount')(s),
-    style: {
-      padding: '7px 14px',
-      borderRadius: 20,
-      border: `1.5px solid ${form.amount === s ? 'var(--gold)' : 'var(--border)'}`,
-      background: form.amount === s ? 'var(--gold-l)' : 'var(--surface)',
-      cursor: 'pointer',
-      fontSize: 13,
-      fontWeight: 700,
-      color: form.amount === s ? 'var(--gold)' : 'var(--t3)'
-    }
-  }, s, " ", (CURRENCIES.find(c => c.c === form.currency) || CURRENCIES[0]).s))))), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary btn-full btn-lg",
-    onClick: () => {
-      if (!form.amount || form.amount <= 0) return alert('Entrez un montant');
-      setStep(2);
-    }
-  }, "Continuer avec ", form.amount || 0, " ", (CURRENCIES.find(c => c.c === form.currency) || CURRENCIES[0]).s, " \u2192")), step === 2 && /*#__PURE__*/React.createElement("div", {
-    style: {
-      animation: 'fadeIn .2s'
-    }
-  }, /*#__PURE__*/React.createElement("h3", {
-    style: {
+      fontSize: 14,
       marginBottom: 14,
-      fontSize: 16
+      color: 'var(--primary)'
     }
-  }, "2. Vos informations"), /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '16px'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, "Vos informations"), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
@@ -6246,7 +6107,7 @@ function AdhesionPage() {
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Pr\xE9nom *"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, "Prenom *"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
     placeholder: "Votre prenom",
     value: form.firstname,
@@ -6260,7 +6121,7 @@ function AdhesionPage() {
     onChange: e => set('name')(e.target.value)
   }))), /*#__PURE__*/React.createElement("div", {
     className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "T\xE9l\xE9phone *"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, "Telephone *"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
     type: "tel",
     placeholder: "+34 6XX XXX XXX",
@@ -6270,7 +6131,7 @@ function AdhesionPage() {
     className: "fg"
   }, /*#__PURE__*/React.createElement("label", null, "Adresse"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
-    placeholder: "Rue, num\xE9ro...",
+    placeholder: "Rue, numero",
     value: form.address,
     onChange: e => set('address')(e.target.value)
   })), /*#__PURE__*/React.createElement("div", {
@@ -6293,108 +6154,27 @@ function AdhesionPage() {
     placeholder: "Votre pays",
     value: form.country,
     onChange: e => set('country')(e.target.value)
-  }))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'var(--primary-l)',
-      borderRadius: 8,
-      padding: '10px 12px',
-      fontSize: 11,
-      color: 'var(--primary)',
-      lineHeight: 1.6
-    }
-  }, "\u2139\uFE0F ", /*#__PURE__*/React.createElement("strong", null, "Inscription simplifi\xE9e"), " \u2014 Aucun email requis. Un num\xE9ro d'adh\xE9sion unique sera g\xE9n\xE9r\xE9 automatiquement."))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 10,
-      marginTop: 12
-    }
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-full",
-    onClick: () => setStep(1)
-  }, "\u2190 Retour"), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary btn-full",
-    onClick: () => {
-      if (!form.name || !form.firstname || !form.phone || !form.city) return alert('Prénom, nom, téléphone et ville requis');
-      setStep(3);
-    }
-  }, "Continuer \u2192"))), step === 3 && /*#__PURE__*/React.createElement("div", {
-    style: {
-      animation: 'fadeIn .2s'
-    }
-  }, /*#__PURE__*/React.createElement("h3", {
-    style: {
-      marginBottom: 14,
-      fontSize: 16
-    }
-  }, "3. Mode de paiement"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'var(--gold-l)',
-      border: '1px solid var(--gold)',
-      borderRadius: 12,
-      padding: '12px 14px',
-      marginBottom: 14,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontWeight: 700
-    }
-  }, "Montant \xE0 payer"), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontWeight: 900,
-      fontSize: 22,
-      color: 'var(--gold)'
-    }
-  }, form.amount, " ", (CURRENCIES.find(c => c.c === form.currency) || {
-    s: '€'
-  }).s)), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: 8,
-      marginBottom: 14
-    }
-  }, PAYMENTS.map(pm => /*#__PURE__*/React.createElement("button", {
-    key: pm.id,
-    onClick: () => set('paymentMethod')(pm.id),
-    style: {
-      padding: '12px',
-      borderRadius: 10,
-      border: `2px solid ${form.paymentMethod === pm.id ? 'var(--primary)' : 'var(--border)'}`,
-      background: form.paymentMethod === pm.id ? 'var(--primary-l)' : 'var(--surface)',
-      cursor: 'pointer',
-      textAlign: 'center',
-      transition: 'all .15s'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 24,
-      marginBottom: 4
-    }
-  }, pm.emoji), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 12,
-      fontWeight: 700,
-      color: form.paymentMethod === pm.id ? 'var(--primary)' : 'var(--t3)'
-    }
-  }, pm.name)))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 10
-    }
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-full",
-    onClick: () => setStep(2)
-  }, "\u2190 Retour"), /*#__PURE__*/React.createElement("button", {
+  }))))), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-primary btn-full btn-lg",
+    style: {
+      marginTop: 14
+    },
     onClick: handleSubmit,
     disabled: saving
-  }, saving ? 'Envoi...' : '✓ Valider l\'adhésion')))));
+  }, saving ? 'Inscription en cours...' : '🪪 Je m adhere gratuitement'), /*#__PURE__*/React.createElement("p", {
+    style: {
+      textAlign: 'center',
+      fontSize: 11,
+      color: 'var(--t4)',
+      marginTop: 12
+    }
+  }, "Pour soutenir la diaspora, contributions par carte ou virement bancaire dans la section ", /*#__PURE__*/React.createElement("a", {
+    href: "#/cagnottes",
+    style: {
+      color: 'var(--primary)'
+    }
+  }, "Cagnottes"))));
 }
-
-// ── PAGE COTISATIONS ──
 function CotisationsPage() {
   const nav = useNavigate();
   const {
@@ -6402,16 +6182,21 @@ function CotisationsPage() {
     profile
   } = useAuth();
   const [memberships, setMemberships] = useState([]);
-  const {
-    isAdmin
-  } = useAdmin();
+  const [q, setQ] = useState('');
+  const [country, setCountry] = useState('');
   useEffect(() => listenMemberships(setMemberships), []);
+  const filtered = memberships.filter(m => {
+    const name = ((m.firstname || '') + ' ' + (m.name || '')).toLowerCase();
+    const matchQ = !q || name.includes(q.toLowerCase()) || (m.memberNum || '').toLowerCase().includes(q.toLowerCase());
+    const matchC = !country || m.country === country;
+    return matchQ && matchC;
+  }).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
   const {
     displayed,
     hasMore,
     loaderRef
-  } = useInfiniteScroll(memberships, 15);
-  const myMs = memberships.filter(m => m.uid === user?.uid);
+  } = useInfiniteScroll(filtered, 20);
+  const COUNTRIES = ['', 'Mali', 'Espagne', 'France', 'USA', 'Canada', 'Belgique', 'Allemagne'];
   return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: '100dvh',
@@ -6419,194 +6204,239 @@ function CotisationsPage() {
       paddingBottom: 80
     }
   }, /*#__PURE__*/React.createElement(TopNav, {
-    title: "Cotisations"
-  }), myMs.length > 0 && /*#__PURE__*/React.createElement("div", {
+    title: "Tableau des Adherents"
+  }), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: 'var(--primary)',
+      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
+      padding: '20px',
       color: '#fff',
-      padding: '14px 20px',
-      display: 'flex',
-      alignItems: 'center',
-      gap: 12
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: 28
-    }
-  }, "\u2705"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 800
-    }
-  }, "Cotisation active"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 12,
-      opacity: .85
-    }
-  }, myMs[0].memberNum, " \xB7 ", myMs[0].type)), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-sm",
-    style: {
-      marginLeft: 'auto',
-      background: 'rgba(255,255,255,.2)',
-      color: '#fff',
-      border: 'none'
-    },
-    onClick: () => nav('/member-card')
-  }, "Voir carte")), !myMs.length && /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'var(--gold-l)',
-      borderBottom: '1px solid var(--gold)',
-      padding: '14px 20px',
-      display: 'flex',
-      alignItems: 'center',
-      gap: 12
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: 24
-    }
-  }, "\u26A0\uFE0F"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1
+      marginBottom: 14
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontWeight: 700,
-      color: '#92400E'
+      textAlign: 'center'
     }
-  }, "Pas encore membre"), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 48,
+      marginBottom: 6
+    }
+  }, "\uD83D\uDC65"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 32,
+      fontWeight: 900,
+      letterSpacing: 1
+    }
+  }, memberships.length), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: '#92400E'
+      opacity: .85,
+      fontWeight: 600,
+      textTransform: 'uppercase',
+      letterSpacing: 1.5
     }
-  }, "Adh\xE9rez pour acc\xE9der \xE0 tous les avantages")), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-sm",
-    style: {
-      background: 'var(--gold)',
-      color: '#fff',
-      border: 'none'
-    },
-    onClick: () => nav('/adhesion')
-  }, "S'inscrire")), /*#__PURE__*/React.createElement("div", {
+  }, "Adherents inscrits"))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'grid',
       gridTemplateColumns: 'repeat(3,1fr)',
       gap: 8,
-      padding: '14px 16px',
-      background: 'var(--surface)',
-      borderBottom: '1px solid var(--border)'
+      padding: '0 16px 14px'
     }
   }, [{
-    v: memberships.length || 247,
-    l: 'Membres actifs',
-    i: '👥'
+    v: memberships.length,
+    l: 'Total',
+    i: '👥',
+    c: 'var(--primary)'
   }, {
-    v: memberships.filter(m => m.type === 'Fondateur').length || 12,
-    l: 'Fondateurs',
-    i: '⭐'
+    v: memberships.filter(m => m.status === 'active').length,
+    l: 'Actifs',
+    i: '✓',
+    c: 'var(--success)'
   }, {
-    v: memberships.filter(m => m.type === 'Bienfaiteur').length || 5,
-    l: 'Bienfaiteurs',
-    i: '🏆'
+    v: new Set(memberships.map(m => m.country).filter(Boolean)).size,
+    l: 'Pays',
+    i: '🌍',
+    c: 'var(--gold)'
   }].map(s => /*#__PURE__*/React.createElement("div", {
     key: s.l,
     style: {
-      textAlign: 'center',
-      padding: '8px'
+      background: 'var(--surface)',
+      borderRadius: 12,
+      border: '1px solid var(--border)',
+      padding: '12px',
+      textAlign: 'center'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 16,
+      fontSize: 20,
       marginBottom: 2
     }
   }, s.i), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontWeight: 800,
-      fontSize: 18,
-      color: 'var(--primary)'
+      fontWeight: 900,
+      fontSize: 20,
+      color: s.c
     }
   }, s.v), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 9,
+      fontSize: 10,
       color: 'var(--t4)',
-      fontWeight: 600,
-      lineHeight: 1.2
+      fontWeight: 600
     }
-  }, s.l)))), isAdmin && /*#__PURE__*/React.createElement("div", {
+  }, s.l)))), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '12px 16px'
+      padding: '0 16px 14px'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-full",
+    onClick: () => nav('/adhesion')
+  }, "\uD83C\uDF81 Adherer gratuitement (sans email)")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '10px 16px',
+      background: 'var(--surface)',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "fi",
+    type: "search",
+    placeholder: "Rechercher (nom, numero, ville...)",
+    value: q,
+    onChange: e => setQ(e.target.value),
+    style: {
+      marginBottom: 8
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      overflowX: 'auto',
+      scrollbarWidth: 'none'
+    }
+  }, COUNTRIES.map(c => /*#__PURE__*/React.createElement("button", {
+    key: c || 'all',
+    onClick: () => setCountry(c),
+    style: {
+      padding: '5px 12px',
+      borderRadius: 20,
+      border: '1.5px solid ' + (country === c ? 'var(--primary)' : 'var(--border)'),
+      background: country === c ? 'var(--primary)' : 'var(--surface)',
+      color: country === c ? '#fff' : 'var(--t3)',
+      cursor: 'pointer',
+      fontSize: 12,
+      fontWeight: 600,
+      whiteSpace: 'nowrap'
+    }
+  }, c || 'Tous')))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '10px 16px'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
+      fontSize: 12,
       fontWeight: 700,
-      fontSize: 14,
-      marginBottom: 10
+      color: 'var(--t4)',
+      textTransform: 'uppercase',
+      letterSpacing: .5,
+      marginBottom: 10,
+      padding: '0 4px'
     }
-  }, "Liste des cotisants (", memberships.length, ")"), displayed.map(m => /*#__PURE__*/React.createElement(Card, {
-    key: m.id,
+  }, filtered.length, " adherent(s) ", q || country ? ' (filtres actifs)' : ''), filtered.length === 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      padding: '40px 20px',
+      color: 'var(--t4)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 48,
+      marginBottom: 12
+    }
+  }, "\uD83D\uDC65"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13,
+      marginBottom: 14
+    }
+  }, "Aucun adherent trouve"), /*#__PURE__*/React.createElement("button", {
+    className: "btn btn-primary btn-sm",
+    onClick: () => nav('/adhesion')
+  }, "Etre le premier")), displayed.map((m, i) => /*#__PURE__*/React.createElement(Card, {
+    key: m.id || i,
     style: {
       marginBottom: 8
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '10px 14px',
+      padding: '12px 14px',
       display: 'flex',
       gap: 10,
       alignItems: 'center'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      width: 36,
-      height: 36,
+      width: 42,
+      height: 42,
       borderRadius: '50%',
-      background: 'var(--primary-l)',
+      background: 'linear-gradient(135deg,var(--primary),var(--primary-d))',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      fontSize: 18
+      fontSize: 18,
+      fontWeight: 900,
+      color: '#fff',
+      flexShrink: 0
     }
-  }, "\uD83D\uDC64"), /*#__PURE__*/React.createElement("div", {
+  }, (m.firstname || '?').charAt(0).toUpperCase(), (m.name || '?').charAt(0).toUpperCase()), /*#__PURE__*/React.createElement("div", {
     style: {
-      flex: 1
+      flex: 1,
+      minWidth: 0
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontWeight: 600,
-      fontSize: 13
+      fontWeight: 700,
+      fontSize: 13,
+      color: 'var(--t1)'
     }
-  }, m.firstname, " ", m.name), /*#__PURE__*/React.createElement("div", {
+  }, m.firstname || '?', " ", m.name || '?'), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
-      color: 'var(--t4)'
+      color: 'var(--t4)',
+      marginTop: 2,
+      display: 'flex',
+      gap: 6,
+      flexWrap: 'wrap'
     }
-  }, m.country, " \xB7 ", m.type, " \xB7 ", m.amount, m.currency)), /*#__PURE__*/React.createElement("div", {
+  }, m.country && /*#__PURE__*/React.createElement("span", null, "\uD83C\uDF0D ", m.country), m.city && /*#__PURE__*/React.createElement("span", null, "\uD83D\uDCCD ", m.city), m.phone && /*#__PURE__*/React.createElement("span", null, "\uD83D\uDCF1 ", m.phone.slice(0, 8), "..."))), /*#__PURE__*/React.createElement("div", {
     style: {
-      textAlign: 'right'
+      textAlign: 'right',
+      flexShrink: 0
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 10,
+      fontFamily: 'monospace',
+      color: 'var(--primary)',
       fontWeight: 700,
-      color: m.status === 'active' ? 'var(--success)' : 'var(--warning)'
+      letterSpacing: 1
     }
-  }, m.status === 'active' ? '✅ Actif' : '⏳ En attente'), /*#__PURE__*/React.createElement("div", {
+  }, m.memberNum || ''), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 10,
-      color: 'var(--t4)'
+      fontSize: 9,
+      fontWeight: 700,
+      color: m.status === 'active' ? 'var(--success)' : 'var(--warning)',
+      marginTop: 2
     }
-  }, m.memberNum))))), /*#__PURE__*/React.createElement(LoadMore, {
+  }, m.status === 'active' ? '✓ Actif' : '⏳ Attente'))))), /*#__PURE__*/React.createElement(LoadMore, {
     hasMore: hasMore,
     loaderRef: loaderRef
-  })), !isAdmin && /*#__PURE__*/React.createElement("div", {
+  }), !hasMore && filtered.length > 0 && /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '20px 16px'
+      textAlign: 'center',
+      padding: '20px',
+      color: 'var(--t4)',
+      fontSize: 11
     }
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary btn-full btn-lg",
-    onClick: () => nav('/adhesion')
-  }, "\uD83D\uDCB3 Payer ma cotisation")));
+  }, "\u2713 Fin de la liste \u2014 ", filtered.length, " adherent(s) au total")));
 }
-
-// ════════ ADMIN PAGE V2 — Password + toutes fonctions ════════
 function AdminLoginModal({
   onSuccess
 }) {
@@ -6815,7 +6645,7 @@ function AdminPageV2() {
     alert('Média publié!');
   };
   useEffect(() => {
-    if (!isAdmin) return;
+    // Admin sans authentification - chargement direct
     listenMembers(setMembers);
     listenAssoc(setAssocs);
     listenEvents(setEvents);
@@ -6908,9 +6738,10 @@ function AdminPageV2() {
     });
     alert('Actualité publiée !');
   };
-  if (!isAdmin) return /*#__PURE__*/React.createElement(AdminLoginModal, {
-    onSuccess: () => setShowLogin(false)
-  });
+
+  // Admin visible sans connexion ni mot de passe
+  // const showLoginRemoved = false
+
   const TABS = ['📊 Dashboard', '👥 Membres', '🏛 Assoc.', '💳 Cotis.', '📰 News', '📢 Pub', '🗓 Events', '📸 Médias', 'ℹ️ Info', '⚙️ Config'];
   const totalRevenue = memberships.reduce((sum, m) => sum + (m.amount || 0), 0);
   return /*#__PURE__*/React.createElement("div", {
@@ -8296,11 +8127,14 @@ function EventDetailPage() {
     }
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 22,
+      fontSize: 18,
       fontWeight: 900,
-      color: ev.price === 0 ? 'var(--primary)' : 'var(--gold)'
+      color: 'var(--success)',
+      background: 'var(--success-l)',
+      padding: '6px 14px',
+      borderRadius: 20
     }
-  }, ev.price === 0 ? 'Gratuit' : ev.price + '€'), /*#__PURE__*/React.createElement("div", {
+  }, "\u2713 GRATUIT"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 11,
       color: 'var(--t4)'
@@ -8308,7 +8142,7 @@ function EventDetailPage() {
   }, "par personne")), /*#__PURE__*/React.createElement("button", {
     className: "btn btn-primary btn-lg",
     onClick: () => user ? registerEvent(ev.id, user.uid).then(() => alert('Inscription confirmée !')) : nav('/auth')
-  }, ev.price === 0 ? '✓ S\'inscrire' : '🎫 Acheter')))));
+  }, ev.price === 0 ? '✓ S\'inscrire' : '✓ Participer')))));
 }
 function CreateAssocPage() {
   const nav = useNavigate();
@@ -8636,11 +8470,12 @@ function CreateEventPage() {
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "fg"
-  }, /*#__PURE__*/React.createElement("label", null, "Prix (\u20AC, 0=gratuit)"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("label", null, "Prix (0 = gratuit recommande)"), /*#__PURE__*/React.createElement("input", {
     className: "fi",
     type: "number",
     value: form.price,
-    onChange: e => set('price')(e.target.value)
+    onChange: e => set('price')(e.target.value),
+    placeholder: "0"
   })), /*#__PURE__*/React.createElement("div", {
     className: "fg"
   }, /*#__PURE__*/React.createElement("label", null, "Capacit\xE9"), /*#__PURE__*/React.createElement("input", {
@@ -9182,7 +9017,6 @@ function AdminQuickBar() {
   } = useAdmin();
   const loc = useLocation();
   const [open, setOpen] = useState(false);
-  if (!isAdmin) return null;
   if (loc.pathname.startsWith('/admin')) return null;
   return /*#__PURE__*/React.createElement("div", {
     style: {
@@ -9470,239 +9304,6 @@ function InformationPage() {
 }
 
 // ═══ PUBLIC CHAT — Sans inscription ═══
-function PublicChatPage() {
-  const nav = useNavigate();
-  const {
-    isAdmin
-  } = useAdmin();
-  const [messages, setMessages] = useState([]);
-  const [pseudo, setPseudo] = useState(() => {
-    try {
-      return localStorage.getItem('dmc-pseudo') || '';
-    } catch {
-      return '';
-    }
-  });
-  const [text, setText] = useState('');
-  const endRef = useRef(null);
-  useEffect(() => {
-    if (!db) {
-      setMessages([{
-        id: 'pc1',
-        pseudo: 'Adherent A',
-        text: 'Salam aleykoum à tous les Maliens!',
-        createdAt: Date.now() - 3600000
-      }, {
-        id: 'pc2',
-        pseudo: 'Adherente F',
-        text: 'Bienvenue dans la diaspora 🇲🇱',
-        createdAt: Date.now() - 1800000
-      }, {
-        id: 'pc3',
-        pseudo: 'Admin DMC',
-        text: 'N\'oubliez pas l\'événement du 15 juillet à Paris!',
-        createdAt: Date.now() - 600000,
-        isAdmin: true
-      }]);
-      return;
-    }
-    const r = db.ref('publicChat').limitToLast(100);
-    r.on('value', s => {
-      const d = s.val();
-      const list = d ? Object.entries(d).map(([id, v]) => ({
-        id,
-        ...v
-      })).sort((a, b) => a.createdAt - b.createdAt) : [];
-      setMessages(list);
-      setTimeout(() => endRef.current?.scrollIntoView({
-        behavior: 'smooth'
-      }), 100);
-    });
-    return () => r.off('value');
-  }, []);
-  const send = async () => {
-    if (!text.trim()) return;
-    const p = pseudo.trim() || 'Anonyme';
-    try {
-      localStorage.setItem('dmc-pseudo', p);
-    } catch {}
-    if (db) {
-      await db.ref('publicChat').push({
-        pseudo: p,
-        text: text.trim(),
-        createdAt: Date.now(),
-        isAdmin
-      });
-    } else {
-      setMessages(m => [...m, {
-        id: 'tmp' + Date.now(),
-        pseudo: p,
-        text: text.trim(),
-        createdAt: Date.now(),
-        isAdmin
-      }]);
-    }
-    setText('');
-  };
-  const deleteMsg = id => {
-    if (!isAdmin) return;
-    if (db) db.ref(`publicChat/${id}`).remove();
-  };
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      minHeight: '100dvh',
-      background: 'var(--bg)',
-      display: 'flex',
-      flexDirection: 'column'
-    }
-  }, /*#__PURE__*/React.createElement(TopNav, {
-    title: "\uD83D\uDCAC Chat Public"
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      background: 'var(--primary-l)',
-      borderBottom: '1px solid var(--border)',
-      padding: '10px 16px',
-      fontSize: 12,
-      color: 'var(--primary)',
-      display: 'flex',
-      gap: 8,
-      alignItems: 'center'
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: 18
-    }
-  }, "\uD83D\uDC4B"), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("strong", null, "Chat public ouvert \xE0 tous"), " \u2014 Aucune inscription requise. Choisissez un pseudo et discutez!")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1,
-      overflowY: 'auto',
-      padding: '14px 16px',
-      maxHeight: 'calc(100dvh - 200px)'
-    }
-  }, messages.length === 0 && /*#__PURE__*/React.createElement("div", {
-    style: {
-      textAlign: 'center',
-      padding: '40px 20px',
-      color: 'var(--t4)'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 48,
-      marginBottom: 12
-    }
-  }, "\uD83D\uDCAC"), /*#__PURE__*/React.createElement("p", null, "Soyez le premier \xE0 \xE9crire un message!")), messages.map(m => /*#__PURE__*/React.createElement("div", {
-    key: m.id,
-    style: {
-      marginBottom: 12
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 8,
-      alignItems: 'flex-start'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      width: 36,
-      height: 36,
-      borderRadius: '50%',
-      background: m.isAdmin ? 'var(--gold)' : 'var(--primary)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: '#fff',
-      fontWeight: 800,
-      fontSize: 14,
-      flexShrink: 0
-    }
-  }, (m.pseudo || 'A')[0].toUpperCase()), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1,
-      background: 'var(--surface)',
-      borderRadius: 12,
-      padding: '10px 14px',
-      border: '1px solid var(--border)'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 8,
-      alignItems: 'center',
-      marginBottom: 4
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontWeight: 700,
-      fontSize: 13,
-      color: m.isAdmin ? 'var(--gold)' : 'var(--primary)'
-    }
-  }, m.pseudo, m.isAdmin && ' 🛡'), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: 10,
-      color: 'var(--t4)'
-    }
-  }, new Date(m.createdAt).toLocaleString('fr-FR', {
-    day: 'numeric',
-    month: 'short',
-    hour: '2-digit',
-    minute: '2-digit'
-  })), isAdmin && /*#__PURE__*/React.createElement("button", {
-    onClick: () => deleteMsg(m.id),
-    style: {
-      background: 'none',
-      border: 'none',
-      cursor: 'pointer',
-      color: 'var(--danger)',
-      fontSize: 12,
-      marginLeft: 'auto'
-    }
-  }, "\uD83D\uDDD1")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 14,
-      lineHeight: 1.5,
-      color: 'var(--t2)',
-      wordBreak: 'break-word'
-    }
-  }, m.text))))), /*#__PURE__*/React.createElement("div", {
-    ref: endRef
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '10px 16px',
-      background: 'var(--surface)',
-      borderTop: '1px solid var(--border)',
-      display: 'flex',
-      gap: 8,
-      flexDirection: 'column',
-      paddingBottom: 'calc(10px + env(safe-area-inset-bottom))'
-    }
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    placeholder: "Votre pseudo (ou laisser vide pour Anonyme)",
-    value: pseudo,
-    onChange: e => setPseudo(e.target.value),
-    style: {
-      fontSize: 13
-    }
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 8
-    }
-  }, /*#__PURE__*/React.createElement("input", {
-    className: "fi",
-    style: {
-      flex: 1
-    },
-    placeholder: "Tapez votre message...",
-    value: text,
-    onChange: e => setText(e.target.value),
-    onKeyDown: e => e.key === 'Enter' && send()
-  }), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-primary",
-    onClick: send,
-    disabled: !text.trim()
-  }, "\uD83D\uDCE4 Envoyer"))));
-}
 
 // ═══ FOOTER CONTACT (visible sur Accueil) ═══
 function ContactFooter() {
@@ -9882,8 +9483,8 @@ function HorizontalNav() {
     lb: t('messages')
   }, {
     p: '/cotisations',
-    icon: '💳',
-    lb: 'Cotisation'
+    icon: '👥',
+    lb: 'Adherents'
   }, {
     p: '/cagnottes',
     icon: '💝',
@@ -10081,9 +9682,6 @@ function AppContentV2({
   }), /*#__PURE__*/React.createElement(Route, {
     path: "/settings",
     element: /*#__PURE__*/React.createElement(SettingsPage, null)
-  }), /*#__PURE__*/React.createElement(Route, {
-    path: "/chat",
-    element: /*#__PURE__*/React.createElement(PublicChatPage, null)
   }), /*#__PURE__*/React.createElement(Route, {
     path: "/info",
     element: /*#__PURE__*/React.createElement(InformationPage, null)
