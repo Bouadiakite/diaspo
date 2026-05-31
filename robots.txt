@@ -1,0 +1,14 @@
+# robots.txt — Diaspora Mali Connect
+# https://diaspo.vercel.app/
+
+User-agent: *
+Allow: /
+
+# Bloquer uniquement l'admin
+Disallow: /#/admin
+
+# Localisation du sitemap
+Sitemap: https://diaspo.vercel.app/sitemap.xml
+
+# Frequence de crawl raisonnable
+Crawl-delay: 1
